@@ -7,6 +7,9 @@ import 'jquery';
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "axios/dist/axios.min.js";
+//datepicker
+import "bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"
+import "bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
