@@ -1,0 +1,45 @@
+.video-display {
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: harmony;
+    text-decoration: none;
+    color: black;
+  }
+  .cover {
+    .image {
+      position: relative;
+      a {
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .views {
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      font-family: harmony;
+      .number {
+        display: inline;
+        vertical-align: middle;
+      }
+    }
+
+    .duration {
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      font-family: harmony;
+      .number {
+        display: inline;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .title:hover {
+    color: #00aeec;
+  }
+}
