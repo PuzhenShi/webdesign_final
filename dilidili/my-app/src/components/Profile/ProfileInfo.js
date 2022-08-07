@@ -1,13 +1,23 @@
-import React from 'react'
-
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 function ProfileInfo() {
 
 
-    function ProfileDatePicker() {
-        var datePickerElement = document.getElementById("profileDatePicker");
-        datePickerElement.datetimepicker();
-        // ('#profileDatePicker').datetimepicker();
-    }
+    //script for datepicker component
+    const [startDate, setStartDate] = useState(new Date());
+
+
+    //script for modal component
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+
+
     //ProfileDatePicker();
     return (
         <div class="col-8 ml-8 mb-8 rounded" id="profileHomeOut">
@@ -36,18 +46,36 @@ function ProfileInfo() {
                     <label class="btn btn-outline-primary" for="genderOther">other</label>
                 </div>
 
-
+                {/* birthdate select section, but script uncomplete */}
                 <div class='col-sm-6'>
                     <p>birth date:</p>
-                    <div class="form-group">
-                        <div class='input-group date' >
-                            <input type='text' class="form-control" id='profileDatePicker' onClick={ProfileDatePicker}/>
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
+                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+
                 </div>
+
+
+
+
+                {/* <!-- save button with Modal --> */}
+                <Button variant="primary" onClick={handleShow}>
+                    save
+                </Button>
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Warning</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Are you sure to save the changes?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={handleClose}>
+                            Yes
+                        </Button>
+                        <Button variant="secondary" onClick={handleClose}>
+                            No
+                        </Button>
+
+                    </Modal.Footer>
+                </Modal>
 
 
             </div>

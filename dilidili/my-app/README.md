@@ -68,3 +68,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### 
+for react bootstrap:
+https://react-bootstrap.github.io/getting-started/introduction/
+npm install react-bootstrap bootstrap
+
+for react datepicker:
+https://www.npmjs.com/package/react-datepicker
+npm install react-datepicker --save
+
+for react image uploader:
+https://www.npmjs.com/package/react-images-uploading
+npm install --save react-images-uploading
+
