@@ -129,7 +129,28 @@ router.route("/watchHistory").post((req, res)  =>{
     })
 });
 
+
+router.route("/login").post((req,res) =>{
+    var password = req.body.password;
+    var result = req.body.result;
+    var b = false;
+    console.log(req.body);
+     if(bcrypt.compareSync(password,result.password)){
+            b = true;
+    }
+    console.log(b);          
+    if(b){
+        res.status(200);
+        res.json(result); // load our public/index.html file
+    }else{
+        res.status(401); 
+    }
+
+})
+
+
 //display User Personal Info
+
 router.route("/users").get((req, res) => {
     user.find()
         .then(findUsers => res.json(findUsers))
