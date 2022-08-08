@@ -32,50 +32,26 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="home.html">
+              <a className="nav-link" href="/">
                 HOME
               </a>
             </li>
           </ul>
-          <form className="d-flex mx-lg-auto" role="search">
-            <input
-              className="form-control me-4"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            ></input>
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a>login</a>
+              <a className="nav-link" href="/admin">
+                Admin
+              </a>
             </li>
             <li className="nav-item">
-              <div className="avatar">
-                <a>
-                  <img src="image/avatar.png" alt="Avatar"></img>
-                </a>
-              </div>
+              <a className="nav-link" href="/login">
+                login
+              </a>
             </li>
             <li className="nav-item">
-              <button type="button" className="btn btn-light position-relative">
-                Inbox
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  99+
-                  <span className="visually-hidden">unread messages</span>
-                </span>
-              </button>
-            </li>
-            <li className="nav-item">
-              <button
-                type="button"
-                className="btn btn-primary"
-                id="liveToastBtn"
-              >
-                CONTACT
-              </button>
+              <a className="nav-link" href="/about">
+                About
+              </a>
             </li>
           </ul>
         </div>
