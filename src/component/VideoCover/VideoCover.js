@@ -17,7 +17,6 @@ function VideoCover(props) {
     width: "100%",
     textAlign: "left",
     margin: "auto",
-    padding: "10px 0px 0px 0px",
   };
   const titleStyle = {
     padding: "3px 0px 0px 0px",
