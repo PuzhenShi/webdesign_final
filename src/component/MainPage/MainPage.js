@@ -15,12 +15,13 @@ function MainPage() {
     // setHeight(carouselRef.current.clientHeight);
   }, []);
   const video = {
+    id: 1,
     title: "title",
     duration: 180,
     views: 25,
     cover: 0,
     author: "author",
-    link: "/video",
+    author_id: 1,
     date: "08/20",
   };
   return (

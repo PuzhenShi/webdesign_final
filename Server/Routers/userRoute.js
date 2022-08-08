@@ -7,29 +7,18 @@ router.route("/create").post((req, res) => {
     const userName = req.body.userName;
     const password = bcrypt.hashSync(req.body.password,10);
     const gender = req.body.gender;
-    const motto = req.body.motto;
     const DOB = req.body.DOB;
-    const portrait = req.body.portrait;
-    const vipStatus = req.body.vipStatus;
-    const myVideo = req.body.myVideo;
-    const myFavorite = req.body.myFavorite;
-    const following = req.body.following;
-    const follower = req.body.follower;
-    const watchHistory = req.body.watchHistory;
+    const email = req.body.email;
+    const vipStatus = false;
     console.log(">>> g: ", req.body);
     const newUser = new user({
         userName,
         password,
         gender,
-        motto,
         DOB,
-        portrait,
-        vipStatus,
-        myVideo,
-        myFavorite,
-        following,
-        follower,
-        watchHistory
+        email,
+        vipStatus
+        
     });
     console.log(">>> e: ", newUser);
     newUser.save();
@@ -43,10 +32,23 @@ router.route("/update").post((req, res)  =>{
             password: bcrypt.hashSync(req.body.password,10),
             gender: req.body.gender,
             motto: req.body.motto,
-            DOB: req.body.DOB,
-            portrait: req.body.portrait
+            DOB: req.body.DOB
         }
     }, function (err, samples) {
+        if (err)
+            res.send(err);
+        res.status(200);
+        res.json(samples);
+    })
+});
+
+//update User Personal Portrait
+router.route("/myPortrait").post((req,res) =>{
+    user.update({userName: req.body.userName}, {
+        $set: {
+            portrait: req.body.portrait
+        }
+    },function (err, samples){
         if (err)
             res.send(err);
         res.status(200);
@@ -126,6 +128,28 @@ router.route("/watchHistory").post((req, res)  =>{
         res.json(samples);
     })
 });
+
+
+router.route("/login").post((req,res) =>{
+    var password = req.body.password;
+    var result = req.body.result;
+    var b = false;
+    console.log(req.body);
+     if(bcrypt.compareSync(password,result.password)){
+            b = true;
+    }
+    console.log(b);          
+    if(b){
+        res.status(200);
+        res.json(result); // load our public/index.html file
+    }else{
+        res.status(401); 
+    }
+
+})
+
+
+//display User Personal Info
 
 router.route("/users").get((req, res) => {
     user.find()

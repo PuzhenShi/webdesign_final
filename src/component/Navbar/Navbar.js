@@ -1,7 +1,91 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
+import { useNavigate } from 'react-router-dom';
+import {setCookie,getCookieValue} from "../Cookie/Cookie"
 import "./Navbar.css";
 
 function Navbar() {
+
+  let navname = "login";
+  let navhref = "/login";
+
+  let loginCookie = getCookieValue("loginType");
+   // console.log("loginCookie",loginCookie);
+    const [loginType, setLoginType] = useState(loginCookie===null?0:parseInt(loginCookie));
+    if (loginCookie === null){
+        loginCookie = setCookie("loginType", 0, "", "");
+    }
+    //console.log("loginType",loginType);
+    const [users, setUsers] = useState([{
+        _id:Object,
+        userName: ""
+    }]);
+
+    
+
+    // set currentUser
+    let getCurrentUser = (currentUserID) => {
+        if(currentUserID == ""){
+            return {
+                _id:Object,
+                userName: ""
+            };
+        }
+        // these code will cause re-peat wrong
+        // let userSave = users.find((item) => {
+        //     if (item._id == currentUserID) {
+        //         setInfoUserName(item.userName);
+        //         setInfoUserPwd(item.password);
+        //         return item;
+        //     }
+        // });
+        // console.log('userSave',userSave);
+        for(let i = 0; i < users.length; i++){
+            if(users[i]._id == currentUserID){
+                // setInfoUserName(users[i].userName);
+                // setInfoUserPwd(users[i].password);
+                
+                return users[i];
+            }
+        }
+        return {
+            _id:Object,
+            userName: ""
+        };
+    };
+    let userFind = getCurrentUser(getCookieValue('currentUserID'));
+    
+   // console.log('userFind',userFind);
+    const [currentUser, setCurrentUser] = useState(userFind);
+    //console.log('currentUser',currentUser);
+//
+
+    useEffect(() => {
+        fetch("http://localhost:3001/users/users")
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then(jsonRes => setUsers(jsonRes));
+
+        setCookie("loginType", parseInt(loginType), "", "");
+        if(parseInt(loginType) == 0){
+            setCookie("currentUserID", "", "", "");
+        }else if(parseInt(loginType) == 1){
+            setCurrentUser(userFind);
+        }
+       // console.log('users',users);
+    },[loginType]);
+
+     if(loginType==0){
+      navname="login";
+      navhref="/login";
+    }else if(loginType ==1){
+      navname=userFind.userName;
+      navhref="/profile";
+    } 
+
+
+
   return (
     <nav className="navbar navbar-expand-lg bg-light fixed-top" id="navbar">
       <div className="container-fluid">
@@ -44,8 +128,8 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/login">
-                login
+              <a className="nav-link" href={navhref}>
+                {navname}
               </a>
             </li>
             <li className="nav-item">
