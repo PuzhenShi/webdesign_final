@@ -83,3 +83,5 @@ https://www.npmjs.com/package/react-images-uploading
 npm install --save react-images-uploading
 
 npm install axios --save
+
+npm install sweetalert --save
