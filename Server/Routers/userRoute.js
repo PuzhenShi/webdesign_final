@@ -7,29 +7,18 @@ router.route("/create").post((req, res) => {
     const userName = req.body.userName;
     const password = bcrypt.hashSync(req.body.password,10);
     const gender = req.body.gender;
-    const motto = req.body.motto;
     const DOB = req.body.DOB;
-    const portrait = req.body.portrait;
-    const vipStatus = req.body.vipStatus;
-    const myVideo = req.body.myVideo;
-    const myFavorite = req.body.myFavorite;
-    const following = req.body.following;
-    const follower = req.body.follower;
-    const watchHistory = req.body.watchHistory;
+    const email = req.body.email;
+    const vipStatus = false;
     console.log(">>> g: ", req.body);
     const newUser = new user({
         userName,
         password,
         gender,
-        motto,
         DOB,
-        portrait,
-        vipStatus,
-        myVideo,
-        myFavorite,
-        following,
-        follower,
-        watchHistory
+        email,
+        vipStatus
+        
     });
     console.log(">>> e: ", newUser);
     newUser.save();
