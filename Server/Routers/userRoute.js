@@ -23,6 +23,7 @@ router.route("/create").post((req, res) => {
         gender,
         motto,
         DOB,
+<<<<<<< Updated upstream
         portrait,
         vipStatus,
         myVideo,
@@ -30,6 +31,10 @@ router.route("/create").post((req, res) => {
         following,
         follower,
         watchHistory
+=======
+        email,
+        vipStatus
+>>>>>>> Stashed changes
     });
     console.log(">>> e: ", newUser);
     newUser.save();
@@ -43,10 +48,23 @@ router.route("/update").post((req, res)  =>{
             password: bcrypt.hashSync(req.body.password,10),
             gender: req.body.gender,
             motto: req.body.motto,
-            DOB: req.body.DOB,
-            portrait: req.body.portrait
+            DOB: req.body.DOB
         }
     }, function (err, samples) {
+        if (err)
+            res.send(err);
+        res.status(200);
+        res.json(samples);
+    })
+});
+
+//update User Personal Portrait
+router.route("/myPortrait").post((req,res) =>{
+    user.update({userName: req.body.userName}, {
+        $set: {
+            portrait: req.body.portrait
+        }
+    },function (err, samples){
         if (err)
             res.send(err);
         res.status(200);
@@ -127,6 +145,7 @@ router.route("/watchHistory").post((req, res)  =>{
     })
 });
 
+//display User Personal Info
 router.route("/users").get((req, res) => {
     user.find()
         .then(findUsers => res.json(findUsers))
