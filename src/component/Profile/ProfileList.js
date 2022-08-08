@@ -15,6 +15,8 @@ function ProfileList() {
                     <Link to="/profile/info" class="list-group-item list-group-item-action">My Info</Link>
                     {/* to the head page of profile, enable to upload or edit head sculpture */}
                     <Link to="/profile/head" class="list-group-item list-group-item-action">My Head Sculputure</Link>
+                    {/* to the head page of profile, enable to pay for the premium member, payment api here */}
+                    <Link to="/profile/pay" class="list-group-item list-group-item-action">Premium</Link>
                     {/* to the head page of profile, enable to review the record of login, it's fine to leave it disabled */}
                     <Link to="/profile/loginrecord" class="list-group-item list-group-item-action disabled">Login Record</Link>
 

@@ -11,11 +11,17 @@ import ProfileHome from './component/Profile/ProfileHome';
 import ProfileHead from './component/Profile/ProfileHead';
 import ProfileInfo from './component/Profile/ProfileInfo';
 import ProfileLogin from './component/Profile/ProfileLogin';
+import ProfilePay from "./component/Profile/ProfilePay";
+
 import Zone from './component/MyZone/Zone';
 import MyZoneHome from './component/MyZone/MyZoneHome';
 import MyZoneVedios from './component/MyZone/MyZoneVedios';
 import MyZoneFavorite from './component/MyZone/MyZoneFavorite';
 import MyZoneLike from './component/MyZone/MyZoneLike';
+
+import History from "./component/History/History";
+
+import Upload from "./component/Upload/Upload";
 
 function App() {
   return (
@@ -32,6 +38,7 @@ function App() {
           <Route path='info' element={<ProfileInfo />}></Route>
           <Route path='head' element={<ProfileHead />}></Route>
           <Route path='loginrecord' element={<ProfileLogin />}></Route>
+          <Route path='pay' element={<ProfilePay />}></Route>
         </Route>
         <Route path='myzone' element={<Zone />}>
           <Route path='' element={<MyZoneHome />}></Route>
@@ -39,7 +46,8 @@ function App() {
           <Route path='favorite' element={<MyZoneFavorite />}></Route>
           <Route path='like' element={<MyZoneLike />}></Route>
         </Route>
-
+        <Route path='history' element={<History />}></Route>
+        <Route path='upload' element={<Upload />}></Route>
       </Routes>
     </Router>
   );
