@@ -1,6 +1,6 @@
 import React from 'react'
 import VideoCover from "../VideoCover/VideoCover";
-function MyZoneVedios() {
+function MyZoneVideos() {
     const video = {
         title: "title",
         duration: 180,
@@ -12,10 +12,10 @@ function MyZoneVedios() {
     };
 
     return (
-        <div class="col-10 ml-10 mb-10 rounded" id="myZoneVedios">
-            <div>MyZoneVedios</div>
-            {/* vedio card displayed here */}
-            <div class="col-12 row" id="myZoneVediosGalleryFull">
+        <div class="col-10 ml-10 mb-10 rounded" id="myZoneVideos">
+            <div>MyZoneVideos</div>
+            {/* video card displayed here */}
+            <div class="col-12 row" id="myZoneVideosGalleryFull">
                 <div class="col-4">
                     <VideoCover
                         videoInfo={video}
@@ -70,4 +70,4 @@ function MyZoneVedios() {
     )
 }
 
-export default MyZoneVedios
+export default MyZoneVideos

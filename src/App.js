@@ -20,7 +20,7 @@ import ProfilePay from "./component/Profile/ProfilePay";
 
 import Zone from './component/MyZone/Zone';
 import MyZoneHome from './component/MyZone/MyZoneHome';
-import MyZoneVedios from './component/MyZone/MyZoneVedios';
+import MyZoneVideos from './component/MyZone/MyZoneVideos';
 import MyZoneFavorite from './component/MyZone/MyZoneFavorite';
 import MyZoneLike from './component/MyZone/MyZoneLike';
 
@@ -52,7 +52,7 @@ function App() {
         </Route>
         <Route path='myzone' element={<Zone />}>
           <Route path='' element={<MyZoneHome />}></Route>
-          <Route path='vedios' element={<MyZoneVedios />}></Route>
+          <Route path='videos' element={<MyZoneVideos />}></Route>
           <Route path='favorite' element={<MyZoneFavorite />}></Route>
           <Route path='like' element={<MyZoneLike />}></Route>
         </Route>
