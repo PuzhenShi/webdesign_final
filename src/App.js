@@ -4,6 +4,11 @@ import React from 'react';
 import MainPage from "./component/MainPage/MainPage";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Navbar from "./component/Navbar/Navbar";
+import LoginPage from "./component/LoginPage/LoginPage";
+import RegisterPage from "./component/RegisterPage/RegisterPage";
+import VedioPage from "./component/VideoPage/VedioPage";
+import AboutPage from "./component/AboutPage/AboutPage";
+import AdminPage from "./component/AdminPage/AdminPage";
 
 import Profile from './component/Profile/Profile';
 import ProfileList from './component/Profile/ProfileList';
@@ -31,7 +36,12 @@ function App() {
 
         {/* section by renqiu */}
         <Route path="/" element={<MainPage />}></Route>
-
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/register" element={<RegisterPage />}></Route>
+        <Route path="/video" element={<VedioPage />}></Route>
+        <Route path="/about" element={<AboutPage />}></Route>
+        <Route path="/admin" element={<AdminPage />}></Route>
+        
         {/* section by puzhen */}
         <Route path='profile' element={<Profile />}>
           <Route path='' element={<ProfileHome />}></Route>
