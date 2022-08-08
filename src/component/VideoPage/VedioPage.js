@@ -7,12 +7,13 @@ import "./VedioPage.css";
 
 function VedioPage(props) {
   const video = {
+    id: 1,
     title: "title",
     duration: 180,
     views: 25,
     cover: 0,
     author: "author",
-    link: "/video",
+    author_id: 1,
     date: "08/20",
     tags: [
       "NetFlix",
@@ -37,6 +38,27 @@ function VedioPage(props) {
     ],
   };
 
+  const recommendVideo = [
+    {
+      id: 2,
+      title: "recommend 1",
+      duration: 180,
+      views: 25,
+      cover: 0,
+      author: "author 1",
+      date: "08/20",
+    },
+    {
+      id: 3,
+      title: "recommend 2",
+      duration: 180,
+      views: 25,
+      cover: 0,
+      author: "author 2",
+      date: "08/20",
+    },
+  ];
+
   const tags = video.tags.map((tagText) => {
     return <Tag text={tagText}></Tag>;
   });
@@ -47,6 +69,16 @@ function VedioPage(props) {
         content={comment.content}
         date={comment.date}
       ></Comment>
+    );
+  });
+  const recommendVideoList = recommendVideo.map((recommend) => {
+    return (
+      <VideoCover
+        videoInfo={recommend}
+        coverWidth={200}
+        coverHeight={120}
+        width={240}
+      ></VideoCover>
     );
   });
   return (
@@ -154,20 +186,7 @@ function VedioPage(props) {
               <a href="">{video.author}</a>
             </div>
           </div>
-          <div className="recommend-area">
-            <VideoCover
-              videoInfo={video}
-              coverWidth={200}
-              coverHeight={120}
-              width={240}
-            ></VideoCover>
-            <VideoCover
-              videoInfo={video}
-              coverWidth={200}
-              coverHeight={120}
-              width={240}
-            ></VideoCover>
-          </div>
+          <div className="recommend-area">{recommendVideoList}</div>
         </div>
       </div>
     </div>
