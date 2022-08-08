@@ -46,6 +46,7 @@ function VedioPage(props) {
       views: 25,
       cover: 0,
       author: "author 1",
+      author_id: 2,
       date: "08/20",
     },
     {
@@ -55,6 +56,7 @@ function VedioPage(props) {
       views: 25,
       cover: 0,
       author: "author 2",
+      author_id: 3,
       date: "08/20",
     },
   ];
