@@ -1,5 +1,6 @@
 import React from "react";
 import UserTD from "./UserTD/UserTD";
+import VideoTD from "./VideoTD/VideoTD";
 
 function AdminPage() {
   const users = [
@@ -15,9 +16,31 @@ function AdminPage() {
     },
   ];
 
+  const videos = [
+    {
+      id: 1,
+      title: "hello world",
+      author: "r3nq1",
+    },
+    {
+      id: 2,
+      title: "hello world 2",
+      author: "r3nq2",
+    },
+  ];
+
   const userList = users.map((user) => {
     return (
       <UserTD email={user.Email} username={user.username} id={user.id}></UserTD>
+    );
+  });
+  const videoList = videos.map((video) => {
+    return (
+      <VideoTD
+        title={video.title}
+        author={video.author}
+        id={video.id}
+      ></VideoTD>
     );
   });
 
@@ -79,6 +102,19 @@ function AdminPage() {
               </tr>
             </thead>
             <tbody>{userList}</tbody>
+          </table>
+        </div>
+        <div className="col py-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>{videoList}</tbody>
           </table>
         </div>
       </div>
