@@ -27,6 +27,12 @@
     width: 100%;
     padding: 10px 20px 20px 20px;
     .bullet-chat {
+      .send {
+        padding: 0;
+        .btn {
+          margin-left: 5px;
+        }
+      }
       width: 100%;
       margin: 0;
       .status {
@@ -34,20 +40,28 @@
         justify-content: left;
         align-items: center;
         font-size: 8px;
-        .send {
-          padding: 0;
-          .btn {
-            margin-left: 5px;
-          }
-        }
       }
     }
   }
   .tags {
     margin-left: 20px;
     margin-right: 0px;
-    .btn {
-      margin: 3px;
+    span {
+      svg {
+        height: 20px;
+        width: 20px;
+      }
+      font-size: 20px;
+      cursor: pointer;
+    }
+    span:hover {
+      color: #00aeec;
+    }
+    #dislike {
+      margin-left: 30px;
+    }
+    #share {
+      margin-left: 30px;
     }
   }
   .divider {
