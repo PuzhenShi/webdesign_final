@@ -6,6 +6,27 @@ function MainCarousel(props) {
   const carouselStyle = {};
   const url =
     "https://dummyimage.com/" + imgWidth + "x" + imgHeight + "/#ffffff/000";
+  const videoList = props.video.map((video, index) => {
+    if (index === 0) {
+      return (
+        <div className="carousel-item active">
+          <img src={url} className="d-block w-100" alt="..."></img>
+          <div className="carousel-caption d-none d-md-block">
+            <h5>{video.title}</h5>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="carousel-item">
+          <img src={url} className="d-block w-100" alt="..."></img>
+          <div className="carousel-caption d-none d-md-block">
+            <h5>{video.title}</h5>
+          </div>
+        </div>
+      );
+    }
+  });
   return (
     <div
       id="carouselExampleCaptions"
@@ -35,26 +56,7 @@ function MainCarousel(props) {
           aria-label="Slide 3"
         ></button>
       </div>
-      <div className="carousel-inner">
-        <div className="carousel-item active">
-          <img src={url} className="d-block w-100" alt="..."></img>
-          <div className="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <img src={url} className="d-block w-100" alt="..."></img>
-          <div className="carousel-caption d-none d-md-block">
-            <h5>Second slide label</h5>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <img src={url} className="d-block w-100" alt="..."></img>
-          <div className="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-          </div>
-        </div>
-      </div>
+      <div className="carousel-inner">{videoList}</div>
       <button
         className="carousel-control-prev"
         type="button"

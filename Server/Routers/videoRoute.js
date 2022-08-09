@@ -7,18 +7,22 @@ router.route("/create").post((req, res)  =>{
     const videoAddress = req.body.videoAddress
     const videoName = req.body.videoName;
     const videoCover = req.body.videoCover;
-    const uploadTime = req.body.uploadTime;
+    const publisher = req.body.publisher;
+    var date = new Date();
+
+    const uploadTime = date;
+    console.log(date.toLocaleDateString());
     const thumbup = 0;
     const NOC = 0;
     const videoDuration = req.body.videoDuration;
     const VIP = req.body.VIP;
-    let comment = [{
+    let comment = [/* {
         userName: req.body.userName,
         commentText: req.body.commentText,
         thumbupUsers: [],
         thumbdownUsers: [],
         time: req.body.time
-    }];
+    } */];
     const newVideo = new VideoDb({
         videoAddress,
         videoName,
@@ -28,13 +32,14 @@ router.route("/create").post((req, res)  =>{
         NOC,
         videoDuration,
         VIP,
-        comment
+        comment,
+        publisher
     });
     newVideo.save();
 });
 
 //delete a video
-router.router("/delete").post((req,res) =>{
+router.route("/delete").post((req,res) =>{
     dvideoName = req.body.videoName;
     VideoDb.findOne({videoName: dvideoName}, function(err,samples){
             VideoDb.remove({videoName: dvideoName}, function (err, samples){
@@ -103,6 +108,7 @@ router.route("/comments").get((req, res) => {
 router.route("/videos").get((req, res) => {
     VideoDb.find()
         .then(findvideo => res.json(findvideo))
+
 });
 
 module.exports = router;
