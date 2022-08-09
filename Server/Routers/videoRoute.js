@@ -10,7 +10,7 @@ router.route("/create").post((req, res)  =>{
     const publisher = req.body.publisher;
     var date = new Date();
 
-    const uploadTime = date;
+    const uploadTime = date.toLocaleDateString();
     console.log(date.toLocaleDateString());
     const thumbup = 0;
     const NOC = 0;
@@ -19,8 +19,6 @@ router.route("/create").post((req, res)  =>{
     let comment = [/* {
         userName: req.body.userName,
         commentText: req.body.commentText,
-        thumbupUsers: 0,
-        thumbdownUsers: 0,
         time: req.body.time
     } */];
     const newVideo = new VideoDb({
@@ -115,15 +113,14 @@ router.route("/addComment").post((req, res)  =>{
             comment: {
                 userName: req.body.userName,
                 commentText: req.body.commentText,
-                thumbupUsers: 0,
-                thumbdownUsers: 0,
-                time: req.body.time
+                time: new Date().toLocaleDateString(),
             }
         }
     }, function (err, samples) {
         if (err)
             res.send(err);
         res.status(200);
+        console.log("add comment");
         res.json(samples);
     })
 });

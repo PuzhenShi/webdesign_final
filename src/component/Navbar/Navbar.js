@@ -82,6 +82,7 @@ function Navbar() {
     console.log("userFind", userFind);
   }, [loginType]);
 
+
   let signOut = (e) => {
     //setCookie("loginType", 0, "", "");
     setLoginType(0);
