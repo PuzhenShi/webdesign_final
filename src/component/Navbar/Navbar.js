@@ -68,7 +68,7 @@ function Navbar() {
             })
             .then((res) => {
               setUsers(res);
-            //  console.log("res",res);
+              //console.log("res",res);
             
             });
             console.log(loginType);
@@ -79,7 +79,7 @@ function Navbar() {
         }else if(parseInt(loginType) == 1){
             setCurrentUser(userFind);
         }
-        //console.log('users',users);
+        console.log('userFind',userFind);
     },[loginType]);
 
     let signOut = (e)=>{
@@ -139,7 +139,7 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href={navhref}>
+              <a className="nav-link" href="/login" onClick={signOut}>
                 {navname}
               </a>
             </li>

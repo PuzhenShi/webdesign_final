@@ -25,9 +25,6 @@ function ProfileHead() {
         // ...
     }
 
-
-
-
     return (
         <div class="col-8 ml-8 mb-8 rounded">
             <p>Upload your head sculpture:</p>
