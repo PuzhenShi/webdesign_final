@@ -18,7 +18,6 @@ router.route("/create").post((req, res) => {
         DOB,
         email,
         vipStatus
-        
     });
     console.log(">>> e: ", newUser);
     newUser.save();
@@ -128,7 +127,6 @@ router.route("/watchHistory").post((req, res)  =>{
         res.json(samples);
     })
 });
-
 
 router.route("/login").post((req,res) =>{
     var password = req.body.password;

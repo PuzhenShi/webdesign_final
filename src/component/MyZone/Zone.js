@@ -10,7 +10,6 @@ function Zone() {
                 {/* the common navbar here */}
 
                 <MyZoneBar />
-
                 
                 <Link to="/myzone">
                     <span>
