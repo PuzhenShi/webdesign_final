@@ -9,8 +9,8 @@ function VedioPage() {
 
   const[video1,setVideo1] =useState();
   const[videolist,setVideolist] = useState();
-  const {id} = useParams();
-  //console.log(id);
+  const {url} = useParams();
+  console.log(url);
 
    useEffect(() => {
     let videofind = fetch("http://localhost:3001/videodb/watch",{
@@ -18,7 +18,7 @@ function VedioPage() {
                 mode: 'cors',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  "videoid": id
+                  "videoAddress": url
                 })
               }).then((res) =>{
                 if(res.ok){
@@ -45,9 +45,8 @@ function VedioPage() {
         });
       },[]);
   
-  //console.log(video1);
+ // console.log(video1);
   let video = {};
-  let url ='';
   if(video1){
     video={
       id: video1._id,
@@ -68,23 +67,13 @@ function VedioPage() {
       "NetFlix",
       "NetFlix",
     ],
-    comments: [
-      {
-        title: "Comment 1",
-        content: "Please never stop making this show",
-        date: "2022-06-15 21:51",
-      },
-      {
-        title: "Comment 2",
-        content: "Hi",
-        date: "2022-08-17 21:51",
-      },
-    ],
+    comments: video1.comment,
     };
+    /* console.log(video.url);
     if(video.url=="/video/video2.mp4")
     url='/video/video2.mp4';
     else if(video.url=="/video/video1.mp4")
-    url='/video/video1.mp4';
+    url='/video/video1.mp4'; */
   }else{
     video = {
       id: 1,
@@ -120,16 +109,16 @@ function VedioPage() {
     };
   }
   
-  console.log(url);
+  //console.log(url);
 
   var recommendVideo =[];
   if(videolist){
     let videosleg = videolist.length;
     let videos1;
     let videos2;
-    if(videolist[videosleg-1]._id!=id){
+    if(videolist[videosleg-1].videoAddress!=url){
       videos1 = videolist[videosleg-1];
-      if(videolist[videosleg-2]._id!=id)
+      if(videolist[videosleg-2].videoAddress!=url)
       videos2=videolist[videosleg-2];
       else videos2 = videolist[videosleg-3];
     }else{
@@ -147,6 +136,7 @@ function VedioPage() {
       author: videos1.publisher,
       author_id: 2,
       date: videos1.uploadTime,
+      url:videos1.videoAddress
       },{
         id: videos2._id,
         title: videos2.videoName,
@@ -156,6 +146,7 @@ function VedioPage() {
         author: videos2.publisher,
         author_id: 2,
         date: videos2.uploadTime,
+        url:videos1.videoAddress
         }
     ]
   
@@ -266,7 +257,7 @@ function VedioPage() {
           </div>
           <div className="content">
             <video  width="100%" controls>
-            <source src={`/video/video${id}.mp4`} type="video/mp4" />
+            <source src={`/video/${url}.mp4`} type="video/mp4" />
             </video>
             <nav className="navbar bg-light">
               <div className="row bullet-chat">
