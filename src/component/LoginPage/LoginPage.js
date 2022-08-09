@@ -62,12 +62,17 @@ function LoginPage() {
 //
 
     useEffect(() => {
-        fetch("http://localhost:3001/users/users")
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-            }).then(jsonRes => setUsers(jsonRes));
+      fetch("http://localhost:3001/users/users")
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          }
+      })
+      .then((res) => {
+        setUsers(res);
+      //  console.log("res",res);
+      
+      });
 
         setCookie("loginType", parseInt(loginType), "", "");
         if(parseInt(loginType) == 0){
@@ -75,7 +80,7 @@ function LoginPage() {
         }else if(parseInt(loginType) == 1){
             setCurrentUser(userFind);
         }
-       // console.log('users',users);
+        console.log('users',users);
     },[loginType]);
 
 
@@ -140,7 +145,7 @@ function LoginPage() {
 
 
     let path = `/userinfo/${userFind.userName}`
-   // console.log('return userFind',userFind);
+   // console.log('currentUser',currentUser);
 
   return (
     <div className="wrapper container">
