@@ -33,6 +33,19 @@ router.route("/create").post((req, res)  =>{
     newVideo.save();
 });
 
+//delete a video
+router.router("/delete").post((req,res) =>{
+    dvideoName = req.body.videoName;
+    VideoDb.findOne({videoName: dvideoName}, function(err,samples){
+            VideoDb.remove({videoName: dvideoName}, function (err, samples){
+                if (err)
+                    res.send(err);
+                res.status(200);
+                res.json(samples);
+            });
+    });
+});
+
 //thumbup the comment
 router.route("/thumbupComment").post((req, res)  =>{
     VideoDb.update({videoName: req.body.videoName}, {
