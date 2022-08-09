@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageUploading from 'react-images-uploading';
 import Button from 'react-bootstrap/Button';
 
@@ -16,122 +16,97 @@ function Upload() {
     //     console.log(imageList, addUpdateIndex);
     //     setImages(imageList);
     // };
-    const [file, setFile] = React.useState("");
-
+    //const [file, setFile] = React.useState("");
+    const [files, setFiles] = React.useState([]);
     // Handles file upload event and updates state
-    function handleUpload(event) {
-        setFile(event.target.files[0]);
-
-        // Add code here to upload file to server
-        // ...
+    function onFileUpload(event) {
+        event.preventDefault();
+        // Get the file Id
+        let id = event.target.id;
+        // Create an instance of FileReader API
+        let file_reader = new FileReader();
+        // Get the actual file itself
+        let file = event.target.files[0];
+        file_reader.onload = () => {
+            // After uploading the file
+            // appending the file to our state array
+            // set the object keys and values accordingly
+            setFiles([...files, { file_id: id, uploaded_file: file_reader.result, file_name: file.name }]);
+        };
+        // reading the actual uploaded file
+        file_reader.readAsDataURL(file);
     }
     //***************************************
     //***************************************
     //script for file uplaod
     //the only thing we need to know is the file name
     //const [file, setFile] = useState()
-
-    function handleChange(event) {
-        setFile(event.target.files[0])
+    // handle submit button for form
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log(files);
     }
+    // button state whether it's disabled or enabled
+    const [enabled, setEnabled] = useState(false);
+    // using useEffect we can detect if user uploaded any file,
+    // so enable submit button
+    useEffect(() => {
+        if (files.length === 0) {
+            setEnabled(false);
+        } else {
+            setEnabled(true);
+        }
+    }, [files]);
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        const url = 'http://localhost:3000/uploadFile';
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('fileName', file.name);
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-        };
-        axios.post(url, formData, config).then((response) => {
-            console.log(response.data);
-        });
-
-    }
     //***************************************
 
     return (
-        <div >
+        <div class="container">
 
-
-            <div class="col-10 row rounded">
-                <div class="col-5">
-                    <form encType="multipart/form-data">
-                        <input type="file" onChange={handleChange} />
-                        {/* <button type="submit">Upload</button> */}
-                    </form>
-                </div>
-                <div class="col-5">
-                    <p>Upload the cover for your vedio:</p>
+            <form onSubmit={handleSubmit} className="upload--container">
+                <h4> Upload your video </h4>
+                <div class="col-10 row">
                     <div class="col-5">
-                        <div id="upload-box">
-                            <form encType="multipart/form-data">
-                                <input type="file" onChange={handleUpload} />
-                            </form>
-                            <p>Filename: {file.name}</p>
-                            {/* <p>File type: {file.type}</p> */}
-                            {/* <p>File size: {file.size} bytes</p> */}
-                            {file && <ImageThumb image={file} />}
+                        <p>choose the cover of your video:</p>
+                        <div className="upload--button">
+                            <input
+                                onChange={onFileUpload}
+                                id={1}
+                                accept=".jpeg, .jpg, .png"
+                                type="file"
+                            />
                         </div>
+
+                        <p>cover file: {files[0].file_name}</p>
                     </div>
-                    {/* <ImageUploading
-                        multiple
-                        value={images}
-                        onChange={onChange}
-                        maxNumber={maxNumber}
-                        dataURLKey="data_url"
-                    >
-                        {({
-                            imageList,
-                            onImageUpload,
-                            onImageRemoveAll,
-                            onImageUpdate,
-                            onImageRemove,
-                            isDragging,
-                            dragProps,
-                        }) => (
-                            // write your building UI
-                            <div className="upload__image-wrapper">
-                                <button
-                                    style={isDragging ? { color: 'red' } : undefined}
-                                    onClick={onImageUpload}
-                                    {...dragProps}
-                                >
-                                    Click or Drop here
-                                </button>
-                                &nbsp;
-                                <button onClick={onImageRemoveAll}>Remove all images</button>
-                                {imageList.map((image, index) => (
-                                    <div key={index} className="image-item">
-                                        <img src={image['data_url']} alt="" width="100" />
-                                        <div className="image-item__btn-wrapper">
-                                            <button onClick={() => onImageUpdate(index)}>Update</button>
-                                            <button onClick={() => onImageRemove(index)}>Remove</button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </ImageUploading> */}
+                    <div class="col-5">
+                        <p>choose your video:</p>
+                        <div className="upload--button">
+                            <input
+                                onChange={onFileUpload}
+                                id={2}
+                                accept=".mp4, .mkv"
+                                type="file"
+                            />
+                        </div>
+                        <p>video: {files[1].file_name}</p>
+                    </div>
+                    <div class="col-5 title">
+                        <span>video title:</span>
+                        <input type="text" id="videoTitle" />
+                    </div>
                 </div>
-
-                <p>vedio title:</p>
-                <input type={"text"} class="form-control" id="vedioTitle" />
-                <p>vedio duration:</p>
-                <input type={"text"} class="form-control" id="vedioDuration" />
-
-
-                <div class="col-3">
-                    <Button variant="primary">
-                        Upload
-                    </Button>
-                </div>
+                <br />
+                {enabled ? (
+                    <button type="submit">Submit</button>
+                ) : (
+                    <button disabled type="submit">
+                        Submit
+                    </button>
+                )}
+            </form>
 
 
-            </div>
         </div>
     )
 }
