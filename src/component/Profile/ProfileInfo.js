@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DatePicker from "react-datepicker";
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 function ProfileInfo() 
-{
-    
-
+{   
+    const navigate = useNavigate();
+    var valPwd = /^.*(?=.{8,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?\(\)]).*$/;
 
     //script for datepicker component
     const [startDate, setStartDate] = useState(new Date());
@@ -45,7 +48,8 @@ function ProfileInfo()
         })
     }
 
-    const modify=()=>{//submit modify data
+    const modify=(event)=>{//submit modify data
+        event.preventDefault();
         if(input.userName==='')
         {
             alert("Please input name");
@@ -62,12 +66,65 @@ function ProfileInfo()
             return false;
         }
         else{
-            
-            alert(input.userName);
-            alert(input.userSign);
-            alert(input.userPassword);
-            alert(radio.gender);
-            alert(startDate.toLocaleDateString());
+            let users = fetch("http://localhost:3001/users/users")
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+            }).then(users =>{
+                let flag = true;
+                users.find((item) => {
+                    if (item.userName == input.userName) {
+                        flag = false;
+                    }
+                });
+                if (!flag) {
+                    swal({
+                        title: "Oh No!",
+                        text: "Username is duplicated!\n" + 
+                                "Please change to another one.",
+                        icon: "error",
+                    });
+                    return false;
+                }
+                if (!input.password.match(valPwd)) {
+                    swal({
+                        title: "Oh No!",
+                        text: "Invalid Password!\n" +
+                        "At least 8 digits\n" +
+                        "Must contain 1 number\n" +
+                        "Must contain 1 lowercase letters\n" +
+                        "Must contain 1 uppercase letters\n" +
+                        "Must contain 1 special character\n",
+                        icon: "error",
+                      });
+                }else
+                {
+                    const newPro={
+                        userName:input.userName,
+                        password:input.userPassword,
+                        gender:radio.gender,
+                        motto:input.userSign,
+                        DOM:startDate.toLocaleDateString()
+                        
+                    };
+                    axios.post('http://localhost:3001/users/update',newPro);
+                    swal({
+                        title: "Thanks!",
+                        text: "Update successfully",
+                        icon: "success",
+                      });
+                      return (
+                        navigate('/')
+                      )
+                  
+                };
+            });
+            //alert(input.userName);
+            //alert(input.userSign);
+            //alert(input.userPassword);
+            //alert(radio.gender);
+            //alert(startDate.toLocaleDateString());
         }
         
 
