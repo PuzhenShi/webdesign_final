@@ -39,7 +39,7 @@ router.route("/create").post((req, res)  =>{
 });
 
 //delete a video
-router.router("/delete").post((req,res) =>{
+router.route("/delete").post((req,res) =>{
     dvideoName = req.body.videoName;
     VideoDb.findOne({videoName: dvideoName}, function(err,samples){
             VideoDb.remove({videoName: dvideoName}, function (err, samples){
