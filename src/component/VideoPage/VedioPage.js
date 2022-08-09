@@ -1,20 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import Comment from "../Comment/Comment";
 import Tag from "../Tag/Tag";
 import VideoCover from "../VideoCover/VideoCover";
 import "./VedioPage.css";
+function VedioPage() {
 
-function VedioPage(props) {
-  const video = {
-    id: 1,
-    title: "title",
+  const[video1,setVideo1] =useState();
+  const[videolist,setVideolist] = useState();
+  const {id} = useParams();
+  //console.log(id);
+
+   useEffect(() => {
+    let videofind = fetch("http://localhost:3001/videodb/watch",{
+                method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  "videoid": id
+                })
+              }).then((res) =>{
+                if(res.ok){
+                  return res.json()
+                }
+              }).then((res) =>{
+               // console.log(res);
+                setVideo1(res);
+              })
+  },[])
+
+  useEffect(() => {
+    fetch("http://localhost:3001/videodb/videos")
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        //.then((res) => {console.log('res',res)})
+        .then((res) => {
+          
+          setVideolist(res);
+         // console.log('res2',res);
+        });
+      },[]);
+  
+  //console.log(video1);
+  let video = {};
+  let url ='';
+  if(video1){
+    video={
+      id: video1._id,
+    title: video1.videoName,
     duration: 180,
-    views: 25,
-    cover: 0,
-    author: "author",
+    views: video1.NOC,
+    cover: video1.videoCover,
+    author: video1.publisher,
     author_id: 1,
-    date: "08/20",
+    date: video1.uploadTime,
+    url:video1.videoAddress,
     tags: [
       "NetFlix",
       "NetFlix",
@@ -36,30 +80,115 @@ function VedioPage(props) {
         date: "2022-08-17 21:51",
       },
     ],
-  };
+    };
+    if(video.url=="/video/video2.mp4")
+    url='/video/video2.mp4';
+    else if(video.url=="/video/video1.mp4")
+    url='/video/video1.mp4';
+  }else{
+    video = {
+      id: 1,
+      title: "title",
+      duration: 180,
+      views: 25,
+      cover: 0,
+      author: "author",
+      author_id: 1,
+      date: "08/20",
+      url:"",
+      tags: [
+        "NetFlix",
+        "NetFlix",
+        "aaaaa",
+        "NetFlix",
+        "NetFlix",
+        "NetFlix",
+        "NetFlix",
+      ],
+      comments: [
+        {
+          title: "Comment 1",
+          content: "Please never stop making this show",
+          date: "2022-06-15 21:51",
+        },
+        {
+          title: "Comment 2",
+          content: "Hi",
+          date: "2022-08-17 21:51",
+        },
+      ],
+    };
+  }
+  
+  console.log(url);
 
-  const recommendVideo = [
-    {
-      id: 2,
-      title: "recommend 1",
+  var recommendVideo =[];
+  if(videolist){
+    let videosleg = videolist.length;
+    let videos1;
+    let videos2;
+    if(videolist[videosleg-1]._id!=id){
+      videos1 = videolist[videosleg-1];
+      if(videolist[videosleg-2]._id!=id)
+      videos2=videolist[videosleg-2];
+      else videos2 = videolist[videosleg-3];
+    }else{
+      videos1 =videolist[videosleg-2];
+      videos2 = videolist[videosleg-3];
+    }
+
+    recommendVideo = [
+      {
+      id: videos1._id,
+      title: videos1.videoName,
       duration: 180,
-      views: 25,
-      cover: 0,
-      author: "author 1",
+      views: videos1.NOC,
+      cover: videos1.videoCover,
+      author: videos1.publisher,
       author_id: 2,
-      date: "08/20",
-    },
-    {
-      id: 3,
-      title: "recommend 2",
-      duration: 180,
-      views: 25,
-      cover: 0,
-      author: "author 2",
-      author_id: 3,
-      date: "08/20",
-    },
-  ];
+      date: videos1.uploadTime,
+      },{
+        id: videos2._id,
+        title: videos2.videoName,
+        duration: 180,
+        views: videos2.NOC,
+        cover: videos1.videoCover,
+        author: videos2.publisher,
+        author_id: 2,
+        date: videos2.uploadTime,
+        }
+    ]
+  
+
+  }else{
+    recommendVideo = [
+      {
+        id: 2,
+        title: "recommend 1",
+        duration: 180,
+        views: 25,
+        cover: 0,
+        author: "author 1",
+        author_id: 2,
+        date: "08/20",
+      },
+      {
+        id: 3,
+        title: "recommend 2",
+        duration: 180,
+        views: 25,
+        cover: 0,
+        author: "author 2",
+        author_id: 3,
+        date: "08/20",
+      },
+    ];
+  }
+
+  
+  
+
+ 
 
   const tags = video.tags.map((tagText) => {
     return <Tag text={tagText}></Tag>;
@@ -136,7 +265,9 @@ function VedioPage(props) {
             </div>
           </div>
           <div className="content">
-            <video src="/video/S03E04.mp4" width="100%" controls></video>
+            <video  width="100%" controls>
+            <source src={`/video/video${id}.mp4`} type="video/mp4" />
+            </video>
             <nav className="navbar bg-light">
               <div className="row bullet-chat">
                 <div className="col-5 status">

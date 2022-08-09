@@ -23,7 +23,7 @@ router.route("/create").post((req, res) => {
         gender,
         DOB,
         email,
-        vipStatus，
+        vipStatus,
         portrait,
         myVideo,
         myFavorite,
