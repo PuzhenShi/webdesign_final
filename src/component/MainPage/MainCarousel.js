@@ -6,7 +6,7 @@ function MainCarousel(props) {
   const carouselStyle = {};
   const url =
     "https://dummyimage.com/" + imgWidth + "x" + imgHeight + "/#ffffff/000";
-  const videoList = props.video.map((video, index) => {
+  const videoList = props.videos.map((video, index) => {
     if (index === 0) {
       return (
         <div className="carousel-item active">

@@ -55,10 +55,10 @@ router.route("/delete").post((req,res) =>{
 
 //click the video
 router.route("/click").post((req,res) =>{
-    const videoid = req.body.videoid;
-    VideoDb.findOne({_id: videoid},function(err,samples){
+    const videoAddress = req.body.videoAddress;
+    VideoDb.findOne({videoAddress: videoAddress},function(err,samples){
         const NOC = samples.NOC;
-        VideoDb.update({_id:videoid},{
+        VideoDb.update({_id:videoAddress},{
             $set: {
                 NOC:NOC+1
             }
@@ -72,8 +72,8 @@ router.route("/click").post((req,res) =>{
 
 //watch the video
 router.route("/watch").post((req,res) =>{
-    const videoid = req.body.videoid;
-    VideoDb.findOne({_id:videoid},function(err,samples){
+    const videoAddress = req.body.videoAddress;
+    VideoDb.findOne({videoAddress:videoAddress},function(err,samples){
         if(err) res.send(err);
         res.status(200);
         res.json(samples);

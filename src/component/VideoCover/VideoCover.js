@@ -5,7 +5,7 @@ import cover1 from '../videocoverimg/cover1.jpg'
 import cover2 from '../videocoverimg/cover2.jpg'
 
 function VideoCover(props) {
-  const { title, duration, views, cover, author, id, date, author_id, video, } =
+  const { title, duration, views, cover, author, url, date, author_id, video, } =
   //const video=
   props.videoInfo;
   //console.log(video);
@@ -16,14 +16,14 @@ function VideoCover(props) {
     props.coverHeight +
     "/#ffffff/000";  */ 
 
-    let url;
+    let imgurl;
 
     if(cover=="cover1"){
-      url=cover1;
+      imgurl=cover1;
     } else if(cover=="cover2"){
-      url=cover2
+      imgurl=cover2
     }
-    console.log(url);
+    //console.log(url);
 
   const wrapperStyle = {
     width: "100%",
@@ -45,17 +45,17 @@ function VideoCover(props) {
                 mode: 'cors',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  "videoid": id
+                  "videoAddress": url
                 })
-              }).then((res) =>{console.log(res)});
+              });
   }
   return (
     <div style={wrapperStyle} className="video-display">
       <div style={contentStyle} className="cover">
         <div className="image">
-           <Link to={`/video/${id}`} onClick={handleClick}> 
+           <Link to={`/video/${url}`} onClick={handleClick}> 
           {/* <Link to={`/video/${video.id}`}> */}
-            <img src={url} alt="cover" className="video-cover"></img>
+            <img src={imgurl} alt="cover" className="video-cover"></img>
           </Link>
           <div className="views">
             <svg
@@ -85,7 +85,7 @@ function VideoCover(props) {
             <div className="number">{duration}</div> 
           </div>
         </div>
-        <Link to={`/video/${id}`} style={titleStyle} className="title" onClick={handleClick}> 
+        <Link to={`/video/${url}`} style={titleStyle} className="title" onClick={handleClick}> 
         {/* <Link to={`/video/${video.id}`} style={titleStyle} className="title"> */}
           {title} 
           {/* {video.videoName} */}
