@@ -5,7 +5,7 @@ const videoSchema ={
     videoAddress:String,
     videoName:String,
     videoCover:String,
-    uploadTime:Date,
+    uploadTime:String,
     thumbup:Number,
     publisher:String,
     //Number of Clicks
