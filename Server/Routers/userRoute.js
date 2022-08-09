@@ -163,9 +163,10 @@ router.route("/login").post((req,res) =>{
     console.log(b);          
     if(b){
         res.status(200);
-        res.json(result); // load our public/index.html file
+        res.json(result); 
     }else{
-        res.status(401); 
+        res.status(201);
+        res.json(result); 
     }
 
 })

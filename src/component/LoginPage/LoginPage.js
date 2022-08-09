@@ -1,12 +1,10 @@
 import React, {useState,useEffect} from "react";
-import { useNavigate } from 'react-router-dom';
 import "./LoginPage.css";
 import {setCookie,getCookieValue} from "../Cookie/Cookie"
 import swal from 'sweetalert';
 
 function LoginPage() {
 
-  const navigate = useNavigate();
 
   let loginCookie = getCookieValue("loginType");
    // console.log("loginCookie",loginCookie);
@@ -116,31 +114,33 @@ function LoginPage() {
                 })
               })
               .then(res=>{
-                if(res.ok){
+                console.log(res.status);
+                if(res.status==200){
                   setCookie("currentUserID", item._id, "", "");
                 setLoginType(1);
                 flag = true;
-                navigate('/');
+               window.location='/'
                 console.log('login success');
-                }else{
+                } else{
+                  console.log('login fail');
                   swal({
                     title: "Oh No!",
                     text: "Wrong User Name or Password!",
                     icon: "error",
                   });
-                }
+                } 
               })
                 //setCookie("loginType", 1, "", "");
                 
             }
         });
-        /* if (flag ==false) {
-           /*  swal({
+         /* if (flag ==false) {
+            swal({
                 title: "Oh No!",
                 text: "Wrong User Name or Password!",
                 icon: "error",
               }); 
-        }*/
+        } */
     }; 
 
 
