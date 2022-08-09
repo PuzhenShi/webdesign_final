@@ -71,7 +71,7 @@ function Navbar() {
               //console.log("res",res);
             
             });
-            console.log(loginType);
+           // console.log(loginType);
 
         setCookie("loginType", parseInt(loginType), "", "");
         if(parseInt(loginType) == 0){
@@ -79,13 +79,15 @@ function Navbar() {
         }else if(parseInt(loginType) == 1){
             setCurrentUser(userFind);
         }
-        console.log('userFind',userFind);
+       // console.log('userFind',userFind);
     },[loginType]);
 
     let signOut = (e)=>{
       //setCookie("loginType", 0, "", "");
       setLoginType(0);
   };
+
+  //console.log(userFind);
 
      if(loginType==0){
       navname="login";
