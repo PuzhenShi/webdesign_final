@@ -19,8 +19,8 @@ router.route("/create").post((req, res)  =>{
     let comment = [/* {
         userName: req.body.userName,
         commentText: req.body.commentText,
-        thumbupUsers: [],
-        thumbdownUsers: [],
+        thumbupUsers: 0,
+        thumbdownUsers: 0,
         time: req.body.time
     } */];
     const newVideo = new VideoDb({
@@ -40,7 +40,9 @@ router.route("/create").post((req, res)  =>{
 
 //delete a video
 router.route("/delete").post((req,res) =>{
-    dvideoName = req.body.videoName;
+
+    const dvideoName = req.body.videoName;
+
     VideoDb.findOne({videoName: dvideoName}, function(err,samples){
             VideoDb.remove({videoName: dvideoName}, function (err, samples){
                 if (err)
@@ -51,33 +53,60 @@ router.route("/delete").post((req,res) =>{
     });
 });
 
-//thumbup the comment
-router.route("/thumbupComment").post((req, res)  =>{
-    VideoDb.update({videoName: req.body.videoName}, {
-        $set: {
-            comment: req.body.comment
-        }
-    }, function (err, samples) {
-        if (err)
-            res.send(err);
-        res.status(200);
-        res.json(samples);
+//click the video
+router.route("/click").post((req,res) =>{
+    const videoid = req.body.videoid;
+    VideoDb.findOne({_id: videoid},function(err,samples){
+        const NOC = samples.NOC;
+        VideoDb.update({_id:videoid},{
+            $set: {
+                NOC:NOC+1
+            }
+        },function(err,samples){
+            if(err) res.send(err);
+            res.status(200);
+            res.json(samples);
+        })
     })
 });
 
-//thumdown the comment
-router.route("/thumbdownComment").post((req, res)  =>{
-    VideoDb.update({videoName: req.body.videoName}, {
-        $set: {
-            comment: req.body.comment
-        }
-    }, function (err, samples) {
-        if (err)
-            res.send(err);
+//watch the video
+router.route("/watch").post((req,res) =>{
+    const videoid = req.body.videoid;
+    VideoDb.findOne({_id:videoid},function(err,samples){
+        if(err) res.send(err);
         res.status(200);
         res.json(samples);
     })
-});
+})
+
+// //thumbup the comment
+// router.route("/thumbupComment").post((req, res)  =>{
+//     VideoDb.update({videoName: req.body.videoName}, {
+//         $set: {
+//             comment: req.body.comment
+//         }
+//     }, function (err, samples) {
+//         if (err)
+//             res.send(err);
+//         res.status(200);
+//         res.json(samples);
+//     })
+// });
+
+// //thumdown the comment
+// router.route("/thumbdownComment").post((req, res)  =>{
+//     VideoDb.update({videoName: req.body.videoName}, {
+//         $set: {
+//             comment: req.body.comment
+//         }
+//     }, function (err, samples) {
+//         if (err)
+//             res.send(err);
+//         res.status(200);
+//         res.json(samples);
+//     })
+// });
 
 //add a comment
 router.route("/addComment").post((req, res)  =>{
@@ -86,8 +115,8 @@ router.route("/addComment").post((req, res)  =>{
             comment: {
                 userName: req.body.userName,
                 commentText: req.body.commentText,
-                thumbupUsers: [],
-                thumbdownUsers: [],
+                thumbupUsers: 0,
+                thumbdownUsers: 0,
                 time: req.body.time
             }
         }
@@ -105,10 +134,16 @@ router.route("/comments").get((req, res) => {
         .then(findcomments => res.json(findcomments))
 });
 
+//display all video
 router.route("/videos").get((req, res) => {
     VideoDb.find()
         .then(findvideo => res.json(findvideo))
+});
 
+//search video by name
+router.route("/searchVideo").get((req,res) =>{
+    VideoDb.findOne({videoName: req.body.videoName})
+        .then(findTheVideo => res.json(findTheVideo))
 });
 
 module.exports = router;
