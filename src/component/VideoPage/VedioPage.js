@@ -4,6 +4,7 @@ import Avatar from "../Avatar/Avatar";
 import Comment from "../Comment/Comment";
 import Tag from "../Tag/Tag";
 import VideoCover from "../VideoCover/VideoCover";
+import {setCookie,getCookieValue} from "../Cookie/Cookie"
 import "./VedioPage.css";
 function VedioPage() {
 
@@ -11,6 +12,83 @@ function VedioPage() {
   const[videolist,setVideolist] = useState();
   const {url} = useParams();
   console.log(url);
+
+  //get currentuser:
+  let loginCookie = getCookieValue("loginType");
+   // console.log("loginCookie",loginCookie);
+    const [loginType, setLoginType] = useState(loginCookie===null?0:parseInt(loginCookie));
+    if (loginCookie === null){
+        loginCookie = setCookie("loginType", 0, "", "");
+    }
+    //console.log("loginType",loginType);
+    const [users, setUsers] = useState([{
+        _id:Object,
+        userName: ""
+    }]);
+
+    
+
+    // set currentUser
+    let getCurrentUser = (currentUserID) => {
+        if(currentUserID == ""){
+            return {
+                _id:Object,
+                userName: ""
+            };
+        }
+        // these code will cause re-peat wrong
+        // let userSave = users.find((item) => {
+        //     if (item._id == currentUserID) {
+        //         setInfoUserName(item.userName);
+        //         setInfoUserPwd(item.password);
+        //         return item;
+        //     }
+        // });
+        // console.log('userSave',userSave);
+        for(let i = 0; i < users.length; i++){
+            if(users[i]._id == currentUserID){
+                // setInfoUserName(users[i].userName);
+                // setInfoUserPwd(users[i].password);
+                
+                return users[i];
+            }
+        }
+        return {
+            _id:Object,
+            userName: ""
+        };
+    };
+    let userFind = getCurrentUser(getCookieValue('currentUserID'));
+    
+  //  console.log('userFind',userFind);
+    const [currentUser, setCurrentUser] = useState(userFind);
+    //console.log('currentUser',currentUser);
+//
+
+    useEffect(() => {
+        fetch("http://localhost:3001/users/users")
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then((res) => {
+              setUsers(res);
+            //  console.log("res",res);
+            
+            });
+            console.log(loginType);
+
+        setCookie("loginType", parseInt(loginType), "", "");
+        if(parseInt(loginType) == 0){
+            setCookie("currentUserID", "", "", "");
+        }else if(parseInt(loginType) == 1){
+            setCurrentUser(userFind);
+        }
+        //console.log('users',users);
+    },[loginType]);
+
+
 
    useEffect(() => {
     let videofind = fetch("http://localhost:3001/videodb/watch",{
@@ -69,6 +147,17 @@ function VedioPage() {
     ],
     comments: video1.comment,
     };
+
+    fetch("http://localhost:3001/users/watchHistory",{
+                method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  "userName": userFind.userName,
+                  "watchHistory": video1
+                })
+              })
+
     /* console.log(video.url);
     if(video.url=="/video/video2.mp4")
     url='/video/video2.mp4';

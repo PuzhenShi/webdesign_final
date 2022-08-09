@@ -79,7 +79,7 @@ function Navbar() {
         }else if(parseInt(loginType) == 1){
             setCurrentUser(userFind);
         }
-        //console.log('users',users);
+        console.log('userFind',userFind);
     },[loginType]);
 
     let signOut = (e)=>{
