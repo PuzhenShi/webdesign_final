@@ -14,7 +14,7 @@ function MyZoneFavorite() {
   return (
     <div class="col-10 ml-10 mb-10 rounded" id="myZoneHome">
       <div>MyZoneFavorite</div>
-      {/* vedio card displayed here */}
+      {/* video card displayed here */}
       <div class="col-12 row" id="myZoneFavoriteGalleryFull">
         <div class="col-4">
           <VideoCover

@@ -178,4 +178,10 @@ router.route("/users").get((req, res) => {
         .then(findUsers => res.json(findUsers))
 });
 
+//search user by name
+router.route("/searchUsers").get((req, res) => {
+    user.findOne({userName: req.body.userName})
+        .then(findTheUser => res.json(findTheUser))
+});
+
 module.exports = router;
