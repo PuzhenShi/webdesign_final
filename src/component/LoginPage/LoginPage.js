@@ -91,7 +91,7 @@ function LoginPage() {
         setInfoUserPwd(e.target.value);
         console.log('Pwd Input',e.target.value);
     };
-    console.log(users);
+    //console.log(users);
 
     // let imgUser = "";
 
