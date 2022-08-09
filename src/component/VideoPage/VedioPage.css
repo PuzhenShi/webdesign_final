@@ -66,8 +66,12 @@
   margin-right: 10px;
 }
 .video .comments .send textarea {
+  margin-right: 10px;
   margin-left: 20px;
   overflow: hidden;
+}
+.video .comments .send #commentSubmitBtn {
+  height: 100%;
 }
 
 .wrapper {
