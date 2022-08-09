@@ -8,19 +8,28 @@ function Upload() {
 
     //***************************************
     //script for image upload
-    const [images, setImages] = React.useState([]);
-    //max number of images you can upload? not sure
-    const maxNumber = 1;
-    const onChange = (imageList, addUpdateIndex) => {
-        // data for submit
-        console.log(imageList, addUpdateIndex);
-        setImages(imageList);
-    };
+    // const [images, setImages] = React.useState([]);
+    // //max number of images you can upload? not sure
+    // const maxNumber = 1;
+    // const onChange = (imageList, addUpdateIndex) => {
+    //     // data for submit
+    //     console.log(imageList, addUpdateIndex);
+    //     setImages(imageList);
+    // };
+    const [file, setFile] = React.useState("");
+
+    // Handles file upload event and updates state
+    function handleUpload(event) {
+        setFile(event.target.files[0]);
+
+        // Add code here to upload file to server
+        // ...
+    }
     //***************************************
     //***************************************
     //script for file uplaod
     //the only thing we need to know is the file name
-    const [file, setFile] = useState()
+    //const [file, setFile] = useState()
 
     function handleChange(event) {
         setFile(event.target.files[0])
@@ -50,14 +59,25 @@ function Upload() {
 
             <div class="col-10 row rounded">
                 <div class="col-5">
-                    <form>
+                    <form encType="multipart/form-data">
                         <input type="file" onChange={handleChange} />
                         {/* <button type="submit">Upload</button> */}
                     </form>
                 </div>
                 <div class="col-5">
                     <p>Upload the cover for your vedio:</p>
-                    <ImageUploading
+                    <div class="col-5">
+                        <div id="upload-box">
+                            <form encType="multipart/form-data">
+                                <input type="file" onChange={handleUpload} />
+                            </form>
+                            <p>Filename: {file.name}</p>
+                            {/* <p>File type: {file.type}</p> */}
+                            {/* <p>File size: {file.size} bytes</p> */}
+                            {file && <ImageThumb image={file} />}
+                        </div>
+                    </div>
+                    {/* <ImageUploading
                         multiple
                         value={images}
                         onChange={onChange}
@@ -95,7 +115,7 @@ function Upload() {
                                 ))}
                             </div>
                         )}
-                    </ImageUploading>
+                    </ImageUploading> */}
                 </div>
 
                 <p>vedio title:</p>
@@ -115,5 +135,10 @@ function Upload() {
         </div>
     )
 }
-
+/**
+ * Component to display thumbnail of image.
+ */
+const ImageThumb = ({ image }) => {
+    return <img src={URL.createObjectURL(image)} alt={image.name} />;
+};
 export default Upload
