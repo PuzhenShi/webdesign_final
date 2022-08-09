@@ -1,103 +1,136 @@
-import React, {useState,useEffect} from "react";
-import { useNavigate } from 'react-router-dom';
-import {setCookie,getCookieValue} from "../Cookie/Cookie"
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import "./Navbar.css";
 
 function Navbar() {
-
   let navname = "login";
   let navhref = "/login";
 
   let loginCookie = getCookieValue("loginType");
-   // console.log("loginCookie",loginCookie);
-    const [loginType, setLoginType] = useState(loginCookie===null?0:parseInt(loginCookie));
-    if (loginCookie === null){
-        loginCookie = setCookie("loginType", 0, "", "");
+  // console.log("loginCookie",loginCookie);
+  const [loginType, setLoginType] = useState(
+    loginCookie === null ? 0 : parseInt(loginCookie)
+  );
+  if (loginCookie === null) {
+    loginCookie = setCookie("loginType", 0, "", "");
+  }
+  //console.log("loginType",loginType);
+  const [users, setUsers] = useState([
+    {
+      _id: Object,
+      userName: "",
+    },
+  ]);
+
+  // set currentUser
+  let getCurrentUser = (currentUserID) => {
+    if (currentUserID == "") {
+      return {
+        _id: Object,
+        userName: "",
+      };
     }
-    //console.log("loginType",loginType);
-    const [users, setUsers] = useState([{
-        _id:Object,
-        userName: ""
-    }]);
+    // these code will cause re-peat wrong
+    // let userSave = users.find((item) => {
+    //     if (item._id == currentUserID) {
+    //         setInfoUserName(item.userName);
+    //         setInfoUserPwd(item.password);
+    //         return item;
+    //     }
+    // });
+    // console.log('userSave',userSave);
+    for (let i = 0; i < users.length; i++) {
+      if (users[i]._id == currentUserID) {
+        // setInfoUserName(users[i].userName);
+        // setInfoUserPwd(users[i].password);
 
-    
-
-    // set currentUser
-    let getCurrentUser = (currentUserID) => {
-        if(currentUserID == ""){
-            return {
-                _id:Object,
-                userName: ""
-            };
-        }
-        // these code will cause re-peat wrong
-        // let userSave = users.find((item) => {
-        //     if (item._id == currentUserID) {
-        //         setInfoUserName(item.userName);
-        //         setInfoUserPwd(item.password);
-        //         return item;
-        //     }
-        // });
-        // console.log('userSave',userSave);
-        for(let i = 0; i < users.length; i++){
-            if(users[i]._id == currentUserID){
-                // setInfoUserName(users[i].userName);
-                // setInfoUserPwd(users[i].password);
-                
-                return users[i];
-            }
-        }
-        return {
-            _id:Object,
-            userName: ""
-        };
+        return users[i];
+      }
+    }
+    return {
+      _id: Object,
+      userName: "",
     };
-    let userFind = getCurrentUser(getCookieValue('currentUserID'));
-    
+  };
+  let userFind = getCurrentUser(getCookieValue("currentUserID"));
+
   //  console.log('userFind',userFind);
-    const [currentUser, setCurrentUser] = useState(userFind);
-    //console.log('currentUser',currentUser);
-//
+  const [currentUser, setCurrentUser] = useState(userFind);
+  //console.log('currentUser',currentUser);
+  //
 
-    useEffect(() => {
-        fetch("http://localhost:3001/users/users")
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-            })
-            .then((res) => {
-              setUsers(res);
-              //console.log("res",res);
-            
-            });
-           // console.log(loginType);
-
-        setCookie("loginType", parseInt(loginType), "", "");
-        if(parseInt(loginType) == 0){
-            setCookie("currentUserID", "", "", "");
-        }else if(parseInt(loginType) == 1){
-            setCurrentUser(userFind);
+  useEffect(() => {
+    fetch("http://localhost:3001/users/users")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
         }
-       // console.log('userFind',userFind);
-    },[loginType]);
+      })
+      .then((res) => {
+        setUsers(res);
+        //console.log("res",res);
+      });
+    console.log(loginType);
 
-    let signOut = (e)=>{
-      //setCookie("loginType", 0, "", "");
-      setLoginType(0);
+    setCookie("loginType", parseInt(loginType), "", "");
+    if (parseInt(loginType) == 0) {
+      setCookie("currentUserID", "", "", "");
+    } else if (parseInt(loginType) == 1) {
+      setCurrentUser(userFind);
+    }
+    console.log("userFind", userFind);
+  }, [loginType]);
+
+
+  let signOut = (e) => {
+    //setCookie("loginType", 0, "", "");
+    setLoginType(0);
   };
 
-  //console.log(userFind);
+  if (loginType == 0) {
+    navname = "login";
+    navhref = "/login";
+  } else if (loginType == 1) {
+    navname = userFind.userName;
+    navhref = "/profile";
+  }
 
-     if(loginType==0){
-      navname="login";
-      navhref="/login";
-    }else if(loginType ==1){
-      navname=userFind.userName;
-      navhref="/profile";
-    } 
-
-
+  const loginDropdown = (navname) => {
+    return (
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          data-bs-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-expanded="false"
+        >
+          {navname}
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="#">
+              Profile
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              MyZone
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider"></hr>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              Log Out
+            </a>
+          </li>
+        </ul>
+      </li>
+    );
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-light fixed-top" id="navbar">
@@ -136,13 +169,13 @@ function Navbar() {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="/admin">
-                Admin
+              <a className="nav-link" href="/login" onClick={signOut}>
+                {navname}
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/login" onClick={signOut}>
-                {navname}
+              <a className="nav-link" href="/admin">
+                Admin
               </a>
             </li>
             <li className="nav-item">
