@@ -11,6 +11,11 @@ router.route("/create").post((req, res) => {
     const email = req.body.email;
     const vipStatus = false;
     const portrait = req.body.portrait;
+    const myVideo = [];
+    const myFavorite = [];
+    const following = [];
+    const follower = [];
+    const watchHistory = [];
     console.log(">>> g: ", req.body);
     const newUser = new user({
         userName,
@@ -19,7 +24,12 @@ router.route("/create").post((req, res) => {
         DOB,
         email,
         vipStatus，
-        portrait
+        portrait,
+        myVideo,
+        myFavorite,
+        following,
+        follower,
+        watchHistory
     });
     console.log(">>> e: ", newUser);
     newUser.save();
@@ -74,7 +84,7 @@ router.route("/updateVIP").post((req,res) =>{
 //update My Video List
 router.route("/myVideo").post((req,res) =>{
     user.update({userName: req.body.userName}, {
-        $set: {
+        $push: {
             myVideo: req.body.myVideo
         }
     },function (err, samples){
@@ -88,7 +98,7 @@ router.route("/myVideo").post((req,res) =>{
 //update My Favorite
 router.route("/myFavorite").post((req,res) =>{
     user.update({userName: req.body.userName}, {
-        $set: {
+        $push: {
             myFavorite: req.body.myFavorite
         }
     },function (err, samples){
@@ -102,7 +112,7 @@ router.route("/myFavorite").post((req,res) =>{
 //update My Following People
 router.route("/following").post((req,res) =>{
     user.update({userName: req.body.userName}, {
-        $set: {
+        $push: {
             following: req.body.following
         }
     },function (err, samples){
@@ -116,7 +126,7 @@ router.route("/following").post((req,res) =>{
 //update My Followers
 router.route("/followers").post((req,res) =>{
     user.update({userName: req.body.userName}, {
-        $set: {
+        $push: {
             followers: req.body.followers
         }
     },function (err, samples){
@@ -130,7 +140,7 @@ router.route("/followers").post((req,res) =>{
 //update My Watching History
 router.route("/watchHistory").post((req, res)  =>{
     user.update({userName: req.body.userName}, {
-        $set: {
+        $push: {
             watchHistory: req.body.watchHistory
         }
     }, function (err, samples) {
@@ -141,6 +151,7 @@ router.route("/watchHistory").post((req, res)  =>{
     })
 });
 
+//login into website
 router.route("/login").post((req,res) =>{
     var password = req.body.password;
     var result = req.body.result;
