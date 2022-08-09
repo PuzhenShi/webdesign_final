@@ -10,6 +10,7 @@ router.route("/create").post((req, res) => {
     const DOB = req.body.DOB;
     const email = req.body.email;
     const vipStatus = false;
+    const portrait = req.body.portrait;
     console.log(">>> g: ", req.body);
     const newUser = new user({
         userName,
@@ -17,7 +18,8 @@ router.route("/create").post((req, res) => {
         gender,
         DOB,
         email,
-        vipStatus
+        vipStatus，
+        portrait
     });
     console.log(">>> e: ", newUser);
     newUser.save();
@@ -56,7 +58,18 @@ router.route("/myPortrait").post((req,res) =>{
 });
 
 //update My Vip Status
-//need payment API to finish this function
+router.route("/updateVIP").post((req,res) =>{
+    user.update({userName: req.body.userName}, {
+        $set: {
+            vipStatus:req.body.vipStatus
+        }
+    },function (err, samples){
+        if (err)
+            res.send(err);
+        res.status(200);
+        res.json(samples);
+    })
+});
 
 //update My Video List
 router.route("/myVideo").post((req,res) =>{
