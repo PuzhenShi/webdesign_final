@@ -4,13 +4,90 @@ import Avatar from "../Avatar/Avatar";
 import Comment from "../Comment/Comment";
 import Tag from "../Tag/Tag";
 import VideoCover from "../VideoCover/VideoCover";
+import {setCookie,getCookieValue} from "../Cookie/Cookie"
 import "./VedioPage.css";
 function VedioPage() {
+  const [video1, setVideo1] = useState();
+  const [videolist, setVideolist] = useState();
+  const { url } = useParams();
+  console.log(url);
 
-  const[video1,setVideo1] =useState();
-  const[videolist,setVideolist] = useState();
-  const {id} = useParams();
-  //console.log(id);
+  //get currentuser:
+  let loginCookie = getCookieValue("loginType");
+   // console.log("loginCookie",loginCookie);
+    const [loginType, setLoginType] = useState(loginCookie===null?0:parseInt(loginCookie));
+    if (loginCookie === null){
+        loginCookie = setCookie("loginType", 0, "", "");
+    }
+    //console.log("loginType",loginType);
+    const [users, setUsers] = useState([{
+        _id:Object,
+        userName: ""
+    }]);
+
+    
+
+    // set currentUser
+    let getCurrentUser = (currentUserID) => {
+        if(currentUserID == ""){
+            return {
+                _id:Object,
+                userName: ""
+            };
+        }
+        // these code will cause re-peat wrong
+        // let userSave = users.find((item) => {
+        //     if (item._id == currentUserID) {
+        //         setInfoUserName(item.userName);
+        //         setInfoUserPwd(item.password);
+        //         return item;
+        //     }
+        // });
+        // console.log('userSave',userSave);
+        for(let i = 0; i < users.length; i++){
+            if(users[i]._id == currentUserID){
+                // setInfoUserName(users[i].userName);
+                // setInfoUserPwd(users[i].password);
+                
+                return users[i];
+            }
+        }
+        return {
+            _id:Object,
+            userName: ""
+        };
+    };
+    let userFind = getCurrentUser(getCookieValue('currentUserID'));
+    
+  //  console.log('userFind',userFind);
+    const [currentUser, setCurrentUser] = useState(userFind);
+    //console.log('currentUser',currentUser);
+//
+
+    useEffect(() => {
+        fetch("http://localhost:3001/users/users")
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then((res) => {
+              setUsers(res);
+            //  console.log("res",res);
+            
+            });
+            console.log(loginType);
+
+        setCookie("loginType", parseInt(loginType), "", "");
+        if(parseInt(loginType) == 0){
+            setCookie("currentUserID", "", "", "");
+        }else if(parseInt(loginType) == 1){
+            setCurrentUser(userFind);
+        }
+        //console.log('users',users);
+    },[loginType]);
+
+
 
    useEffect(() => {
     let videofind = fetch("http://localhost:3001/videodb/watch",{
@@ -18,7 +95,7 @@ function VedioPage() {
                 mode: 'cors',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  "videoid": id
+                  "videoAddress": url
                 })
               }).then((res) =>{
                 if(res.ok){
@@ -32,60 +109,59 @@ function VedioPage() {
 
   useEffect(() => {
     fetch("http://localhost:3001/videodb/videos")
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-        })
-        //.then((res) => {console.log('res',res)})
-        .then((res) => {
-          
-          setVideolist(res);
-         // console.log('res2',res);
-        });
-      },[]);
-  
-  //console.log(video1);
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      //.then((res) => {console.log('res',res)})
+      .then((res) => {
+        setVideolist(res);
+        // console.log('res2',res);
+      });
+  }, []);
+
+  // console.log(video1);
   let video = {};
-  let url ='';
-  if(video1){
-    video={
+  if (video1) {
+    video = {
       id: video1._id,
-    title: video1.videoName,
-    duration: 180,
-    views: video1.NOC,
-    cover: video1.videoCover,
-    author: video1.publisher,
-    author_id: 1,
-    date: video1.uploadTime,
-    url:video1.videoAddress,
-    tags: [
-      "NetFlix",
-      "NetFlix",
-      "aaaaa",
-      "NetFlix",
-      "NetFlix",
-      "NetFlix",
-      "NetFlix",
-    ],
-    comments: [
-      {
-        title: "Comment 1",
-        content: "Please never stop making this show",
-        date: "2022-06-15 21:51",
-      },
-      {
-        title: "Comment 2",
-        content: "Hi",
-        date: "2022-08-17 21:51",
-      },
-    ],
+      title: video1.videoName,
+      duration: 180,
+      views: video1.NOC,
+      cover: video1.videoCover,
+      author: video1.publisher,
+      author_id: 1,
+      date: video1.uploadTime,
+      url: video1.videoAddress,
+      tags: [
+        "NetFlix",
+        "NetFlix",
+        "aaaaa",
+        "NetFlix",
+        "NetFlix",
+        "NetFlix",
+        "NetFlix",
+      ],
+      comments: video1.comment,
     };
+
+    fetch("http://localhost:3001/users/watchHistory",{
+                method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  "userName": userFind.userName,
+                  "watchHistory": video1
+                })
+              })
+
+    /* console.log(video.url);
     if(video.url=="/video/video2.mp4")
     url='/video/video2.mp4';
     else if(video.url=="/video/video1.mp4")
-    url='/video/video1.mp4';
-  }else{
+    url='/video/video1.mp4'; */
+  } else {
     video = {
       id: 1,
       title: "title",
@@ -95,7 +171,7 @@ function VedioPage() {
       author: "author",
       author_id: 1,
       date: "08/20",
-      url:"",
+      url: "",
       tags: [
         "NetFlix",
         "NetFlix",
@@ -119,35 +195,37 @@ function VedioPage() {
       ],
     };
   }
-  
-  console.log(url);
 
-  var recommendVideo =[];
-  if(videolist){
+  //console.log(url);
+
+  var recommendVideo = [];
+  if (videolist) {
     let videosleg = videolist.length;
     let videos1;
     let videos2;
-    if(videolist[videosleg-1]._id!=id){
-      videos1 = videolist[videosleg-1];
-      if(videolist[videosleg-2]._id!=id)
-      videos2=videolist[videosleg-2];
-      else videos2 = videolist[videosleg-3];
-    }else{
-      videos1 =videolist[videosleg-2];
-      videos2 = videolist[videosleg-3];
+    if (videolist[videosleg - 1].videoAddress != url) {
+      videos1 = videolist[videosleg - 1];
+      if (videolist[videosleg - 2].videoAddress != url)
+        videos2 = videolist[videosleg - 2];
+      else videos2 = videolist[videosleg - 3];
+    } else {
+      videos1 = videolist[videosleg - 2];
+      videos2 = videolist[videosleg - 3];
     }
 
     recommendVideo = [
       {
-      id: videos1._id,
-      title: videos1.videoName,
-      duration: 180,
-      views: videos1.NOC,
-      cover: videos1.videoCover,
-      author: videos1.publisher,
-      author_id: 2,
-      date: videos1.uploadTime,
-      },{
+        id: videos1._id,
+        title: videos1.videoName,
+        duration: 180,
+        views: videos1.NOC,
+        cover: videos1.videoCover,
+        author: videos1.publisher,
+        author_id: 2,
+        date: videos1.uploadTime,
+        url: videos1.videoAddress,
+      },
+      {
         id: videos2._id,
         title: videos2.videoName,
         duration: 180,
@@ -156,11 +234,10 @@ function VedioPage() {
         author: videos2.publisher,
         author_id: 2,
         date: videos2.uploadTime,
-        }
-    ]
-  
-
-  }else{
+        url: videos1.videoAddress,
+      },
+    ];
+  } else {
     recommendVideo = [
       {
         id: 2,
@@ -185,11 +262,6 @@ function VedioPage() {
     ];
   }
 
-  
-  
-
- 
-
   const tags = video.tags.map((tagText) => {
     return <Tag text={tagText}></Tag>;
   });
@@ -212,6 +284,9 @@ function VedioPage() {
       ></VideoCover>
     );
   });
+  const commentStyle = {
+    width: "100%",
+  };
   return (
     <div className="container">
       <div className="row">
@@ -265,8 +340,8 @@ function VedioPage() {
             </div>
           </div>
           <div className="content">
-            <video  width="100%" controls>
-            <source src={`/video/video${id}.mp4`} type="video/mp4" />
+            <video width="100%" controls>
+              <source src={`/video/${url}.mp4`} type="video/mp4" />
             </video>
             <nav className="navbar bg-light">
               <div className="row bullet-chat">
@@ -299,11 +374,24 @@ function VedioPage() {
                   <Avatar height="60" width="60"></Avatar>
                 </a>
               </div>
-              <textarea
-                className="form-control"
-                placeholder="Send friendly comments"
-                rows="1"
-              ></textarea>
+              <form style={commentStyle}>
+                <div className="input-group">
+                  <textarea
+                    className="form-control"
+                    placeholder="Send friendly comments"
+                    rows="2"
+                  ></textarea>
+                  <span class="input-group-btn">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      id="commentSubmitBtn"
+                    >
+                      Submit
+                    </button>
+                  </span>
+                </div>
+              </form>
             </div>
             {comment}
           </div>

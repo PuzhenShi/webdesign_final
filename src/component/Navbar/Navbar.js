@@ -54,7 +54,7 @@ function Navbar() {
     };
     let userFind = getCurrentUser(getCookieValue('currentUserID'));
     
-   // console.log('userFind',userFind);
+  //  console.log('userFind',userFind);
     const [currentUser, setCurrentUser] = useState(userFind);
     //console.log('currentUser',currentUser);
 //
@@ -65,7 +65,13 @@ function Navbar() {
                 if (res.ok) {
                     return res.json();
                 }
-            }).then(jsonRes => setUsers(jsonRes));
+            })
+            .then((res) => {
+              setUsers(res);
+            //  console.log("res",res);
+            
+            });
+            console.log(loginType);
 
         setCookie("loginType", parseInt(loginType), "", "");
         if(parseInt(loginType) == 0){
@@ -73,8 +79,13 @@ function Navbar() {
         }else if(parseInt(loginType) == 1){
             setCurrentUser(userFind);
         }
-       // console.log('users',users);
+        console.log('userFind',userFind);
     },[loginType]);
+
+    let signOut = (e)=>{
+      //setCookie("loginType", 0, "", "");
+      setLoginType(0);
+  };
 
      if(loginType==0){
       navname="login";

@@ -69,7 +69,7 @@ function MainPage() {
     let videos8 = videos[videosleg - 8];
 
     video1 = {
-      id: videos1._id,
+      url: videos1.videoAddress,
       title: videos1.videoName,
       duration: 180,
       views: videos1.NOC,
@@ -79,7 +79,7 @@ function MainPage() {
       date: videos1.uploadTime,
     };
     video2 = {
-      id: videos2._id,
+      url: videos2.videoAddress,
       title: videos2.videoName,
       duration: 180,
       views: videos2.NOC,
@@ -89,7 +89,7 @@ function MainPage() {
       date: videos2.uploadTime,
     };
     video3 = {
-      id: videos3._id,
+      url: videos3.videoAddress,
       title: videos3.videoName,
       duration: 180,
       views: videos3.NOC,
@@ -99,7 +99,7 @@ function MainPage() {
       date: videos3.uploadTime,
     };
     video4 = {
-      id: videos4._id,
+      url: videos4.videoAddress,
       title: videos4.videoName,
       duration: 180,
       views: videos4.NOC,
@@ -109,7 +109,7 @@ function MainPage() {
       date: videos4.uploadTime,
     };
     video5 = {
-      id: videos5._id,
+      url: videos5.videoAddress,
       title: videos5.videoName,
       duration: 180,
       views: videos5.NOC,
@@ -119,7 +119,7 @@ function MainPage() {
       date: videos5.uploadTime,
     };
     video6 = {
-      id: videos6._id,
+      url: videos6.videoAddress,
       title: videos6.videoName,
       duration: 180,
       views: videos6.NOC,
@@ -129,7 +129,7 @@ function MainPage() {
       date: videos6.uploadTime,
     };
     video7 = {
-      id: videos7._id,
+      url: videos7.videoAddress,
       title: videos7.videoName,
       duration: 180,
       views: videos7.NOC,
@@ -139,7 +139,7 @@ function MainPage() {
       date: videos7.uploadTime,
     };
     video8 = {
-      id: videos1._id,
+      url: videos1.videoAddress,
       title: videos8.videoName,
       duration: 180,
       views: videos8.NOC,
@@ -152,7 +152,7 @@ function MainPage() {
     console.log(video7);
   } else {
     video1 = {
-      id: 1,
+      url: 1,
       title: "title",
       duration: 180,
       views: 25,
@@ -162,7 +162,7 @@ function MainPage() {
       date: "08/20",
     };
     video2 = {
-      id: 1,
+      url: 1,
       title: "title",
       duration: 180,
       views: 25,
@@ -172,7 +172,7 @@ function MainPage() {
       date: "08/20",
     };
     video3 = {
-      id: 1,
+      url: 1,
       title: "title",
       duration: 180,
       views: 25,
@@ -182,7 +182,7 @@ function MainPage() {
       date: "08/20",
     };
     video4 = {
-      id: 1,
+      url: 1,
       title: "title",
       duration: 180,
       views: 25,
@@ -192,7 +192,7 @@ function MainPage() {
       date: "08/20",
     };
     video5 = {
-      id: 1,
+      url: 1,
       title: "title",
       duration: 180,
       views: 25,
@@ -202,7 +202,7 @@ function MainPage() {
       date: "08/20",
     };
     video6 = {
-      id: 1,
+      url: 1,
       title: "title",
       duration: 180,
       views: 25,
@@ -213,7 +213,7 @@ function MainPage() {
     };
 
     video7 = {
-      id: 1,
+      url: 1,
       title: "title",
       duration: 180,
       views: 25,
@@ -223,7 +223,7 @@ function MainPage() {
       date: "08/20",
     };
     video8 = {
-      id: 1,
+      url: 1,
       title: "title",
       duration: 180,
       views: 25,

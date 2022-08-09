@@ -38,7 +38,7 @@ function App() {
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
-        <Route path="/video/:id" element={<VedioPage />}></Route>
+        <Route path="/video/:url" element={<VedioPage />}></Route>
         <Route path="/about" element={<AboutPage />}></Route>
         <Route path="/admin" element={<AdminPage />}></Route>
         
