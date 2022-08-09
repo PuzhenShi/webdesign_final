@@ -1,2 +1,2 @@
-videos
+videos and covers
 id-filename
