@@ -7,30 +7,17 @@ router.route("/create").post((req, res) => {
     const userName = req.body.userName;
     const password = bcrypt.hashSync(req.body.password,10);
     const gender = req.body.gender;
-    const motto = req.body.motto;
     const DOB = req.body.DOB;
-    const portrait = req.body.portrait;
-    const vipStatus = req.body.vipStatus;
-    const myVideo = req.body.myVideo;
-    const myFavorite = req.body.myFavorite;
-    const following = req.body.following;
-    const follower = req.body.follower;
-    const watchHistory = req.body.watchHistory;
+    const email = req.body.email;
+    const vipStatus = false;
     console.log(">>> g: ", req.body);
     const newUser = new user({
         userName,
         password,
         gender,
-        motto,
         DOB,
-        portrait,
-        vipStatus,
-        myVideo,
-        myFavorite,
-        following,
-        follower,
-        watchHistory,
-        email
+        email,
+        vipStatus
     });
     console.log(">>> e: ", newUser);
     newUser.save();
@@ -141,7 +128,27 @@ router.route("/watchHistory").post((req, res)  =>{
     })
 });
 
+router.route("/login").post((req,res) =>{
+    var password = req.body.password;
+    var result = req.body.result;
+    var b = false;
+    console.log(req.body);
+     if(bcrypt.compareSync(password,result.password)){
+            b = true;
+    }
+    console.log(b);          
+    if(b){
+        res.status(200);
+        res.json(result); // load our public/index.html file
+    }else{
+        res.status(401); 
+    }
+
+})
+
+
 //display User Personal Info
+
 router.route("/users").get((req, res) => {
     user.find()
         .then(findUsers => res.json(findUsers))

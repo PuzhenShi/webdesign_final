@@ -69,7 +69,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### instruction by puzhen
+
+### 
 for react bootstrap:
 https://react-bootstrap.github.io/getting-started/introduction/
 npm install react-bootstrap bootstrap
@@ -82,6 +83,3 @@ for react image uploader:
 https://www.npmjs.com/package/react-images-uploading
 npm install --save react-images-uploading
 
-npm install axios --save
-
-npm install sweetalert --save

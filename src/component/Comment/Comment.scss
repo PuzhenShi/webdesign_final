@@ -1,0 +1,53 @@
+.area {
+  margin-top: 40px;
+  .body {
+    height: 8rem;
+    margin-bottom: 30px;
+    .avatar {
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+    .content {
+      margin-top: 0px;
+      margin-left: 20px;
+      width: 100%;
+      .status {
+        font-size: 8px;
+        color: #808080;
+      }
+      .divider {
+        margin: 0;
+        width: 100%;
+      }
+      .agree {
+        margin-left: 20px;
+        color: #808080;
+      }
+
+      .agree:hover {
+        color: blue;
+        cursor: pointer;
+      }
+
+      .disagree {
+        margin-left: 20px;
+        color: #808080;
+      }
+
+      .disagree:hover {
+        color: blue;
+        cursor: pointer;
+      }
+      .reply {
+        text-decoration: none;
+        color: #808080;
+        margin-left: 20px;
+      }
+
+      .reply:hover {
+        color: blue;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.area {
+  margin-top: 40px;
+}
+.area .body {
+  height: 8rem;
+  margin-bottom: 30px;
+}
+.area .body .avatar {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.area .body .content {
+  margin-top: 0px;
+  margin-left: 20px;
+  width: 100%;
+}
+.area .body .content .status {
+  font-size: 8px;
+  color: #808080;
+}
+.area .body .content .divider {
+  margin: 0;
+  width: 100%;
+}
+.area .body .content .agree {
+  margin-left: 20px;
+  color: #808080;
+}
+.area .body .content .agree:hover {
+  color: blue;
+  cursor: pointer;
+}
+.area .body .content .disagree {
+  margin-left: 20px;
+  color: #808080;
+}
+.area .body .content .disagree:hover {
+  color: blue;
+  cursor: pointer;
+}
+.area .body .content .reply {
+  text-decoration: none;
+  color: #808080;
+  margin-left: 20px;
+}
+.area .body .content .reply:hover {
+  color: blue;
+  cursor: pointer;
+}/*# sourceMappingURL=Comment.css.map */

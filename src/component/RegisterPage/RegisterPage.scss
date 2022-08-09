@@ -1,0 +1,23 @@
+.login {
+  .column {
+    .pannel {
+      margin-top: 50%;
+      background-color: #f9f9f9;
+      padding: 40px;
+      border-radius: 10px;
+    }
+  }
+  #login-alt {
+    a {
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+  #register-alt {
+    a {
+      color: #00aeec;
+      text-decoration: none;
+    }
+  }
+}
