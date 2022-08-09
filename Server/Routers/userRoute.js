@@ -23,18 +23,14 @@ router.route("/create").post((req, res) => {
         gender,
         motto,
         DOB,
-<<<<<<< Updated upstream
         portrait,
         vipStatus,
         myVideo,
         myFavorite,
         following,
         follower,
-        watchHistory
-=======
-        email,
-        vipStatus
->>>>>>> Stashed changes
+        watchHistory,
+        email
     });
     console.log(">>> e: ", newUser);
     newUser.save();
