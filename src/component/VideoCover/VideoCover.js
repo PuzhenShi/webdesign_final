@@ -5,7 +5,7 @@ import cover1 from '../videocoverimg/cover1.jpg'
 import cover2 from '../videocoverimg/cover2.jpg'
 
 function VideoCover(props) {
-  const { title, duration, views, cover, author, id, date, author_id, video } =
+  const { title, duration, views, cover, author, id, date, author_id, video, } =
   //const video=
   props.videoInfo;
   //console.log(video);
@@ -23,6 +23,7 @@ function VideoCover(props) {
     } else if(cover=="cover2"){
       url=cover2
     }
+    console.log(url);
 
   const wrapperStyle = {
     width: "100%",
@@ -37,11 +38,22 @@ function VideoCover(props) {
     padding: "3px 0px 0px 0px",
     width: "100%",
   };
+
+  function handleClick(e) {
+    let viewvideo = fetch("http://localhost:3001/videodb/click",{
+                method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  "videoid": id
+                })
+              }).then((res) =>{console.log(res)});
+  }
   return (
     <div style={wrapperStyle} className="video-display">
       <div style={contentStyle} className="cover">
         <div className="image">
-           <Link to={`/video/?videoid=${id}`}> 
+           <Link to={`/video/${id}`} onClick={handleClick}> 
           {/* <Link to={`/video/${video.id}`}> */}
             <img src={url} alt="cover" className="video-cover"></img>
           </Link>
@@ -73,7 +85,7 @@ function VideoCover(props) {
             <div className="number">{duration}</div> 
           </div>
         </div>
-        <Link to={`/video/?videoid=${id}`} style={titleStyle} className="title"> 
+        <Link to={`/video/${id}`} style={titleStyle} className="title" onClick={handleClick}> 
         {/* <Link to={`/video/${video.id}`} style={titleStyle} className="title"> */}
           {title} 
           {/* {video.videoName} */}
