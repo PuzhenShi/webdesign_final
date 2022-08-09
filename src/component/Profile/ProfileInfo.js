@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DatePicker from "react-datepicker";
-import {setCookie,getCookieValue} from "../Cookie/Cookie"
+import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 function ProfileInfo() 
-{
-    
+{   
+    const navigate = useNavigate();
     var valPwd = /^.*(?=.{8,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?\(\)]).*$/;
 
     //script for datepicker component
