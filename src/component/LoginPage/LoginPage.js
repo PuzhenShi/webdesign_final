@@ -21,6 +21,8 @@ function LoginPage() {
     },
   ]);
 
+  const [flag,setFlag] = useState(false);
+
   // set currentUser
   let getCurrentUser = (currentUserID) => {
     if (currentUserID == "") {
@@ -97,8 +99,7 @@ function LoginPage() {
 
   let login = (e) => {
     e.preventDefault();
-    let flag = false;
-
+    let flage = false;
     users.find((item) => {
       if (item.userName == InfoUserName) {
         let userfindbyname = fetch("http://localhost:3001/users/login", {
@@ -114,22 +115,41 @@ function LoginPage() {
           if (res.status == 200) {
             setCookie("currentUserID", item._id, "", "");
             setLoginType(1);
-            flag = true;
+            flage=true;
+            swal({
+              title: "Login success",
+              text: "Going to the main page...",
+              icon: "success",
+            });
             window.location = "/";
             console.log("login success");
-          } else {
+          }  else {
             console.log("login fail");
             swal({
               title: "Oh No!",
               text: "Wrong User Name or Password!",
               icon: "error",
             });
-          }
+          } 
         });
         //setCookie("loginType", 1, "", "");
       }
+      console.log(flag);
+      if (flage ==false) {
+      if(InfoUserName=="admin"&&InfoUserPwd=="admin"){
+        window.location = "/admin";
+      }else{
+        console.log("flag==false")
+            swal({
+                title: "Oh No!",
+                text: "Wrong User Name or Password!",
+                icon: "error",
+              });
+            }
+        } 
     });
-     if (flag ==false) {
+    /* console.log(flag);
+      if (flag ==false) {
       if(InfoUserName=="admin"&&InfoUserPwd=="admin"){
         window.location = "/admin";
       }else{
@@ -139,7 +159,7 @@ function LoginPage() {
                 icon: "error",
               });
             }
-        } 
+        }  */
   };
 
   let path = `/userinfo/${userFind.userName}`;

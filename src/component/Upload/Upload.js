@@ -3,8 +3,43 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import ImageUploading from 'react-images-uploading';
 import Button from 'react-bootstrap/Button';
+import { setCookie, getCookieValue } from "../Cookie/Cookie";
 
 function Upload() {
+
+    let loginCookie = getCookieValue("loginType");
+  const [loginType, setLoginType] = useState(
+    loginCookie === null ? 0 : parseInt(loginCookie)
+  );
+  if (loginCookie === null) {
+    loginCookie = setCookie("loginType", 0, "", "");
+  }
+  const [users, setUsers] = useState([
+    {
+      _id: Object,
+      userName: "",
+    },
+  ]);
+
+  // set currentUser
+  let getCurrentUser = (currentUserID) => {
+    if (currentUserID == "") {
+      return {
+        _id: Object,
+        userName: "",
+      };
+    }
+    for (let i = 0; i < users.length; i++) {
+      if (users[i]._id == currentUserID) {
+        return users[i];
+      }
+    }
+    return {
+      _id: Object,
+      userName: "",
+    };
+  };
+  let userFind = getCurrentUser(getCookieValue("currentUserID"));
 
     //***************************************
     //script for image upload
@@ -35,6 +70,9 @@ function Upload() {
         };
         // reading the actual uploaded file
         file_reader.readAsDataURL(file);
+        
+        
+        
     }
     //***************************************
     //***************************************
@@ -44,8 +82,26 @@ function Upload() {
     // handle submit button for form
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(files);
+        // console.log(files);
+    
+        // var fd = new FormData()
+        // fd.append('files',this.state.files[i][0],this.state.files[i][0].name)
+        // var statebody = Object.assign({},this.state,{files:null})
+        // fd.append('state',JSON.stringify(statebody))
+        // axios.post('/api/',fd)
+        //             .then((res)=>{
+        //     console.log(res)
+        // }).catch((e)=>{
+        //     console.log(e)
+        // })
+        const formData = new FormData()
+        formData.append('files', this.state.files)
+        axios.post("http://localhost:3001/videos/create", formData, {
+        }).then(res => {
+            console.log(res)
+        })
     }
+    
     // button state whether it's disabled or enabled
     const [enabled, setEnabled] = useState(false);
     // using useEffect we can detect if user uploaded any file,

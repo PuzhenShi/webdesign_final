@@ -3,8 +3,9 @@ import "./AboutPage.css";
 
 function AboutPage() {
   return (
-    <div className="wrapper">
+    <div className="wrapper container">
       <div className="contactPannel row">
+        <h1>CONTACT US</h1>
         <div className="col-6">
           <form id="messageForm">
             <div className="mb-3">
