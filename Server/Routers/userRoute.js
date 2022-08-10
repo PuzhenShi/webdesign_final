@@ -97,6 +97,7 @@ router.route("/updateVIP").post((req,res) =>{
 
 //update My Video List
 router.route("/myVideo").post((req,res) =>{
+    console.log(req.body);
     user.update({userName: req.body.userName}, {
         $push: {
             myVideo: req.body.myVideo
