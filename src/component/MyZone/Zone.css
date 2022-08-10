@@ -58,7 +58,12 @@ a {
 
 #myZoneHome {
     padding: 0;
-    margin-left: -10px;
+    margin-left: -12px;
+}
+
+#myZoneVideos {
+    padding: 0;
+    margin-left: -12px;
 }
 
 #myZonePanel{
