@@ -26,6 +26,7 @@
 .video .content {
   width: 100%;
   padding: 10px 20px 20px 20px;
+  margin-top: 10px;
 }
 .video .content .bullet-chat {
   width: 100%;
