@@ -98,22 +98,26 @@ function Navbar() {
           <ul class="dropdown-menu">
             <li>
               <a class="dropdown-item" href="/profile">
-                Profile
+              <i class="bi bi-clipboard-minus"></i>
+              <span class="navLabel">Profile</span>
               </a>
             </li>
             <li>
               <a class="dropdown-item" href="/myzone">
-                MyZone
+              <i class="bi bi-house"></i>
+                <span class="navLabel">MyZone</span>
               </a>
             </li>
             <li>
               <a class="dropdown-item" href="/history">
-                History
+              <i class="bi bi-clock"></i>
+              <span class="navLabel">History</span>
               </a>
             </li>
             <li>
               <a class="dropdown-item" href="/upload">
-                Upload
+              <i class="bi bi-upload"></i>
+              <span class="navLabel">Upload</span>
               </a>
             </li>
             <li>
@@ -121,7 +125,8 @@ function Navbar() {
             </li>
             <li>
               <a class="dropdown-item" href="/" onClick={signOut}>
-                Log Out
+              <i class="bi bi-indent"></i>
+              <span class="navLabel">Log Out</span>
               </a>
             </li>
           </ul>         
