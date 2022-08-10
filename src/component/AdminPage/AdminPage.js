@@ -5,13 +5,6 @@ import VideoTD from "./VideoTD/VideoTD";
 
 function AdminPage() {
 
-  let loginCookie = getCookieValue("loginType");
-  const [loginType, setLoginType] = useState(
-    loginCookie === null ? 0 : parseInt(loginCookie)
-  );
-  if (loginCookie === null) {
-    loginCookie = setCookie("loginType", 0, "", "");
-  }
   const [users, setUsers] = useState([
     {
       _id: Object,
@@ -19,34 +12,14 @@ function AdminPage() {
     },
   ]);
 
-  const [videos,setVideos]=useState({
+
+  const [videos,setVideos]=useState([{
       _id:Object,
       videoName:""
 
-  });
+  }]);
 
-  // set currentUser
-  let getCurrentUser = (currentUserID) => {
-    if (currentUserID == "") {
-      return {
-        _id: Object,
-        userName: "",
-      };
-    }
-    for (let i = 0; i < users.length; i++) {
-      if (users[i]._id == currentUserID) {
-        return users[i];
-      }
-    }
-    return {
-      _id: Object,
-      userName: "",
-    };
-  };
-  let userFind = getCurrentUser(getCookieValue("currentUserID"));
-
-  
-  const [currentUser, setCurrentUser] = useState(userFind);
+ 
 
   useEffect(() => {
     fetch("http://localhost:3001/users/users")
@@ -60,16 +33,9 @@ function AdminPage() {
       });
 
       
-   // console.log(loginType);
-
-    setCookie("loginType", parseInt(loginType), "", "");
-    if (parseInt(loginType) == 0) {
-      setCookie("currentUserID", "", "", "");
-    } else if (parseInt(loginType) == 1) {
-      setCurrentUser(userFind);
-    }
+   
     
-  }, [loginType]);
+  }, []);
 
 
   useEffect(() => {
@@ -85,16 +51,9 @@ function AdminPage() {
     })
 
       
-   // console.log(loginType);
-
-    setCookie("loginType", parseInt(loginType), "", "");
-    if (parseInt(loginType) == 0) {
-      setCookie("currentUserID", "", "", "");
-    } else if (parseInt(loginType) == 1) {
-      setCurrentUser(userFind);
-    }
+   
     
-  }, [loginType]);
+  }, []);
   
   console.log(videos);
   console.log(users);
@@ -105,15 +64,18 @@ function AdminPage() {
     );
   });
   
-  const videoList = videos.map((video) => {
-    return (
-      <VideoTD
-        title={video.videoName}
-        author={video.publisher}
-        id={video._id}
-      ></VideoTD>
-    );
-  });
+
+    const videoList = videos.map((video) => {
+
+      return (
+        <VideoTD
+          title={video.videoName}
+          author={video.publisher}
+          id={video._id}
+        ></VideoTD>
+      );
+    });
+
 
   
   
