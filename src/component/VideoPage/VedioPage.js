@@ -241,8 +241,10 @@ function VedioPage() {
   }
 
   //like the video
+  const [isActive, setIsActive] = useState(false);
 
   function likevideo() {
+    setIsActive(true);
     let like = false;
     if (userFind.myFavorite) {
       const myFavoritevideos = userFind.myFavorite;
@@ -439,7 +441,13 @@ function VedioPage() {
           </div>
 
           <div className="tags">
-            <span id="like" onClick={likevideo}>
+            <span
+              id="like"
+              onClick={likevideo}
+              style={{
+                color: isActive ? "#00aeec" : "",
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
