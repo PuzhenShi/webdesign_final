@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import ImageUploading from 'react-images-uploading';
 import Button from 'react-bootstrap/Button';
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
+import swal from "sweetalert";
 
 function Upload() {
 
@@ -147,6 +148,18 @@ function Upload() {
         console.log("UserName Input", e.target.value);
       };
 
+    const[duration,setDuration] = useState();
+      let videodurationinput = (e) => {
+        setDuration(e.target.value);
+          console.log("UserName Input", e.target.value);
+        };
+
+    const[vip,setVip] = useState(); 
+    let changevip = (e) => {
+        setVip(e.target.value);
+          console.log("UserName Input", e.target.value);
+        };
+
 
     //***************************************
     //***************************************
@@ -160,6 +173,28 @@ function Upload() {
         console.log(cover);
         console.log(videoname);
         console.log(userFind.userName);
+        console.log(duration);
+        console.log(vip);
+
+        fetch("http://localhost:3001/videodb/create", {
+            method: "POST",
+             mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                videoAddress: videoAddress.split('.').slice(0, -1).join('.'),
+                videoName: videoname,
+                videoCover: cover,
+                publisher: userFind.userName,
+                videoDuration: duration,
+                VIP: vip
+      }),
+    })
+    swal({
+        title: "Thanks!",
+        text: "Welcome to dilidili!",
+        icon: "success",
+      });
+
 
 
 
@@ -239,6 +274,20 @@ function Upload() {
                           onChange={videonameinput}
                           required/>
                     </div>
+                    <div class="col-5 title">
+                        <span>video duration:</span>
+                        <input type="text" id="videoTitle" value={duration}
+                          onChange={videodurationinput}
+                          required/>
+                    </div>
+                    <div class="col-5 title">
+                        <span>vip?</span>
+                    <div onChange={changevip}>
+                        <input type="radio" value="true" name="yes" /> Yes
+                        <input type="radio" value="false" name="vip" /> No
+                    </div>
+                    </div>
+                    
                 </div>
                 <br />
                 {enabled ? (
