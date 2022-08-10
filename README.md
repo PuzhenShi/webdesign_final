@@ -95,11 +95,17 @@ npm i stripe
 ### Content and functions
 
 Content:
+
 This site provides a place where people can share their videos with others.
+
 On this site, we can upload our own videos and communicate with other like-minded people.
+
 Also, people can earn money from this site and they can choose to set up videos for free or require VIP.
+
 It contains Main/Register/Login/Myzone/Myprofile/Upload/Video/WatchiHistory/Admin pages and more.
 
 Functions:
+
 All users can register, login, view their homepage, change their profile, upload videos, collect videos, find their viewing history, follow others, search for users/videos and pay VIP.
+
 For admins, they can manage users. If there are some inappropriate videos/users, they can block them. And, admins can see the videos uploaded by users.
