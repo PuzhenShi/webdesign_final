@@ -89,7 +89,7 @@ function MainPage() {
       author: videos1.publisher,
       author_id: 1,
       date: videos1.uploadTime,
-      VIP:videos1.VIP,
+      VIP: videos1.VIP,
     };
     video2 = {
       url: videos2.videoAddress,
@@ -100,7 +100,7 @@ function MainPage() {
       author: videos2.publisher,
       author_id: 1,
       date: videos2.uploadTime,
-      VIP:videos2.VIP,
+      VIP: videos2.VIP,
     };
     video3 = {
       url: videos3.videoAddress,
@@ -111,7 +111,7 @@ function MainPage() {
       author: videos3.publisher,
       author_id: 1,
       date: videos3.uploadTime,
-      VIP:videos3.VIP,
+      VIP: videos3.VIP,
     };
     video4 = {
       url: videos4.videoAddress,
@@ -122,7 +122,7 @@ function MainPage() {
       author: videos4.publisher,
       author_id: 1,
       date: videos4.uploadTime,
-      VIP:videos4.VIP,
+      VIP: videos4.VIP,
     };
     video5 = {
       url: videos5.videoAddress,
@@ -133,7 +133,7 @@ function MainPage() {
       author: videos5.publisher,
       author_id: 1,
       date: videos5.uploadTime,
-      VIP:videos5.VIP,
+      VIP: videos5.VIP,
     };
     video6 = {
       url: videos6.videoAddress,
@@ -144,7 +144,7 @@ function MainPage() {
       author: videos6.publisher,
       author_id: 1,
       date: videos6.uploadTime,
-      VIP:videos6.VIP,
+      VIP: videos6.VIP,
     };
     video7 = {
       url: videos7.videoAddress,
@@ -155,7 +155,7 @@ function MainPage() {
       author: videos7.publisher,
       author_id: 1,
       date: videos7.uploadTime,
-      VIP:videos7.VIP,
+      VIP: videos7.VIP,
     };
     video8 = {
       url: videos9.videoAddress,
@@ -166,7 +166,7 @@ function MainPage() {
       author: videos8.publisher,
       author_id: 1,
       date: videos8.uploadTime,
-      VIP:videos8.VIP,
+      VIP: videos8.VIP,
     };
     video9 = {
       url: videos9.videoAddress,
@@ -177,7 +177,7 @@ function MainPage() {
       author: videos9.publisher,
       author_id: 1,
       date: videos9.uploadTime,
-      VIP:videos9.VIP,
+      VIP: videos9.VIP,
     };
     video10 = {
       url: videos10.videoAddress,
@@ -188,7 +188,7 @@ function MainPage() {
       author: videos10.publisher,
       author_id: 1,
       date: videos10.uploadTime,
-      VIP:videos10.VIP,
+      VIP: videos10.VIP,
     };
     video11 = {
       url: videos11.videoAddress,
@@ -199,7 +199,7 @@ function MainPage() {
       author: videos11.publisher,
       author_id: 1,
       date: videos11.uploadTime,
-      VIP:videos11.VIP,
+      VIP: videos11.VIP,
     };
     video12 = {
       url: videos12.videoAddress,
@@ -210,7 +210,7 @@ function MainPage() {
       author: videos12.publisher,
       author_id: 1,
       date: videos12.uploadTime,
-      VIP:videos12.VIP,
+      VIP: videos12.VIP,
     };
     video13 = {
       url: videos13.videoAddress,
@@ -221,7 +221,7 @@ function MainPage() {
       author: videos13.publisher,
       author_id: 1,
       date: videos13.uploadTime,
-      VIP:videos13.VIP,
+      VIP: videos13.VIP,
     };
     video14 = {
       url: videos14.videoAddress,
@@ -232,10 +232,10 @@ function MainPage() {
       author: videos14.publisher,
       author_id: 1,
       date: videos14.uploadTime,
-      VIP:videos14.VIP,
+      VIP: videos14.VIP,
     };
 
-   // console.log(video7);
+    // console.log(video7);
   } else {
     video1 = {
       url: 1,
@@ -322,9 +322,7 @@ function MainPage() {
   return (
     <div>
       <Navbar></Navbar>
-      <div class="col-12" id="mainBackImg">
-
-      </div>
+      <div class="col-12" id="mainBackImg"></div>
       <div className="container" id="upperContent">
         <div className="row d-flex justify-content-center">
           <div
@@ -335,7 +333,7 @@ function MainPage() {
             <MainCarousel
               width={carouselWidth}
               height={carouselHeight}
-              videos={[video1,video2,video3]}
+              videos={[video1, video2, video3]}
             ></MainCarousel>
           </div>
           <div className="col-md-4 col-lg-3 col-xl-2 d-none d-md-block">
@@ -351,14 +349,14 @@ function MainPage() {
               coverHeight={120}
               width={240}
             ></VideoCover>
-            <div className="d-none d-xl-block">
+            {/* <div className="d-none d-xl-block">
               <VideoCover
                 videoInfo={video3}
                 coverWidth={200}
                 coverHeight={120}
                 width={240}
               ></VideoCover>
-            </div>
+            </div> */}
           </div>
           <div className="col-md-4 col-lg-3 col-xl-2 d-none d-lg-block">
             <VideoCover
@@ -373,16 +371,16 @@ function MainPage() {
               coverHeight={120}
               width={240}
             ></VideoCover>
-            <div className="d-none d-xl-block">
+            {/* <div className="d-none d-xl-block">
               <VideoCover
                 videoInfo={video6}
                 coverWidth={200}
                 coverHeight={120}
                 width={240}
               ></VideoCover>
-            </div>
+            </div> */}
           </div>
-          <div
+          {/* <div
             className="col-md-4 col-lg-3 col-xl-2 d-none d-xl-block"
             id="downContent"
           >
@@ -406,12 +404,12 @@ function MainPage() {
                 width={240}
               ></VideoCover>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="container" id="lowerContent">
-        <div className="row">
-          <div className="col-md-4 col-lg-3">
+        <div className="row d-flex justify-content-center">
+          <div className="col-md-4 col-lg-3 col-xl-2">
             <VideoCover
               videoInfo={video10}
               coverWidth={200}
@@ -425,7 +423,7 @@ function MainPage() {
               width={240}
             ></VideoCover>
           </div>
-          <div className="col-md-4 col-lg-3">
+          <div className="col-md-4 col-lg-3 col-xl-2">
             <VideoCover
               videoInfo={video12}
               coverWidth={200}
@@ -439,7 +437,7 @@ function MainPage() {
               width={240}
             ></VideoCover>
           </div>
-          <div className="col-md-4 col-lg-3">
+          <div className="col-md-4 col-lg-3 col-xl-2">
             <VideoCover
               videoInfo={video14}
               coverWidth={200}
@@ -453,7 +451,7 @@ function MainPage() {
               width={240}
             ></VideoCover>
           </div>
-          <div className="col-md-3 col-lg-3 d-none d-lg-block">
+          <div className="col-md-3 col-lg-3  col-xl-2 d-none d-lg-block">
             <VideoCover
               videoInfo={video8}
               coverWidth={200}
@@ -462,6 +460,20 @@ function MainPage() {
             ></VideoCover>
             <VideoCover
               videoInfo={video8}
+              coverWidth={200}
+              coverHeight={120}
+              width={240}
+            ></VideoCover>
+          </div>
+          <div className="col-md-3 col-lg-3  col-xl-2 d-none d-xl-block">
+            <VideoCover
+              videoInfo={video3}
+              coverWidth={200}
+              coverHeight={120}
+              width={240}
+            ></VideoCover>
+            <VideoCover
+              videoInfo={video6}
               coverWidth={200}
               coverHeight={120}
               width={240}
