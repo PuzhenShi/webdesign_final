@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Outlet, IndexRoute, Routes, Route, Link } from 'react-router-dom'
 import VideoCover from "../VideoCover/VideoCover";
 import Button from 'react-bootstrap/Button';
+import MyZoneBar from '../MyZone/MyZoneBar';
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
+import "./History.css"
 
 
 function History() {
@@ -103,29 +105,30 @@ function History() {
       };
 
       return (
-                    <div class="col-10 row unit-record">
-                    <div class="col-4 videoCover">
-                        <VideoCover
-                            videoInfo={fvideo1}
-                            coverWidth={200}
-                            coverHeight={120}
-                            width={240}
-                        ></VideoCover>
-                    </div>
-                    <div class="col-4 historyTime">
-                        <span class="history-time">
-                            08/08/2022 15:24
-                        </span>
-                    </div>
-                    <div class="col-2 deleteBtn">
-                        <Button variant="primary">
-                            delete
-                        </Button>
-                    </div>
-                </div>
+        <div class="col-10 row unit-record">
+          <div class="col-4 videoCover">
+            <VideoCover
+              videoInfo={fvideo1}
+              coverWidth={200}
+              coverHeight={120}
+              width={240}
+            ></VideoCover>
+          </div>
+          {/* <div class="col-4 historyTime">
+            <span class="history-time">
+              08/08/2022 15:24
+            </span>
+          </div> */}
+          <div class="col-2 deleteBtn">
+            <button class="btn btn-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+          <hr></hr>
+        </div>
 
-                
-               
+
+
       )
     } else if (myFavoritelist.length === 2) {
       let videof1 = myFavoritelist[myFavoritelist.length - 1];
@@ -156,49 +159,51 @@ function History() {
       return (
         <div class="col-12 row" id="historyPanel">
           <div class="col-10 row unit-record">
-                    <div class="col-4 videoCover">
-                        <VideoCover
-                            videoInfo={fvideo1}
-                            coverWidth={200}
-                            coverHeight={120}
-                            width={240}
-                        ></VideoCover>
-                    </div>
-                    <div class="col-4 historyTime">
-                        <span class="history-time">
-                            08/08/2022 15:24
-                        </span>
-                    </div>
-                    <div class="col-2 deleteBtn">
-                        <Button variant="primary">
-                            delete
-                        </Button>
-                    </div>
-                </div>
+            <div class="col-4 videoCover">
+              <VideoCover
+                videoInfo={fvideo1}
+                coverWidth={200}
+                coverHeight={120}
+                width={240}
+              ></VideoCover>
+            </div>
+            {/* <div class="col-4 historyTime">
+              <span class="history-time">
+                08/08/2022 15:24
+              </span>
+            </div> */}
+            <div class="col-2 deleteBtn">
+              <button class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+            <hr></hr>
+          </div>
 
-                <div class="col-10 row unit-record">
-                    <div class="col-4 videoCover">
-                        <VideoCover
-                            videoInfo={fvideo2}
-                            coverWidth={200}
-                            coverHeight={120}
-                            width={240}
-                        ></VideoCover>
-                    </div>
-                    <div class="col-4 historyTime">
-                        <span class="history-time">
-                            08/08/2022 15:24
-                        </span>
-                    </div>
-                    <div class="col-2 deleteBtn">
-                        <Button variant="primary">
-                            delete
-                        </Button>
-                    </div>
-                </div>
+          <div class="col-10 row unit-record">
+            <div class="col-4 videoCover">
+              <VideoCover
+                videoInfo={fvideo2}
+                coverWidth={200}
+                coverHeight={120}
+                width={240}
+              ></VideoCover>
+            </div>
+            {/* <div class="col-4 historyTime">
+              <span class="history-time">
+                08/08/2022 15:24
+              </span>
+            </div> */}
+            <div class="col-2 deleteBtn">
+              <button class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+            <hr></hr>
+          </div>
         </div>
       )
-    } else{
+    } else {
       let videof1 = myFavoritelist[myFavoritelist.length - 1];
       let videof2 = myFavoritelist[myFavoritelist.length - 2];
       let videof3 = myFavoritelist[myFavoritelist.length - 3];
@@ -239,71 +244,74 @@ function History() {
       return (
         <div class="col-12 row" id="historyPanel">
           <div class="col-10 row unit-record">
-                    <div class="col-4 videoCover">
-                        <VideoCover
-                            videoInfo={fvideo1}
-                            coverWidth={200}
-                            coverHeight={120}
-                            width={240}
-                        ></VideoCover>
-                    </div>
-                    <div class="col-4 historyTime">
-                        <span class="history-time">
-                            08/08/2022 15:24
-                        </span>
-                    </div>
-                    <div class="col-2 deleteBtn">
-                        <Button variant="primary">
-                            delete
-                        </Button>
-                    </div>
-                </div>
+            <div class="col-4 videoCover">
+              <VideoCover
+                videoInfo={fvideo1}
+                coverWidth={200}
+                coverHeight={120}
+                width={240}
+              ></VideoCover>
+            </div>
+            {/* <div class="col-4 historyTime">
+              <span class="history-time">
+                08/08/2022 15:24
+              </span>
+            </div> */}
+            <div class="col-2 deleteBtn">
+              <button class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+            <hr></hr>
+          </div>
 
-                <div class="col-10 row unit-record">
-                    <div class="col-4 videoCover">
-                        <VideoCover
-                            videoInfo={fvideo2}
-                            coverWidth={200}
-                            coverHeight={120}
-                            width={240}
-                        ></VideoCover>
-                    </div>
-                    <div class="col-4 historyTime">
-                        <span class="history-time">
-                            08/08/2022 15:24
-                        </span>
-                    </div>
-                    <div class="col-2 deleteBtn">
-                        <Button variant="primary">
-                            delete
-                        </Button>
-                    </div>
-                </div>
+          <div class="col-10 row unit-record">
+            <div class="col-4 videoCover">
+              <VideoCover
+                videoInfo={fvideo2}
+                coverWidth={200}
+                coverHeight={120}
+                width={240}
+              ></VideoCover>
+            </div>
+            {/* <div class="col-4 historyTime">
+              <span class="history-time">
+                08/08/2022 15:24
+              </span>
+            </div> */}
+            <div class="col-2 deleteBtn">
+              <button class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+            <hr></hr>
+          </div>
 
-                <div class="col-10 row unit-record">
-                    <div class="col-4 videoCover">
-                        <VideoCover
-                            videoInfo={fvideo3}
-                            coverWidth={200}
-                            coverHeight={120}
-                            width={240}
-                        ></VideoCover>
-                    </div>
-                    <div class="col-4 historyTime">
-                        <span class="history-time">
-                            08/08/2022 15:24
-                        </span>
-                    </div>
-                    <div class="col-2 deleteBtn">
-                        <Button variant="primary">
-                            delete
-                        </Button>
-                    </div>
-                </div>
+          <div class="col-10 row unit-record">
+            <div class="col-4 videoCover">
+              <VideoCover
+                videoInfo={fvideo3}
+                coverWidth={200}
+                coverHeight={120}
+                width={240}
+              ></VideoCover>
+            </div>
+            {/* <div class="col-4 historyTime">
+              <span class="history-time">
+                08/08/2022 15:24
+              </span>
+            </div> */}
+            <div class="col-2 deleteBtn">
+              <button class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+            <hr></hr>
+          </div>
         </div>
       )
 
-    } 
+    }
 
 
   }
@@ -313,45 +321,50 @@ function History() {
   let fvideo2 = {};
   let fvideo3 = {};
 
-    const video = {
-        title: "title",
-        duration: 180,
-        views: 25,
-        cover: 0,
-        author: "author",
-        link: "/video",
-        date: "08/20",
-    };
+  const video = {
+    title: "title",
+    duration: 180,
+    views: 25,
+    cover: 0,
+    author: "author",
+    link: "/video",
+    date: "08/20",
+  };
 
-    return (
-        <div class="container">
-            <p>History</p>
-            <div class="col-12" id="histroyHeadBar">
+  return (
+    <div class="container">
 
 
-                <div class="col-5">
-                    {/* search and display the record */}
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search history" aria-label="Search" />
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
+      <div class="col-12" id="historyHeadBar">
+        <MyZoneBar></MyZoneBar>
+        <div class="col-12 rounded" id="historyPanelOut">
+          {/* <div class="col-12 rounded" id="historyBar">
+        <span>History</span>
 
-            </div>
-            <div class="col-12 row" id="historyPanel">
-{/* should display the records */}
-                {/* a single record unit should be like this */}
-                {myFavorite(myFavoritelist)}
-
-                {/* outlet required to load the components presented by secondary routes */}
-                <Outlet />
-
-            </div>
-            {/* <section for common footer> */}
+      </div> */}
+          <div class="col-3" id="historySearch">
+            {/* search and display the record */}
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search history" aria-label="Search" />
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
 
 
+          <div class="col-12 row" id="historyPanel">
+            {/* should display the records */}
+            {/* a single record unit should be like this */}
+            {myFavorite(myFavoritelist)}
+
+            {/* outlet required to load the components presented by secondary routes */}
+            <Outlet />
+
+          </div>
+          {/* <section for common footer> */}
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default History

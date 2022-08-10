@@ -1,0 +1,39 @@
+#historyyHeadBar {
+    margin-top: 10px;
+}
+
+#historyBar {
+    margin-left: -12px;
+    padding-left: 20px;
+    padding-top: 5px;
+    margin-bottom: 20px;
+    height: 35px;
+    background-color: rgba(126, 219, 245, 0.74);
+}
+
+#historyPanelOut {
+    margin-left: -12px;
+    box-shadow: rgb(221, 218, 218) 0 0 5px 5px;
+    padding: 30px;
+    align-items: center;
+    padding-left: 140px;
+    /* position: relative; */
+}
+
+.unit-record {
+    vertical-align: middle;
+}
+
+.deleteBtn {
+    margin-left: 50%;
+}
+
+.btn-danger {
+    float: right;
+    margin-top: 50px;
+}
+
+#historySearch {
+    margin: 20px auto;
+}
+
