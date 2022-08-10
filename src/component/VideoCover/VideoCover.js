@@ -1,11 +1,11 @@
-import React, {useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./VideoCover.css";
 import { Link } from "react-router-dom";
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import swal from "sweetalert";
 
 function VideoCover(props) {
-  const { title, views, cover, duration,author, url, date, author_id, VIP } =
+  const { title, views, cover, duration, author, url, date, author_id, VIP } =
     //const video=
     props.videoInfo;
   //console.log(video);
@@ -89,7 +89,6 @@ function VideoCover(props) {
     } else if (parseInt(loginType) == 1) {
       setCurrentUser(userFind);
     }
-    
   }, [loginType]);
 
   //console.log("userFind", userFind);
@@ -108,32 +107,31 @@ function VideoCover(props) {
     width: "100%",
   };
   const coverStyle = {
-    height: 0.6*props.coverWidth,
+    height: 0.6 * props.coverWidth,
   };
 
   function handleClick(e) {
-    e.preventDefault()
+    e.preventDefault();
     let videostatus = VIP;
     let userstatus = userFind.vipStatus;
-    
-    if(videostatus==false||videostatus==true&&userstatus==true){
+
+    if (videostatus == false || (videostatus == true && userstatus == true)) {
       let viewvideo = fetch("http://localhost:3001/videodb/click", {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        videoAddress: url,
-      }),
-    });
-    window.location='/video/'+url;
-    }else{
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          videoAddress: url,
+        }),
+      });
+      window.location = "/video/" + url;
+    } else {
       swal({
         title: "Oh No!",
         text: "This video is a VIP video, you can become a vip in myprofile page!",
         icon: "error",
       });
     }
-    
   }
   return (
     <div style={wrapperStyle} className="video-display">
@@ -142,7 +140,7 @@ function VideoCover(props) {
           <Link to={`/video/${url}`} onClick={handleClick}>
             {/* <Link to={`/video/${video.id}`}> */}
             <img
-              src={process.env.PUBLIC_URL + '/videos/'+ cover}
+              src={process.env.PUBLIC_URL + "/videos/" + cover}
               alt="cover"
               className="video-cover"
               style={coverStyle}
@@ -162,7 +160,7 @@ function VideoCover(props) {
             <div className="number"> {views}</div>
             {/* <div className="number"> {video.NOC}</div> */}
           </div>
-           <div className="duration">
+          <div className="duration">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -174,10 +172,10 @@ function VideoCover(props) {
               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
             </svg>
             <div className="number">{duration}</div>
-          </div> 
+          </div>
         </div>
         <Link
-          to={`/video/${url}` }
+          to={`/video/${url}`}
           style={titleStyle}
           className="title"
           onClick={handleClick}
@@ -187,7 +185,10 @@ function VideoCover(props) {
           {/* {video.videoName} */}
         </Link>
         <br></br>
-        <p /* to={`/user/${author_id}`} */ style={titleStyle} className="title">
+        <p
+          /* to={`/user/${author_id}`} */ style={titleStyle}
+          className="author"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
