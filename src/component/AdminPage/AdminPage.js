@@ -19,6 +19,12 @@ function AdminPage() {
     },
   ]);
 
+  const [videos,setVideos]=useState({
+      _id:Object,
+      videoName:""
+
+  });
+
   // set currentUser
   let getCurrentUser = (currentUserID) => {
     if (currentUserID == "") {
@@ -51,8 +57,9 @@ function AdminPage() {
       })
       .then((res) => {
         setUsers(res);
-
       });
+
+      
    // console.log(loginType);
 
     setCookie("loginType", parseInt(loginType), "", "");
@@ -63,47 +70,54 @@ function AdminPage() {
     }
     
   }, [loginType]);
-  //const users = [
-    //{
-      //id: 1,
-      //Email: "chen.ren@northeastern.edu",
-      //username: "r3nq1",
-    //},
-    //{
-      //id: 2,
-      //Email: "990406crq@gmail.com",
-      //username: "rrrrq",
-    //},
-  //];
 
-  const videos = [
-    {
-      id: 1,
-      title: "hello world",
-      author: "r3nq1",
-    },
-    {
-      id: 2,
-      title: "hello world 2",
-      author: "r3nq2",
-    },
-  ];
+
+  useEffect(() => {
+    fetch("http://localhost:3001/videodb/videos")
+    .then((res)=>{
+      if(res.ok){
+        return res.json();
+      }
+    })
+    .then((res)=>{
+      setVideos(res);
+      
+    })
+
+      
+   // console.log(loginType);
+
+    setCookie("loginType", parseInt(loginType), "", "");
+    if (parseInt(loginType) == 0) {
+      setCookie("currentUserID", "", "", "");
+    } else if (parseInt(loginType) == 1) {
+      setCurrentUser(userFind);
+    }
+    
+  }, [loginType]);
+  
+  console.log(videos);
+  console.log(users);
 
   const userList = users.map((user) => {
     return (
       <UserTD email={user.email} username={user.userName} id={user._id}></UserTD>
     );
   });
+  
   const videoList = videos.map((video) => {
     return (
       <VideoTD
-        title={video.title}
-        author={video.author}
-        id={video.id}
+        title={video.videoName}
+        author={video.publisher}
+        id={video._id}
       ></VideoTD>
     );
   });
 
+  
+  
+  
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">
