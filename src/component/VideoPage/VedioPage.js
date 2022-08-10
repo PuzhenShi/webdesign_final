@@ -260,7 +260,6 @@ function VedioPage() {
       {
         id: videos1._id,
         title: videos1.videoName,
-        duration: 180,
         views: videos1.NOC,
         cover: videos1.videoCover,
         author: videos1.publisher,
@@ -271,13 +270,12 @@ function VedioPage() {
       {
         id: videos2._id,
         title: videos2.videoName,
-        duration: 180,
         views: videos2.NOC,
-        cover: videos1.videoCover,
+        cover: videos2.videoCover,
         author: videos2.publisher,
         author_id: 2,
         date: videos2.uploadTime,
-        url: videos1.videoAddress,
+        url: videos2.videoAddress,
       },
     ];
   } else {
@@ -381,7 +379,7 @@ function VedioPage() {
           </div>
           <div className="content">
             <video width="100%" controls onFocus={watchvideo}>
-              <source src={`/video/${url}.mp4`} type="video/mp4" />
+              <source src={`/videos/${url}.mp4`} type="video/mp4" />
             </video>
             <nav className="navbar bg-light">
               <div className="row bullet-chat">

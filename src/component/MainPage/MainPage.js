@@ -246,7 +246,7 @@ function MainPage() {
             <MainCarousel
               width={carouselWidth}
               height={carouselHeight}
-              videos={videoCarousel}
+              videos={[video1,video2,video3]}
             ></MainCarousel>
           </div>
           <div className="col-md-4 col-lg-3 col-xl-2 d-none d-md-block">
