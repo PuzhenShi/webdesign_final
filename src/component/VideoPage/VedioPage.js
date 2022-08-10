@@ -183,32 +183,29 @@ function VedioPage() {
     };
   }
 
-
   //get publisher
-  const[publisher,setPublisher] = useState();
-  if(video1){
+  const [publisher, setPublisher] = useState();
+  if (video1) {
     fetch("http://localhost:3001/users/searchUsers", {
-                method: "POST",
-                mode: "cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    userName: video1.publisher,
-                }),
-            }).then((res) => {
-              if(res.ok) 
-                return res.json();
-            }).then((res) =>{
-              setPublisher(res);
-  })
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userName: video1.publisher,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+      })
+      .then((res) => {
+        setPublisher(res);
+      });
   }
-  let publisherportrait ="head/default.jpg";
+  let publisherportrait = "head/default.jpg";
 
- if(publisher){
-  publisherportrait = publisher.portrait;
- }
-
-
-
+  if (publisher) {
+    publisherportrait = publisher.portrait;
+  }
 
   //wacth history
   function watchvideo() {
@@ -253,9 +250,9 @@ function VedioPage() {
 
   //display the portrait
 
-  let currentportrait ="head/default.jpg";
-  if(userFind.portrait){
-    currentportrait=userFind.portrait
+  let currentportrait = "head/default.jpg";
+  if (userFind.portrait) {
+    currentportrait = userFind.portrait;
   }
 
   //like the video
@@ -513,7 +510,7 @@ function VedioPage() {
             <div className="send d-flex">
               <div className="avatar">
                 <a>
-                  <Avatar height="60" width="60" portrait={currentportrait}></Avatar>
+                  <Avatar height={40} portrait={currentportrait}></Avatar>
                 </a>
               </div>
               <form style={commentStyle}>
@@ -547,7 +544,7 @@ function VedioPage() {
           <div className="releaser d-flex">
             <div className="avatar">
               <a>
-                <Avatar height="80" width="80" portrait = {publisherportrait}></Avatar>
+                <Avatar portrait={publisherportrait} height={60}></Avatar>
               </a>
             </div>
             <div className="info">
