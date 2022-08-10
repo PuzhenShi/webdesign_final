@@ -87,3 +87,7 @@ npm install axios --save
 npm install sweetalert --save
 
 npm install react-stripe-checkout
+
+npm i uuid
+
+npm i stripe

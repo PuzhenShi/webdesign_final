@@ -12,6 +12,7 @@ function AdminPage() {
     },
   ]);
 
+
   const [videos,setVideos]=useState([{
       _id:Object,
       videoName:""
@@ -63,7 +64,9 @@ function AdminPage() {
     );
   });
   
+
     const videoList = videos.map((video) => {
+
       return (
         <VideoTD
           title={video.videoName}

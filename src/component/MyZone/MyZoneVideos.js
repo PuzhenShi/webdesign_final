@@ -12,8 +12,11 @@ function MyZoneVideos() {
     };
 
     return (
-        <div class="col-10 ml-10 mb-10 rounded" id="myZoneVideos">
-            <div>MyZoneVideos</div>
+        <div class="col-12 ml-12 mb-12 rounded" id="myZoneVideos">
+            <div class="col-12 rounded" id="myZoneVideosBar">
+              <span>My Vedios</span>
+              
+            </div>
             {/* video card displayed here */}
             <div class="col-12 row" id="myZoneVideosGalleryFull">
                 <div class="col-4">

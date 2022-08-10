@@ -34,12 +34,17 @@ router.route("/create").post((req, res)  =>{
         comment,
         publisher
     });
-    newVideo.save();
+    newVideo.save(function(err,newVide) {
+        if(err)
+            res.send(err)
+        res.json(newVide);
+        res.status(200);
+    });
 });
 
 //delete a video
 router.route("/delete").post((req,res) =>{
-    id = req.body._id;
+    const id = req.body._id;
     VideoDb.remove({"_id":ObjectId(id)},function (err, samples){
         if (err)
             res.send(err);
