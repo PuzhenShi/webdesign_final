@@ -77,6 +77,7 @@ function MainPage() {
       author: videos1.publisher,
       author_id: 1,
       date: videos1.uploadTime,
+      VIP:videos1.VIP,
     };
     video2 = {
       url: videos2.videoAddress,
@@ -87,6 +88,7 @@ function MainPage() {
       author: videos2.publisher,
       author_id: 1,
       date: videos2.uploadTime,
+      VIP:videos2.VIP,
     };
     video3 = {
       url: videos3.videoAddress,
@@ -97,6 +99,7 @@ function MainPage() {
       author: videos3.publisher,
       author_id: 1,
       date: videos3.uploadTime,
+      VIP:videos3.VIP,
     };
     video4 = {
       url: videos4.videoAddress,
@@ -107,6 +110,7 @@ function MainPage() {
       author: videos4.publisher,
       author_id: 1,
       date: videos4.uploadTime,
+      VIP:videos4.VIP,
     };
     video5 = {
       url: videos5.videoAddress,
@@ -117,6 +121,7 @@ function MainPage() {
       author: videos5.publisher,
       author_id: 1,
       date: videos5.uploadTime,
+      VIP:videos5.VIP,
     };
     video6 = {
       url: videos6.videoAddress,
@@ -127,6 +132,7 @@ function MainPage() {
       author: videos6.publisher,
       author_id: 1,
       date: videos6.uploadTime,
+      VIP:videos6.VIP,
     };
     video7 = {
       url: videos7.videoAddress,
@@ -137,6 +143,7 @@ function MainPage() {
       author: videos7.publisher,
       author_id: 1,
       date: videos7.uploadTime,
+      VIP:videos7.VIP,
     };
     video8 = {
       url: videos1.videoAddress,
@@ -147,9 +154,10 @@ function MainPage() {
       author: videos8.publisher,
       author_id: 1,
       date: videos8.uploadTime,
+      VIP:videos8.VIP,
     };
 
-    console.log(video7);
+   // console.log(video7);
   } else {
     video1 = {
       url: 1,

@@ -1,0 +1,14 @@
+#profileBody {
+    height: 1000px;
+    background-image: url("../../../public/materials/zone1.png");
+    background-size: 100% 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: center;
+    /* opacity: 0.4; */
+}
+
+/* #profileBody::after {
+    opacity: 0.5;
+} */
