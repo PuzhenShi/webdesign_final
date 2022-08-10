@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Outlet, IndexRoute, Routes, Route, Link } from 'react-router-dom'
 import ProfileList from './ProfileList'
+import "./Profile.css"
 
 //the profile page
 function Profile(props) {
@@ -8,19 +9,21 @@ function Profile(props) {
     // console.log(match.url);
 
     return (
-        <div class="container">
-            {/* <p>profile</p> */}
+        <body id="profileBody">
+            <div class="container">
+                {/* <p>profile</p> */}
 
-            <div class="col-12 row" id="profilePanel">
-                <ProfileList />
-                {/* outlet required to load the components presented by secondary routes */}
-                <Outlet />
+                <div class="col-12 row" id="profilePanel">
+                    <ProfileList />
+                    {/* outlet required to load the components presented by secondary routes */}
+                    <Outlet />
+
+                </div>
+                {/* <section for common footer> */}
+
 
             </div>
-            {/* <section for common footer> */}
-
-
-        </div>
+        </body>
     )
 }
 
