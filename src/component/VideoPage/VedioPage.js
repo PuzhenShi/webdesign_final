@@ -11,7 +11,7 @@ function VedioPage() {
   const [video1, setVideo1] = useState();
   const [videolist, setVideolist] = useState();
   const [watched,setwatched] = useState(false);
-  const [liked,setLiked] = useState(false);
+  //const [liked,setLiked] = useState(false);
   const { url } = useParams();
  // console.log(url);
 
@@ -243,8 +243,22 @@ function VedioPage() {
   }
 
   //like the video
+ 
+  
+
   function likevideo(){
-    if(!liked){
+    let like=false;
+    if(userFind.myFavorite){
+      const myFavoritevideos = userFind.myFavorite;
+      myFavoritevideos.map((video,index) =>{
+        if(video._id==video1._id){
+          like=true;
+        }
+      })
+    
+      console.log(like);
+    }
+    if(!like){
       fetch("http://localhost:3001/videodb/like",{
       method: 'POST',
                 mode: 'cors',
@@ -253,7 +267,7 @@ function VedioPage() {
                   "videoAddress":video1.videoAddress,
                 })
     }).then(console.log("liked the video"));
-      setLiked(true);
+      like=true;
 
       fetch("http://localhost:3001/users/myFavorite",{
         method: 'POST',
@@ -296,6 +310,7 @@ function VedioPage() {
         author_id: 2,
         date: videos1.uploadTime,
         url: videos1.videoAddress,
+        VIP:videos1.VIP,
       },
       {
         id: videos2._id,
@@ -306,6 +321,7 @@ function VedioPage() {
         author_id: 2,
         date: videos2.uploadTime,
         url: videos2.videoAddress,
+        VIP:videos2.VIP,
       },
     ];
   } else {

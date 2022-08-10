@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Outlet, IndexRoute, Routes, Route, Link } from 'react-router-dom'
+import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import ProfileList from './ProfileList'
 import "./Profile.css"
 
@@ -7,7 +8,8 @@ import "./Profile.css"
 function Profile(props) {
     // const match = props.match;
     // console.log(match.url);
-
+    
+    
     return (
         <body id="profileBody">
             <div class="container">
