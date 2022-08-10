@@ -85,3 +85,5 @@ npm install --save react-images-uploading
 npm install axios --save
 
 npm install sweetalert --save
+
+npm install react-stripe-checkout
