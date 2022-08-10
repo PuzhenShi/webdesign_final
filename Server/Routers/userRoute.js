@@ -9,6 +9,7 @@ router.route("/create").post((req, res) => {
     const gender = req.body.gender;
     const DOB = req.body.DOB;
     const email = req.body.email;
+    const motto = req.body.motto;
     const vipStatus = false;
     const portrait = req.body.portrait;
     const myVideo = [];
@@ -23,6 +24,7 @@ router.route("/create").post((req, res) => {
         gender,
         DOB,
         email,
+        motto,
         vipStatus,
         portrait,
         myVideo,
