@@ -69,7 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### instruction by puzhen
+### instructions, run the commands below before you run the app
 for react bootstrap:
 https://react-bootstrap.github.io/getting-started/introduction/
 npm install react-bootstrap bootstrap
@@ -91,3 +91,5 @@ npm install react-stripe-checkout
 npm i uuid
 
 npm i stripe
+
+###Content and functions
