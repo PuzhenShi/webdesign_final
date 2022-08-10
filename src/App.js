@@ -2,7 +2,12 @@ import "./App.css";
 import "./index.css";
 import React from "react";
 import MainPage from "./component/MainPage/MainPage";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./component/Navbar/Navbar";
 import Footer from "./component/Footer/Footer";
 import LoginPage from "./component/LoginPage/LoginPage";
@@ -28,6 +33,7 @@ import MyZoneLike from "./component/MyZone/MyZoneLike";
 import History from "./component/History/History";
 
 import Upload from "./component/Upload/Upload";
+import NotFound from "./component/NotFound/NotFound";
 
 function App() {
   return (
@@ -58,6 +64,8 @@ function App() {
         </Route>
         <Route path="history" element={<History />}></Route>
         <Route path="upload" element={<Upload />}></Route>
+        <Route path="/404" element={<NotFound />}></Route>
+        <Route path="*" element={<Navigate replace to="/404" />}></Route>
       </Routes>
     </Router>
   );
