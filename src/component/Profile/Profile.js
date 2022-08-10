@@ -9,7 +9,7 @@ function Profile(props) {
 
     return (
         <div class="container">
-            <p>profile</p>
+            {/* <p>profile</p> */}
 
             <div class="col-12 row" id="profilePanel">
                 <ProfileList />

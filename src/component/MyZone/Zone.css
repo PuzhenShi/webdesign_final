@@ -1,0 +1,7 @@
+#zoneBody {
+    background-image: url("../../../public/materials/zone.png");
+    background-size: 100% 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+}
