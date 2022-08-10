@@ -107,6 +107,16 @@ function Navbar() {
               </a>
             </li>
             <li>
+              <a class="dropdown-item" href="/history">
+                History
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/upload">
+                Upload
+              </a>
+            </li>
+            <li>
               <hr class="dropdown-divider"></hr>
             </li>
             <li>
@@ -114,8 +124,11 @@ function Navbar() {
                 Log Out
               </a>
             </li>
-          </ul>
+          </ul>         
+
+
         </li>
+        
       );
     }
   };
@@ -159,11 +172,16 @@ function Navbar() {
               </a> */}
               {loginDropdown(navname, loginType)}
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/admin">
-                Admin
+            {/* <li className="nav-item">
+              <a className="nav-link" href="/history">
+                History
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/upload">
+                Upload
+              </a>
+            </li> */}
             <li className="nav-item">
               <a className="nav-link" href="/about">
                 Contact

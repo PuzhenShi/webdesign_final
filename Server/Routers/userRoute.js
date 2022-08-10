@@ -71,6 +71,16 @@ router.route("/myPortrait").post((req,res) =>{
     })
 });
 
+//delete A User
+router.route("/delete").post((req,res) =>{
+    user.remove({userName: req.body.userName}, function (err, samples){
+        if (err)
+            res.send(err);
+        res.status(200);
+        res.json(samples);
+    });
+});
+
 //update My Vip Status
 router.route("/updateVIP").post((req,res) =>{
     user.update({userName: req.body.userName}, {
