@@ -53,30 +53,8 @@ function MyZoneHome() {
                                     width={240}
                                 ></VideoCover>
                             </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
+                            
+                            
                         </div>
                     </div>
                     {/* first eight vedio(favorite) display card will be posted here */}
@@ -113,91 +91,11 @@ function MyZoneHome() {
                                     width={240}
                                 ></VideoCover>
                             </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
+                            
                         </div>
                     </div>
                     {/* first eight vedio(recent like) display card will be posted here */}
-                    <div class="col-12 rounded" id="myZoneLike">
-                        <span>Recent Like</span>
-                        <Link to="/myzone/like">
-                            <Button variant="primary">
-                                More
-                            </Button>
-                        </Link>
-                        <div class="col-12 row" id="myZoneLikeGallery">
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                            <div class="col-4">
-                                <VideoCover
-                                    videoInfo={video}
-                                    coverWidth={200}
-                                    coverHeight={120}
-                                    width={240}
-                                ></VideoCover>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
