@@ -9,6 +9,8 @@
 } */
 
 #zoneBarImg {
+    margin: 0;
+    padding: 0;
     height: 180px;
     background-image: url("../../../public/materials/zonebar.png");
     background-size: cover;
@@ -16,8 +18,76 @@
     background-position: center;
 }
 
-#zoneBarText {
-    height: 35px;
-    border: solid 1px black;
+#zoneBarOut {
+    padding: 0;
+    box-shadow: rgb(221, 218, 218) 0 0 5px 5px;
     margin-bottom: 20px;
+}
+
+#zoneBarText {
+    height: 20px;
+    /* border: solid 1px black; */
+    margin-bottom: 20px;
+    text-decoration: none;
+    
+}
+a {
+    text-decoration: none;
+}
+
+#zoneBarSub {
+    float: right;
+    /* padding-top: 5px; */
+    margin-right: 50px;
+    
+}
+#zoneBarSub span {
+    margin-left: 20px;
+}
+
+#linkZoneSpanOut {
+    margin-top: 10px;
+}
+
+#linkZone {
+    margin-left: 5px;
+    text-decoration: none;
+    font-weight:bold;
+    color: rgb(0,160,216);
+}
+
+#myZonePanel{
+    align-items: center;
+    /* box-shadow: rgb(221, 218, 218) 0 0 5px 5px; */
+}
+
+#myZoneVideosBar, #myZoneFavoriteBar {
+    padding-left: 20px;
+    padding-top: 5px;
+    margin-bottom: 20px;
+    height: 35px;
+    background-color: rgba(126, 219, 245, 0.74);
+}
+#myZoneVideosBar, #myZoneFavoriteBar span{
+    color: rgb(79, 79, 79);
+    /* font-weight: bold; */
+}
+
+#myVideosLink, #myFavoriteLink {
+    float: right;
+    text-decoration: none;
+    color: rgb(79, 79, 79);
+    margin-right: 20px;
+}
+
+#myVideosLink:hover,#myFavoriteLink:hover {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 980px) {
+
+    #zoneBarSub {
+        float: right;
+        margin-right: 5px;
+    }
 }

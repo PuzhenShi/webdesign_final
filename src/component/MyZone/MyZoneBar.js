@@ -75,27 +75,23 @@ function MyZoneBar() {
 
 
   return (
-    <div class="col-12 row">
-      <div class="col-12 row" id="zoneBarImg">
-
-
+    <div class="col-12 row rounded" id="zoneBarOut">
+      <div  id="zoneBarImg">
 
       </div>
       <div class="col-12 row" id="zoneBarText">
-        <span>
-        <Link to="/myzone">                        
-                            My Zone
-                        
-                    </Link>
-        
-        <span id="zoneBarSub">
-          <span id="zoneBarTitle">MyZoneBar   </span>
+        <span id="linkZoneSpanOut">
+          <span id="linkZoneSpan">
+          <a href="/myzone" id="linkZone">My Zone</a>
+          </span>
+          <span id="zoneBarSub">
+            {/* <span id="zoneBarTitle">MyZoneBar   </span> */}
 
-          <span id="zoneBarSub">subscribe:</span>
-          {subscribe}
-          <span id="zoneBarFan">fans:</span>
-          {fans}
-        </span>
+            <span >subscribe:</span>
+            {subscribe}
+            <span >fans:</span>
+            {fans}
+          </span>
         </span>
       </div>
     </div>

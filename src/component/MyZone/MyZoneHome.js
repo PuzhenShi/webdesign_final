@@ -128,16 +128,15 @@ function MyZoneHome() {
   return (
     <div class="container">
       <div class="col-12 row" id="myZonePanel">
-        <div class="col-10 rounded">
+        <div class="col-12 rounded">
           {/* first eight vedio(my vedio) display card will be posted here */}
-          <div class="col-12 rounded" id="myZoneVedios">
-            <span>My Vedios</span>
-            <Link to="/myzone/vedios">
-              <Button variant="primary">
-                More
-              </Button>
-            </Link>
-
+          <div class="col-12 rounded" id="myZoneVideos">
+            <div class="col-12 rounded" id="myZoneVideosBar">
+              <span>My Vedios</span>
+              <Link to="/myzone/videos" id="myVideosLink" >                
+                  More>>>             
+              </Link>
+            </div>
             <div class="col-12 row" id="myZoneVediosGallery">
               <div class="col-4">
                 <VideoCover
@@ -169,12 +168,13 @@ function MyZoneHome() {
           </div>
           {/* first eight vedio(favorite) display card will be posted here */}
           <div class="col-12 rounded" id="myZoneFavorite">
-            <span>My Favorite</span>
-            <Link to="/myzone/favorite">
-              <Button variant="primary">
-                More
-              </Button>
-            </Link>
+
+            <div class="col-12 rounded" id="myZoneFavoriteBar">
+              <span>My Favorite</span>
+              <Link to="/myzone/favorite" id="myFavoriteLink" >                
+                  More>>>             
+              </Link>
+            </div>
 
             <div class="col-12 row" id="myZoneFavoriteGallery">
               <div class="col-4">
