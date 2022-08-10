@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DatePicker from "react-datepicker";
@@ -6,8 +6,71 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { setCookie, getCookieValue } from "../Cookie/Cookie";
 function ProfileInfo() 
 {   
+    let loginCookie = getCookieValue("loginType");
+  const [loginType, setLoginType] = useState(
+    loginCookie === null ? 0 : parseInt(loginCookie)
+  );
+  if (loginCookie === null) {
+    loginCookie = setCookie("loginType", 0, "", "");
+  }
+  const [users, setUsers] = useState([
+    {
+      _id: Object,
+      userName: "",
+    },
+  ]);
+
+  // set currentUser
+  let getCurrentUser = (currentUserID) => {
+    if (currentUserID == "") {
+      return {
+        _id: Object,
+        userName: "",
+      };
+    }
+    for (let i = 0; i < users.length; i++) {
+      if (users[i]._id == currentUserID) {
+        return users[i];
+      }
+    }
+    return {
+      _id: Object,
+      userName: "",
+    };
+  };
+  let userFind = getCurrentUser(getCookieValue("currentUserID"));
+
+  
+  const [currentUser, setCurrentUser] = useState(userFind);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/users/users")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((res) => {
+        setUsers(res);
+
+      });
+   // console.log(loginType);
+
+    setCookie("loginType", parseInt(loginType), "", "");
+    if (parseInt(loginType) == 0) {
+      setCookie("currentUserID", "", "", "");
+    } else if (parseInt(loginType) == 1) {
+      setCurrentUser(userFind);
+    }
+    
+  }, [loginType]);
+
+
+
+
     const navigate = useNavigate();
     var valPwd = /^.*(?=.{8,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?\(\)]).*$/;
 
@@ -37,6 +100,7 @@ function ProfileInfo()
             }
         })
     }
+    
 
     function chooseGender(event){//get the gender
         const{name,value}=event.target;
@@ -101,6 +165,7 @@ function ProfileInfo()
                 }else
                 {
                     const newPro={
+                        oldUserName:userFind.userName,
                         userName:input.userName,
                         password:input.userPassword,
                         gender:radio.gender,

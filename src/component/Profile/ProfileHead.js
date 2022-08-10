@@ -1,8 +1,72 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ImageUploading from 'react-images-uploading';
 import Button from 'react-bootstrap/Button';
+import { setCookie, getCookieValue } from "../Cookie/Cookie";
+import axios from "axios";
+import swal from "sweetalert";
 
 function ProfileHead() {
+
+  let loginCookie = getCookieValue("loginType");
+  const [loginType, setLoginType] = useState(
+    loginCookie === null ? 0 : parseInt(loginCookie)
+  );
+  if (loginCookie === null) {
+    loginCookie = setCookie("loginType", 0, "", "");
+  }
+  const [users, setUsers] = useState([
+    {
+      _id: Object,
+      userName: "",
+    },
+  ]);
+
+  // set currentUser
+  let getCurrentUser = (currentUserID) => {
+    if (currentUserID == "") {
+      return {
+        _id: Object,
+        userName: "",
+      };
+    }
+    for (let i = 0; i < users.length; i++) {
+      if (users[i]._id == currentUserID) {
+        return users[i];
+      }
+    }
+    return {
+      _id: Object,
+      userName: "",
+    };
+  };
+  let userFind = getCurrentUser(getCookieValue("currentUserID"));
+
+  
+  const [currentUser, setCurrentUser] = useState(userFind);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/users/users")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((res) => {
+        setUsers(res);
+
+      });
+   // console.log(loginType);
+
+    setCookie("loginType", parseInt(loginType), "", "");
+    if (parseInt(loginType) == 0) {
+      setCookie("currentUserID", "", "", "");
+    } else if (parseInt(loginType) == 1) {
+      setCurrentUser(userFind);
+    }
+    
+  }, [loginType]);
+
+    const add="head/";
     //script for image upload
     // const [images, setImages] = React.useState([]);
     // //max number of images you can upload?
@@ -21,8 +85,55 @@ function ProfileHead() {
     function handleUpload(event) {
         setFile(event.target.files[0]);
 
+
         // Add code here to upload file to server
         // ...
+    }
+
+    const upLoad=(event)=>{
+        event.preventDefault();
+        if(file.name===undefined)
+        {
+          alert("please select your file");
+          return false;
+        }
+        else{
+          let users = fetch("http://localhost:3001/users/users")
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+            }).then((users)=>{
+              let flag=true;
+              users.find((item)=>{
+                   if(item.portrait===add+file.name){
+                    flag=false;
+                   }
+              });
+              if(flag){
+              const newpicture={
+                userName:userFind.userName,
+                portrait:add+file.name
+              };
+              console.log(newpicture);
+              axios.post('http://localhost:3001/users/myPortrait',newpicture);
+              swal({
+                title: "Thanks!",
+                text: "Upload successfully",
+                icon: "success",
+              });}
+              else{
+                swal({
+                  title: "Oh No!",
+                  text: "select the same portrait" + 
+                          "Please change to another one.",
+                  icon: "error",
+              });
+              return false;
+              }
+
+            })
+        }
     }
 
     return (
@@ -79,7 +190,7 @@ function ProfileHead() {
                 </div>
             </div>
 
-            <Button variant="primary">
+            <Button variant="primary" onClick={upLoad}>
                 save
             </Button>
 
