@@ -162,7 +162,7 @@ router.route("/videos").get((req, res) => {
 });
 
 //search video by name
-router.route("/searchVideo").get((req,res) =>{
+router.route("/searchVideo").post((req,res) =>{
     VideoDb.findOne({videoName: req.body.videoName})
         .then(findTheVideo => res.json(findTheVideo))
 });

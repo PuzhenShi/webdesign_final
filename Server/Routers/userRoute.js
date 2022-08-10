@@ -195,7 +195,7 @@ router.route("/users").get((req, res) => {
 });
 
 //search user by name
-router.route("/searchUsers").get((req, res) => {
+router.route("/searchUsers").post((req, res) => {
     user.findOne({userName: req.body.userName})
         .then(findTheUser => res.json(findTheUser))
 });
