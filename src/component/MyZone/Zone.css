@@ -8,10 +8,16 @@
     background-attachment: fixed;
 } */
 
-#zoneBar {
+#zoneBarImg {
     height: 180px;
     background-image: url("../../../public/materials/zonebar.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+#zoneBarText {
+    height: 35px;
+    border: solid 1px black;
+    margin-bottom: 20px;
 }

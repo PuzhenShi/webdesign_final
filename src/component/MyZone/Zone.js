@@ -6,18 +6,10 @@ function Zone() {
     return (
         <body id="zoneBody">
             <div class="container">
-                <p>Zone</p>
-
+                {/* <p>Zone</p> */}
                 <div class="col-12 row" id="zonePanel">
                     {/* the common navbar here */}
-
-                    <MyZoneBar />
-
-                    <Link to="/myzone">
-                        <span>
-                            My Zone
-                        </span>
-                    </Link>
+                    <MyZoneBar />                    
                     {/* outlet required to load the components presented by secondary routes */}
                     <Outlet />
 

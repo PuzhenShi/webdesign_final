@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Outlet, IndexRoute, Routes, Route, Link } from 'react-router-dom'
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import "./Zone.css"
 function MyZoneBar() {
-    let loginCookie = getCookieValue("loginType");
+  let loginCookie = getCookieValue("loginType");
   const [loginType, setLoginType] = useState(
     loginCookie === null ? 0 : parseInt(loginCookie)
   );
@@ -36,7 +37,7 @@ function MyZoneBar() {
   };
   let userFind = getCurrentUser(getCookieValue("currentUserID"));
 
-  
+
   const [currentUser, setCurrentUser] = useState(userFind);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ function MyZoneBar() {
         setUsers(res);
 
       });
-   // console.log(loginType);
+    // console.log(loginType);
 
     setCookie("loginType", parseInt(loginType), "", "");
     if (parseInt(loginType) == 0) {
@@ -58,7 +59,7 @@ function MyZoneBar() {
     } else if (parseInt(loginType) == 1) {
       setCurrentUser(userFind);
     }
-    
+
   }, [loginType]);
 
   //console.log("userFind", userFind);
@@ -66,28 +67,39 @@ function MyZoneBar() {
 
   let subscribe = 0;
   let fans = 0;
-  if(userFind.following){
-    subscribe=userFind.following.length;
+  if (userFind.following) {
+    subscribe = userFind.following.length;
     //console.log(loginType);
-    fans=userFind.follower.length;
+    fans = userFind.follower.length;
   }
 
 
-    return (
-        <div class="col-12 row" id="zoneBar">
-            <span>
-                <span id="zoneBarTitle">MyZoneBar   </span>
-                
-                <span id="zoneBarSub">subscribe:</span>
-                {subscribe}
-                <span id="zoneBarFan">fans:</span>
-                {fans}
-            </span>
+  return (
+    <div class="col-12 row">
+      <div class="col-12 row" id="zoneBarImg">
 
 
-        </div>
 
-    )
+      </div>
+      <div class="col-12 row" id="zoneBarText">
+        <span>
+        <Link to="/myzone">                        
+                            My Zone
+                        
+                    </Link>
+        
+        <span id="zoneBarSub">
+          <span id="zoneBarTitle">MyZoneBar   </span>
+
+          <span id="zoneBarSub">subscribe:</span>
+          {subscribe}
+          <span id="zoneBarFan">fans:</span>
+          {fans}
+        </span>
+        </span>
+      </div>
+    </div>
+  )
 }
 
 export default MyZoneBar
