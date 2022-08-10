@@ -194,23 +194,26 @@ function Upload() {
         }).then((res) => {
             return res.json();
         }).then((res) => {
-            setNewvideo(res);
+          fetch("http://localhost:3001/users/myVideo", {
+            method: "POST",
+            mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                myVideo: res,
+                userName: userFind.userName,
+            }),
+        });
         })
         swal({
             title: "Thanks!",
             text: "Welcome to dilidili!",
             icon: "success",
         });
+        
 
-        fetch("http://localhost:3001/users/myVideo", {
-            method: "POST",
-            mode: "cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                myVideo: newvideo,
-                userName: userFind.userName,
-            }),
-        })
+        console.log("upload");
+
+       // window.location="/upload"
 
     }
 
