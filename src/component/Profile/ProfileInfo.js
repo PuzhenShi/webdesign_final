@@ -6,20 +6,19 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-function ProfileInfo() 
-{   
+function ProfileInfo() {
     const navigate = useNavigate();
     var valPwd = /^.*(?=.{8,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?\(\)]).*$/;
 
     //script for datepicker component
     const [startDate, setStartDate] = useState(new Date());
-    const [input,setInput]=useState({
-        userName:'',
-        userSign:'',
-        userPassword:''
+    const [input, setInput] = useState({
+        userName: '',
+        userSign: '',
+        userPassword: ''
     });
-    const [radio,setRadio]=useState({
-        gender:''
+    const [radio, setRadio] = useState({
+        gender: ''
     })
 
 
@@ -27,140 +26,138 @@ function ProfileInfo()
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
-    function handleChange(event){//get input content
-        const{name,value}=event.target;
-        setInput(prevInput=>{
+
+    function handleChange(event) {//get input content
+        const { name, value } = event.target;
+        setInput(prevInput => {
             return {
                 ...prevInput,
-                [name]:value
+                [name]: value
             }
         })
     }
 
-    function chooseGender(event){//get the gender
-        const{name,value}=event.target;
-        setRadio(prevInput=>{
+    function chooseGender(event) {//get the gender
+        const { name, value } = event.target;
+        setRadio(prevInput => {
             return {
                 ...prevInput,
-                [name]:value
+                [name]: value
             }
         })
     }
 
-    const modify=(event)=>{//submit modify data
+    const modify = (event) => {//submit modify data
         event.preventDefault();
-        if(input.userName==='')
-        {
+        if (input.userName === '') {
             alert("Please input name");
             return false;
         }
-        else if(input.userPassword==='')
-        {
+        else if (input.userPassword === '') {
             alert("Please input your password");
             return false;
         }
-        else if(radio.gender==='')
-        {
+        else if (radio.gender === '') {
             alert("Please choose your gender");
             return false;
         }
-        else{
+        else {
             let users = fetch("http://localhost:3001/users/users")
-            .then(res => {
-                if (res.ok) {
-                    return res.json()
-                }
-            }).then(users =>{
-                let flag = true;
-                users.find((item) => {
-                    if (item.userName == input.userName) {
-                        flag = false;
+                .then(res => {
+                    if (res.ok) {
+                        return res.json()
                     }
-                });
-                if (!flag) {
-                    swal({
-                        title: "Oh No!",
-                        text: "Username is duplicated!\n" + 
-                                "Please change to another one.",
-                        icon: "error",
+                }).then(users => {
+                    let flag = true;
+                    users.find((item) => {
+                        if (item.userName == input.userName) {
+                            flag = false;
+                        }
                     });
-                    return false;
-                }
-                if (!input.userPassword.match(valPwd)) {
-                    swal({
-                        title: "Oh No!",
-                        text: "Invalid Password!\n" +
-                        "At least 8 digits\n" +
-                        "Must contain 1 number\n" +
-                        "Must contain 1 lowercase letters\n" +
-                        "Must contain 1 uppercase letters\n" +
-                        "Must contain 1 special character\n",
-                        icon: "error",
-                      });
-                }else
-                {
-                    const newPro={
-                        userName:input.userName,
-                        password:input.userPassword,
-                        gender:radio.gender,
-                        motto:input.userSign,
-                        DOM:startDate.toLocaleDateString()
-                        
-                    };
-                    console.log(newPro);
-                    axios.post('http://localhost:3001/users/update',newPro);
-                    swal({
-                        title: "Thanks!",
-                        text: "Update successfully",
-                        icon: "success",
-                      });
-                      //return (
+                    if (!flag) {
+                        swal({
+                            title: "Oh No!",
+                            text: "Username is duplicated!\n" +
+                                "Please change to another one.",
+                            icon: "error",
+                        });
+                        return false;
+                    }
+                    if (!input.userPassword.match(valPwd)) {
+                        swal({
+                            title: "Oh No!",
+                            text: "Invalid Password!\n" +
+                                "At least 8 digits\n" +
+                                "Must contain 1 number\n" +
+                                "Must contain 1 lowercase letters\n" +
+                                "Must contain 1 uppercase letters\n" +
+                                "Must contain 1 special character\n",
+                            icon: "error",
+                        });
+                    } else {
+                        const newPro = {
+                            userName: input.userName,
+                            password: input.userPassword,
+                            gender: radio.gender,
+                            motto: input.userSign,
+                            DOM: startDate.toLocaleDateString()
+
+                        };
+                        console.log(newPro);
+                        axios.post('http://localhost:3001/users/update', newPro);
+                        swal({
+                            title: "Thanks!",
+                            text: "Update successfully",
+                            icon: "success",
+                        });
+                        //return (
                         //navigate('/')
-                      //)
-                  
-                };
-            });
+                        //)
+
+                    };
+                });
             //alert(input.userName);
             //alert(input.userSign);
             //alert(input.userPassword);
             //alert(radio.gender);
             //alert(startDate.toLocaleDateString());
         }
-        
 
-       
+
+
     }
-   
+
 
     //ProfileDatePicker();
     return (
         <div class="col-8 ml-8 mb-8 rounded" id="profileHomeOut">
             {/* the right panel of profile info, display the basic info of this user and user can edit them */}
-            <div id="profileInfoPanel" class="profilePanel">
+            {/* col-4 col-sm-4 col-md-3 col-xl-3 */}
+            <div class="profilePanel col-6 col-sm-6 col-md-5 col-xl-4" id="profileInfoPanel">
                 {/* post username here */}
                 {/* the number of subscribed publishers and fans */}
-                <p>user name:</p>
+                <div class="col">
+                <span>user name:</span>
                 {/* post username here, use placeholder to display exsit username */}
-                <input type={"text"} class="form-control" id="profileInfoName" name='userName' value={input.userName} onChange={handleChange} required/>
-
-                <p>user sign:</p>
+                <input type={"text"} class="form-control" id="profileInfoName" name='userName' value={input.userName} onChange={handleChange} required />
+                </div>
+                <span>user sign:</span>
                 {/* post user sign here, use placeholder to display exsit signature*/}
-                <input type={"text"} class="form-control" id="profileInfoSign" name='userSign' value={input.userSign} onChange={handleChange} required/>
-                <p>password:</p>
+                <input type={"text"} class="form-control" id="profileInfoSign" name='userSign' value={input.userSign} onChange={handleChange} required />
+                <span>password:</span>
                 {/* post password here, use placeholder to display exsit signature*/}
-                <input type={"text"} class="form-control" id="profileInfoPassword" name='userPassword' value={input.userPassword} onChange={handleChange} required/>
-                <p>gender:</p>
+                <input type={"text"} class="form-control" id="profileInfoPassword" name='userPassword' value={input.userPassword} onChange={handleChange} required />
+                <span>gender:</span>
                 {/* post user gender here, set default value from database */}
 
                 <div class="btn-group " role="group" aria-label="Basic radio toggle button group" onChange={chooseGender}>
                     <input type="radio" class="btn-check" name="gender" id="genderMale" autocomplete="off" value='male' />
                     <label class="btn btn-outline-primary" for="genderMale">male</label>
 
-                    <input type="radio" class="btn-check" name="gender" id="genderFemale" autocomplete="off" value='female'/>
+                    <input type="radio" class="btn-check" name="gender" id="genderFemale" autocomplete="off" value='female' />
                     <label class="btn btn-outline-primary" for="genderFemale">female</label>
 
-                    <input type="radio" class="btn-check" name="gender" id="genderOther" autocomplete="off" value='other'/>
+                    <input type="radio" class="btn-check" name="gender" id="genderOther" autocomplete="off" value='other' />
                     <label class="btn btn-outline-primary" for="genderOther">other</label>
                 </div>
 

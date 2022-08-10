@@ -4,6 +4,7 @@ import React from 'react';
 import MainPage from "./component/MainPage/MainPage";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Navbar from "./component/Navbar/Navbar";
+import Footer from "./component/Footer/Footer";
 import LoginPage from "./component/LoginPage/LoginPage";
 import RegisterPage from "./component/RegisterPage/RegisterPage";
 import VedioPage from "./component/VideoPage/VedioPage";
@@ -41,7 +42,7 @@ function App() {
         <Route path="/video/:url" element={<VedioPage />}></Route>
         <Route path="/about" element={<AboutPage />}></Route>
         <Route path="/admin" element={<AdminPage />}></Route>
-        
+
         {/* section by puzhen */}
         <Route path='profile' element={<Profile />}>
           <Route path='' element={<ProfileHome />}></Route>
@@ -59,6 +60,7 @@ function App() {
         <Route path='history' element={<History />}></Route>
         <Route path='upload' element={<Upload />}></Route>
       </Routes>
+      <Footer></Footer>
     </Router>
   );
 }
