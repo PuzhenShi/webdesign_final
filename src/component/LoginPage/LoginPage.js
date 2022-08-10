@@ -129,13 +129,17 @@ function LoginPage() {
         //setCookie("loginType", 1, "", "");
       }
     });
-    /* if (flag ==false) {
+     if (flag ==false) {
+      if(InfoUserName=="admin"&&InfoUserPwd=="admin"){
+        window.location = "/admin";
+      }else{
             swal({
                 title: "Oh No!",
                 text: "Wrong User Name or Password!",
                 icon: "error",
-              }); 
-        } */
+              });
+            }
+        } 
   };
 
   let path = `/userinfo/${userFind.userName}`;
