@@ -19,11 +19,7 @@ function AdminPage() {
     },
   ]);
 
-  const [videos,setVideos]=useState({
-      _id:Object,
-      videoName:""
-
-  });
+  const [videos,setVideos]=useState();
 
   // set currentUser
   let getCurrentUser = (currentUserID) => {
@@ -105,15 +101,20 @@ function AdminPage() {
     );
   });
   
-  const videoList = videos.map((video) => {
-    return (
-      <VideoTD
-        title={video.videoName}
-        author={video.publisher}
-        id={video._id}
-      ></VideoTD>
-    );
-  });
+
+  let videoList ;
+  if(videos){
+    videoList = videos.map((video) => {
+      return (
+        <VideoTD
+          title={video.videoName}
+          author={video.publisher}
+          id={video._id}
+        ></VideoTD>
+      );
+    });
+  }
+  
 
   
   

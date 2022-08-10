@@ -44,7 +44,7 @@ router.route("/create").post((req, res)  =>{
 
 //delete a video
 router.route("/delete").post((req,res) =>{
-    id = req.body._id;
+    const id = req.body._id;
     VideoDb.remove({"_id":ObjectId(id)},function (err, samples){
         if (err)
             res.send(err);
