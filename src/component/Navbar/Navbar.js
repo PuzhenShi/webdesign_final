@@ -79,9 +79,10 @@ function Navbar() {
     } else if (parseInt(loginType) == 1) {
       setCurrentUser(userFind);
     }
-    console.log("userFind", userFind);
+    
   }, [loginType]);
 
+  console.log("userFind", userFind);
   let signOut = (e) => {
     //setCookie("loginType", 0, "", "");
     setLoginType(0);
@@ -95,9 +96,16 @@ function Navbar() {
     navhref = "/profile";
   }
 
-  const loginDropdown = (navname) => {
+  const loginDropdown = (navname,loginType) => {
+    if(loginType==0){
+      return(
+        <a className="nav-link" href={navhref}>
+                {navname}
+              </a>
+      )
+    }else{
     return (
-      <li class="nav-item dropdown">
+       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -109,12 +117,12 @@ function Navbar() {
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="/profile">
               Profile
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="/myzone">
               MyZone
             </a>
           </li>
@@ -122,13 +130,13 @@ function Navbar() {
             <hr class="dropdown-divider"></hr>
           </li>
           <li>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="/" onClick={signOut}>
               Log Out
             </a>
           </li>
         </ul>
-      </li>
-    );
+      </li> 
+    );}
   };
 
   return (
@@ -165,9 +173,10 @@ function Navbar() {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="/login" onClick={signOut}>
+            {/* <a className="nav-link" href={navhref}>
                 {navname}
-              </a>
+              </a> */}
+              {loginDropdown(navname,loginType)}
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/admin">

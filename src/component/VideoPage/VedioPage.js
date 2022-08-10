@@ -7,10 +7,12 @@ import VideoCover from "../VideoCover/VideoCover";
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import "./VedioPage.css";
 function VedioPage() {
+
   const [video1, setVideo1] = useState();
   const [videolist, setVideolist] = useState();
+  const [watched,setwatched] = useState(false);
   const { url } = useParams();
-  console.log(url);
+ // console.log(url);
 
   //get currentuser:
   let loginCookie = getCookieValue("loginType");
@@ -147,15 +149,16 @@ function VedioPage() {
       comments: video1.comment,
     };
 
-    fetch("http://localhost:3001/users/watchHistory", {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userName: userFind.userName,
-        watchHistory: video1,
-      }),
-    });
+
+   /*  fetch("http://localhost:3001/users/watchHistory",{
+                method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  "userName": userFind.userName,
+                  "watchHistory": video1
+                })
+              }).then(console.log("add watchlist")) */
 
     /* console.log(video.url);
     if(video.url=="/video/video2.mp4")
@@ -197,7 +200,46 @@ function VedioPage() {
     };
   }
 
+  //wacth history
+  function watchvideo(){
+    if(!watched){
+    fetch("http://localhost:3001/users/watchHistory",{
+                method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  "userName": userFind.userName,
+                  "watchHistory": video1
+                })
+              }).then(console.log("add watchlist"));
+
+              setwatched(true);
+              console.log(watched);
+            }
+  }
+
   //console.log(url);
+
+  //add comment
+  const [commentText,setCommentText] = useState();
+  function handleChange(event){
+    setCommentText(event.target.value);
+    console.log(commentText);
+}
+
+//console.log(commentText);
+  function addComment(event){
+    fetch("http://localhost:3001/videodb/addComment",{
+      method: 'POST',
+                mode: 'cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  "userName": userFind.userName,
+                  "videoName":video1.videoName,
+                  "commentText":commentText,
+                })
+    }).then(console.log("add comment success"))
+  }
 
   var recommendVideo = [];
   if (videolist) {
@@ -218,7 +260,6 @@ function VedioPage() {
       {
         id: videos1._id,
         title: videos1.videoName,
-        duration: 180,
         views: videos1.NOC,
         cover: videos1.videoCover,
         author: videos1.publisher,
@@ -229,13 +270,12 @@ function VedioPage() {
       {
         id: videos2._id,
         title: videos2.videoName,
-        duration: 180,
         views: videos2.NOC,
-        cover: videos1.videoCover,
+        cover: videos2.videoCover,
         author: videos2.publisher,
         author_id: 2,
         date: videos2.uploadTime,
-        url: videos1.videoAddress,
+        url: videos2.videoAddress,
       },
     ];
   } else {
@@ -263,15 +303,12 @@ function VedioPage() {
     ];
   }
 
-  const tags = video.tags.map((tagText) => {
-    return <Tag text={tagText}></Tag>;
-  });
   const comment = video.comments.map((comment) => {
     return (
       <Comment
-        title={comment.title}
-        content={comment.content}
-        date={comment.date}
+        title={comment.userName}
+        content={comment.commentText}
+        date={comment.time}
       ></Comment>
     );
   });
@@ -341,8 +378,8 @@ function VedioPage() {
             </div>
           </div>
           <div className="content">
-            <video width="100%" controls>
-              <source src={`/video/${url}.mp4`} type="video/mp4" />
+            <video width="100%" controls onFocus={watchvideo}>
+              <source src={`/videos/${url}.mp4`} type="video/mp4" />
             </video>
             <nav className="navbar bg-light">
               <div className="row bullet-chat">
@@ -363,6 +400,7 @@ function VedioPage() {
               </div>
             </nav>
           </div>
+
           <div className="tags">
             <span id="like">
               <svg
@@ -417,16 +455,21 @@ function VedioPage() {
               </div>
               <form style={commentStyle}>
                 <div className="input-group">
-                  <textarea
+                  <input
                     className="form-control"
                     placeholder="Send friendly comments"
                     rows="2"
-                  ></textarea>
+                    value={commentText}
+                    name="commentText"
+                    onChange={handleChange}
+                    required
+                  ></input>
                   <span class="input-group-btn">
                     <button
                       type="submit"
                       class="btn btn-primary"
                       id="commentSubmitBtn"
+                      onClick={addComment}
                     >
                       Submit
                     </button>
