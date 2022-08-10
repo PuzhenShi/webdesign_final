@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const user = require("../Models/userModel");
 const bcrypt = require('bcryptjs');
+const stripe = require("stripe")("sk_test_51LUFovIe09HPYEv3kfaqohDYYd005trV9duoaH2RjidY14dieYAud62csTiUZUglB6mRoOTttmfEfyHRQ2pPcZE900vIemKsJl");
+const uuid = require("uuid").v4;
 
 router.route("/create").post((req, res) => {
     const userName = req.body.userName;
@@ -196,5 +198,45 @@ router.route("/searchUsers").get((req, res) => {
     user.findOne({userName: req.body.userName})
         .then(findTheUser => res.json(findTheUser))
 });
+
+//checkout
+router.route("/checkout").post(async(req,res) =>{
+    console.log("Request:", req.body);
+ 
+  let error;
+  let status;
+  try {
+    const {token } = req.body;
+ 
+    const customer = await stripe.customers.create({
+      email: token.email,
+      source: token.id,
+    });
+ 
+    const idempotency_key = uuid();
+    const charge = await stripe.charges.create(
+      {
+        amount: 19.9*100,
+        currency: "usd",
+        customer: customer.id,
+        receipt_email: token.email,
+        description: `Purchased the monthly premium`,
+        shipping: {
+          name: token.card.name,
+        },
+      },
+      {
+        idempotency_key,
+      }
+    );
+    console.log("Charge:", { charge });
+    status = "success";
+  } catch (error) {
+    console.error("Error:", error);
+    status = "failure";
+  }
+ 
+  res.json({ error, status });
+})
 
 module.exports = router;
