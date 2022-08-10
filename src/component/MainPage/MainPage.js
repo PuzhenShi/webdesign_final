@@ -409,7 +409,7 @@ function MainPage() {
       </div>
       <div className="container" id="lowerContent">
         <div className="row d-flex justify-content-center">
-          <div className="col-md-4 col-lg-3 col-xl-2">
+          <div className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
             <VideoCover
               videoInfo={video10}
               coverWidth={200}
@@ -423,7 +423,7 @@ function MainPage() {
               width={240}
             ></VideoCover>
           </div>
-          <div className="col-md-4 col-lg-3 col-xl-2">
+          <div className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
             <VideoCover
               videoInfo={video12}
               coverWidth={200}
@@ -437,7 +437,7 @@ function MainPage() {
               width={240}
             ></VideoCover>
           </div>
-          <div className="col-md-4 col-lg-3 col-xl-2">
+          <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2  d-none d-md-block">
             <VideoCover
               videoInfo={video14}
               coverWidth={200}
@@ -451,7 +451,7 @@ function MainPage() {
               width={240}
             ></VideoCover>
           </div>
-          <div className="col-md-3 col-lg-3  col-xl-2 d-none d-lg-block">
+          <div className="col-sm-6 col-md-3 col-lg-3  col-xl-2 d-none d-lg-block">
             <VideoCover
               videoInfo={video8}
               coverWidth={200}
