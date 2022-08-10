@@ -7,13 +7,12 @@ import VideoCover from "../VideoCover/VideoCover";
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import "./VedioPage.css";
 function VedioPage() {
-
   const [video1, setVideo1] = useState();
   const [videolist, setVideolist] = useState();
-  const [watched,setwatched] = useState(false);
+  const [watched, setwatched] = useState(false);
   //const [liked,setLiked] = useState(false);
   const { url } = useParams();
- // console.log(url);
+  // console.log(url);
 
   //get currentuser:
   let loginCookie = getCookieValue("loginType");
@@ -150,8 +149,7 @@ function VedioPage() {
       comments: video1.comment,
     };
 
-
-   /*  fetch("http://localhost:3001/users/watchHistory",{
+    /*  fetch("http://localhost:3001/users/watchHistory",{
                 method: 'POST',
                 mode: 'cors',
                 headers: { "Content-Type": "application/json" },
@@ -202,87 +200,83 @@ function VedioPage() {
   }
 
   //wacth history
-  function watchvideo(){
-    if(!watched){
-    fetch("http://localhost:3001/users/watchHistory",{
-                method: 'POST',
-                mode: 'cors',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  "userName": userFind.userName,
-                  "watchHistory": video1
-                })
-              }).then(console.log("add watchlist"));
+  function watchvideo() {
+    if (!watched) {
+      fetch("http://localhost:3001/users/watchHistory", {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userName: userFind.userName,
+          watchHistory: video1,
+        }),
+      }).then(console.log("add watchlist"));
 
-              setwatched(true);
-              console.log(watched);
-            }
+      setwatched(true);
+      console.log(watched);
+    }
   }
 
   //console.log(url);
 
   //add comment
-  const [commentText,setCommentText] = useState();
-  function handleChange(event){
+  const [commentText, setCommentText] = useState();
+  function handleChange(event) {
     setCommentText(event.target.value);
     console.log(commentText);
-}
+  }
 
-//console.log(commentText);
-  function addComment(event){
-    fetch("http://localhost:3001/videodb/addComment",{
-      method: 'POST',
-                mode: 'cors',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  "userName": userFind.userName,
-                  "videoName":video1.videoName,
-                  "commentText":commentText,
-                })
-    }).then(console.log("add comment success"))
+  //console.log(commentText);
+  function addComment(event) {
+    fetch("http://localhost:3001/videodb/addComment", {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userName: userFind.userName,
+        videoName: video1.videoName,
+        commentText: commentText,
+      }),
+    }).then(console.log("add comment success"));
   }
 
   //like the video
- 
-  
+  const [isActive, setIsActive] = useState(false);
 
-  function likevideo(){
-    let like=false;
-    if(userFind.myFavorite){
+  function likevideo() {
+    setIsActive(true);
+    let like = false;
+    if (userFind.myFavorite) {
       const myFavoritevideos = userFind.myFavorite;
-      myFavoritevideos.map((video,index) =>{
-        if(video._id==video1._id){
-          like=true;
+      myFavoritevideos.map((video, index) => {
+        if (video._id == video1._id) {
+          like = true;
         }
-      })
-    
+      });
+
       console.log(like);
     }
-    if(!like){
-      fetch("http://localhost:3001/videodb/like",{
-      method: 'POST',
-                mode: 'cors',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  "videoAddress":video1.videoAddress,
-                })
-    }).then(console.log("liked the video"));
-      like=true;
+    if (!like) {
+      fetch("http://localhost:3001/videodb/like", {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          videoAddress: video1.videoAddress,
+        }),
+      }).then(console.log("liked the video"));
+      like = true;
 
-      fetch("http://localhost:3001/users/myFavorite",{
-        method: 'POST',
-                mode: 'cors',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  "userName":userFind.userName,
-                  "myFavorite": video1,
-                })
-      })
-    
+      fetch("http://localhost:3001/users/myFavorite", {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userName: userFind.userName,
+          myFavorite: video1,
+        }),
+      });
     }
-    
-
-
   }
 
   var recommendVideo = [];
@@ -310,7 +304,7 @@ function VedioPage() {
         author_id: 2,
         date: videos1.uploadTime,
         url: videos1.videoAddress,
-        VIP:videos1.VIP,
+        VIP: videos1.VIP,
       },
       {
         id: videos2._id,
@@ -321,7 +315,7 @@ function VedioPage() {
         author_id: 2,
         date: videos2.uploadTime,
         url: videos2.videoAddress,
-        VIP:videos2.VIP,
+        VIP: videos2.VIP,
       },
     ];
   } else {
@@ -447,7 +441,13 @@ function VedioPage() {
           </div>
 
           <div className="tags">
-            <span id="like" onClick={likevideo}>
+            <span
+              id="like"
+              onClick={likevideo}
+              style={{
+                color: isActive ? "#00aeec" : "",
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
