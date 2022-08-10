@@ -296,6 +296,7 @@ function VedioPage() {
         author_id: 2,
         date: videos1.uploadTime,
         url: videos1.videoAddress,
+        VIP:videos1.VIP,
       },
       {
         id: videos2._id,
@@ -306,6 +307,7 @@ function VedioPage() {
         author_id: 2,
         date: videos2.uploadTime,
         url: videos2.videoAddress,
+        VIP:videos2.VIP,
       },
     ];
   } else {
