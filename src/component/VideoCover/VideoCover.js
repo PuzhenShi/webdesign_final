@@ -162,7 +162,7 @@ function VideoCover(props) {
             {/* <div className="number"> {video.NOC}</div> */}
           </div>
           <div className="duration">
-            <div className="number">{duration}</div>
+            {/* <div className="number">{duration}</div> */}
           </div>
         </div>
         <Link
