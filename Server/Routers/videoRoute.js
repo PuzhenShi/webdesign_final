@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const VideoDb = require("../Models/videoModel");
+const ObjectId = require("mongodb").ObjectId;
 
 //create a new video
 router.route("/create").post((req, res)  =>{
@@ -38,16 +39,12 @@ router.route("/create").post((req, res)  =>{
 
 //delete a video
 router.route("/delete").post((req,res) =>{
-
-    const dvideoName = req.body.videoName;
-
-    VideoDb.findOne({videoName: dvideoName}, function(err,samples){
-            VideoDb.remove({videoName: dvideoName}, function (err, samples){
-                if (err)
-                    res.send(err);
-                res.status(200);
-                res.json(samples);
-            });
+    id = req.body._id;
+    VideoDb.remove({"_id":ObjectId(id)},function (err, samples){
+        if (err)
+            res.send(err);
+        res.status(200);
+        res.json(samples);
     });
 });
 
