@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Outlet, IndexRoute, Routes, Route, Link } from 'react-router-dom'
+import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import ProfileList from './ProfileList'
 
 //the profile page
 function Profile(props) {
     // const match = props.match;
     // console.log(match.url);
-
+    
+    
     return (
         <div class="container">
             <p>profile</p>
