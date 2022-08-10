@@ -81,7 +81,7 @@ function VideoCover(props) {
         setUsers(res);
         //console.log("res",res);
       });
-    console.log(loginType);
+    //console.log(loginType);
 
     setCookie("loginType", parseInt(loginType), "", "");
     if (parseInt(loginType) == 0) {

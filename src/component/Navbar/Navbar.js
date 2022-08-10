@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import "./Navbar.css";
 
@@ -8,14 +7,12 @@ function Navbar() {
   let navhref = "/login";
 
   let loginCookie = getCookieValue("loginType");
-  // console.log("loginCookie",loginCookie);
   const [loginType, setLoginType] = useState(
     loginCookie === null ? 0 : parseInt(loginCookie)
   );
   if (loginCookie === null) {
     loginCookie = setCookie("loginType", 0, "", "");
   }
-  //console.log("loginType",loginType);
   const [users, setUsers] = useState([
     {
       _id: Object,
@@ -31,20 +28,8 @@ function Navbar() {
         userName: "",
       };
     }
-    // these code will cause re-peat wrong
-    // let userSave = users.find((item) => {
-    //     if (item._id == currentUserID) {
-    //         setInfoUserName(item.userName);
-    //         setInfoUserPwd(item.password);
-    //         return item;
-    //     }
-    // });
-    // console.log('userSave',userSave);
     for (let i = 0; i < users.length; i++) {
       if (users[i]._id == currentUserID) {
-        // setInfoUserName(users[i].userName);
-        // setInfoUserPwd(users[i].password);
-
         return users[i];
       }
     }
@@ -55,10 +40,9 @@ function Navbar() {
   };
   let userFind = getCurrentUser(getCookieValue("currentUserID"));
 
-  //  console.log('userFind',userFind);
+  
   const [currentUser, setCurrentUser] = useState(userFind);
-  //console.log('currentUser',currentUser);
-  //
+ 
 
   useEffect(() => {
     fetch("http://localhost:3001/users/users")
@@ -69,9 +53,9 @@ function Navbar() {
       })
       .then((res) => {
         setUsers(res);
-        //console.log("res",res);
+
       });
-    console.log(loginType);
+   // console.log(loginType);
 
     setCookie("loginType", parseInt(loginType), "", "");
     if (parseInt(loginType) == 0) {
@@ -82,7 +66,7 @@ function Navbar() {
     
   }, [loginType]);
 
-  console.log("userFind", userFind);
+ // console.log("userFind", userFind);
   let signOut = (e) => {
     //setCookie("loginType", 0, "", "");
     setLoginType(0);
