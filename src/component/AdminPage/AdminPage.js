@@ -1,20 +1,80 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import UserTD from "./UserTD/UserTD";
 import VideoTD from "./VideoTD/VideoTD";
 
 function AdminPage() {
-  const users = [
+
+  let loginCookie = getCookieValue("loginType");
+  const [loginType, setLoginType] = useState(
+    loginCookie === null ? 0 : parseInt(loginCookie)
+  );
+  if (loginCookie === null) {
+    loginCookie = setCookie("loginType", 0, "", "");
+  }
+  const [users, setUsers] = useState([
     {
-      id: 1,
-      Email: "chen.ren@northeastern.edu",
-      username: "r3nq1",
+      _id: Object,
+      userName: "",
     },
-    {
-      id: 2,
-      Email: "990406crq@gmail.com",
-      username: "rrrrq",
-    },
-  ];
+  ]);
+
+  // set currentUser
+  let getCurrentUser = (currentUserID) => {
+    if (currentUserID == "") {
+      return {
+        _id: Object,
+        userName: "",
+      };
+    }
+    for (let i = 0; i < users.length; i++) {
+      if (users[i]._id == currentUserID) {
+        return users[i];
+      }
+    }
+    return {
+      _id: Object,
+      userName: "",
+    };
+  };
+  let userFind = getCurrentUser(getCookieValue("currentUserID"));
+
+  
+  const [currentUser, setCurrentUser] = useState(userFind);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/users/users")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((res) => {
+        setUsers(res);
+
+      });
+   // console.log(loginType);
+
+    setCookie("loginType", parseInt(loginType), "", "");
+    if (parseInt(loginType) == 0) {
+      setCookie("currentUserID", "", "", "");
+    } else if (parseInt(loginType) == 1) {
+      setCurrentUser(userFind);
+    }
+    
+  }, [loginType]);
+  //const users = [
+    //{
+      //id: 1,
+      //Email: "chen.ren@northeastern.edu",
+      //username: "r3nq1",
+    //},
+    //{
+      //id: 2,
+      //Email: "990406crq@gmail.com",
+      //username: "rrrrq",
+    //},
+  //];
 
   const videos = [
     {
@@ -31,7 +91,7 @@ function AdminPage() {
 
   const userList = users.map((user) => {
     return (
-      <UserTD email={user.Email} username={user.username} id={user.id}></UserTD>
+      <UserTD email={user.email} username={user.userName} id={user._id}></UserTD>
     );
   });
   const videoList = videos.map((video) => {
