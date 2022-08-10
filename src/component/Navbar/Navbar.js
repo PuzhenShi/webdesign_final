@@ -79,10 +79,10 @@ function Navbar() {
     } else if (parseInt(loginType) == 1) {
       setCurrentUser(userFind);
     }
-    console.log("userFind", userFind);
+    
   }, [loginType]);
 
-
+  console.log("userFind", userFind);
   let signOut = (e) => {
     //setCookie("loginType", 0, "", "");
     setLoginType(0);
