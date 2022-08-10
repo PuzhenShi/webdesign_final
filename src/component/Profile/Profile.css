@@ -32,12 +32,15 @@
     margin-left:10px;
 }
 
-#profileHomePanel {
+#profileHomePanel, #profileInfoOut, #profileHeadOut, #profilePayOut {
     padding: 20px;    
     border : solid rgb(218, 218, 218) 1px;    
-    background-color: white;
-    
+    background-color: white;    
 }
+
+/* #profileHeadOut {
+    height: 500px;
+} */
 
 #profileHomePanel div {
     
@@ -47,12 +50,6 @@
     /* float: left; */
 }
 
-#profileInfoOut {
-    padding: 20px;    
-    border : solid rgb(218, 218, 218) 1px;    
-    background-color: white;
-    
-}
 
 #profileInfoPanel input{
     width: 60%;
@@ -61,11 +58,23 @@
 #profileInfoPanel div{
     margin: 10px 0;
     font-size: 20px;
-    vertical-align: middle;
-    
+    vertical-align: middle;    
 }
 
-#profileInfoBtn {
+#profilePayHead {
+    font-size: 30px;        
+    text-align: center;
+}
+
+#profilePayPanel {
+    font-size: 20px;
+}
+
+#profilePayPanel div {
+    margin: 10px 0;
+}
+
+#profileInfoBtn, #profileHeadBtn, #profilePayBtn {
     height: 45px;
     width: 70px;
     font-size: 20px;
@@ -74,7 +83,9 @@
     background-color: rgb(0,160,216);
     border: none;
 }
-
+#profilePayBtn {
+    width: 180px;
+}
 
 @media screen and (max-width: 980px) {
     #profileLeftNav span {
@@ -92,7 +103,16 @@
         font-size: 15px;
     }
 
-    #profileInfoBtn {
+    #profilePayHead {
+        font-size: 20px;        
+        text-align: center;
+    }
+
+    #profilePayPanel {
+        font-size: 15px;
+    }
+
+    #profileInfoBtn, #profileHeadBtn, #profilePayBtn {
         height: 35px;
         width: 60px;
         font-size: 15px;
@@ -100,6 +120,10 @@
         margin: 0 auto;
         background-color: rgb(0,160,216);
         border: none;
+    }
+
+    #profilePayBtn {
+        width: 120px;
     }
 }
 /* #profileBody::after {
