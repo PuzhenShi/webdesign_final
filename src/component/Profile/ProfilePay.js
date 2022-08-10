@@ -211,9 +211,9 @@ function ProfilePay() {
                         <div>
                             {checkout(currentstatus)}
                         </div>
-                        <Button variant="secondary" id="profilePayModalBtn" onClick={handleClose}>
+                        {/* <Button variant="secondary" id="profilePayModalBtn" onClick={handleClose}>
                             No, thanks
-                        </Button>
+                        </Button> */}
 
                     </Modal.Footer>
                 </Modal>
