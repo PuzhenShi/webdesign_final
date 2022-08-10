@@ -106,6 +106,7 @@ router.route("/myVideo").post((req,res) =>{
         if (err)
             res.send(err);
         res.status(200);
+        console.log("update success");
         res.json(samples);
     })
 });
@@ -120,6 +121,7 @@ router.route("/myFavorite").post((req,res) =>{
         if (err)
             res.send(err);
         res.status(200);
+        
         res.json(samples);
     })
 });
