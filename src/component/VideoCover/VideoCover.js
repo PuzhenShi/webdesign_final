@@ -3,7 +3,7 @@ import "./VideoCover.css";
 import { Link } from "react-router-dom";
 
 function VideoCover(props) {
-  const { title, views, cover, author, url, date, author_id, video } =
+  const { title, views, cover, duration,author, url, date, author_id, video } =
     //const video=
     props.videoInfo;
   //console.log(video);
@@ -40,6 +40,7 @@ function VideoCover(props) {
         videoAddress: url,
       }),
     });
+
     window.location='/video/'+url;
   }
   return (
@@ -69,7 +70,7 @@ function VideoCover(props) {
             <div className="number"> {views}</div>
             {/* <div className="number"> {video.NOC}</div> */}
           </div>
-          {/* <div className="duration">
+           <div className="duration">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -81,7 +82,7 @@ function VideoCover(props) {
               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
             </svg>
             <div className="number">{duration}</div>
-          </div> */}
+          </div> 
         </div>
         <Link
           to={`/video/${url}` }

@@ -53,10 +53,13 @@ router.route("/delete").post((req,res) =>{
 
 //click the video
 router.route("/click").post((req,res) =>{
+    //console.log(req.body);
     const videoAddress = req.body.videoAddress;
+    
     VideoDb.findOne({videoAddress: videoAddress},function(err,samples){
         const NOC = samples.NOC;
-        VideoDb.update({_id:videoAddress},{
+        
+        VideoDb.update({videoAddress:videoAddress},{
             $set: {
                 NOC:NOC+1
             }
@@ -77,6 +80,25 @@ router.route("/watch").post((req,res) =>{
         res.json(samples);
     })
 })
+
+//like the video
+router.route("/like").post((req,res) =>{
+    const videoAddress = req.body.videoAddress;
+    
+    VideoDb.findOne({videoAddress: videoAddress},function(err,samples){
+        const thumbup = samples.thumbup;
+        
+        VideoDb.update({videoAddress:videoAddress},{
+            $set: {
+                thumbup:thumbup+1
+            }
+        },function(err,samples){
+            if(err) res.send(err);
+            res.status(200);
+            res.json(samples);
+        })
+    })
+});
 
 // //thumbup the comment
 // router.route("/thumbupComment").post((req, res)  =>{

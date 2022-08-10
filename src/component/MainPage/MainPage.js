@@ -71,7 +71,7 @@ function MainPage() {
     video1 = {
       url: videos1.videoAddress,
       title: videos1.videoName,
-      duration: 180,
+      duration: video1.videoDuration,
       views: videos1.NOC,
       cover: videos1.videoCover,
       author: videos1.publisher,
@@ -81,7 +81,7 @@ function MainPage() {
     video2 = {
       url: videos2.videoAddress,
       title: videos2.videoName,
-      duration: 180,
+      duration: video2.videoDuration,
       views: videos2.NOC,
       cover: videos2.videoCover,
       author: videos2.publisher,
@@ -91,7 +91,7 @@ function MainPage() {
     video3 = {
       url: videos3.videoAddress,
       title: videos3.videoName,
-      duration: 180,
+      duration: video3.videoDuration,
       views: videos3.NOC,
       cover: videos3.videoCover,
       author: videos3.publisher,
@@ -101,7 +101,7 @@ function MainPage() {
     video4 = {
       url: videos4.videoAddress,
       title: videos4.videoName,
-      duration: 180,
+      duration: video4.videoDuration,
       views: videos4.NOC,
       cover: videos4.videoCover,
       author: videos4.publisher,
@@ -111,7 +111,7 @@ function MainPage() {
     video5 = {
       url: videos5.videoAddress,
       title: videos5.videoName,
-      duration: 180,
+      duration: video5.videoDuration,
       views: videos5.NOC,
       cover: videos5.videoCover,
       author: videos5.publisher,
@@ -121,7 +121,7 @@ function MainPage() {
     video6 = {
       url: videos6.videoAddress,
       title: videos6.videoName,
-      duration: 180,
+      duration: video6.videoDuration,
       views: videos6.NOC,
       cover: videos6.videoCover,
       author: videos6.publisher,
@@ -131,7 +131,7 @@ function MainPage() {
     video7 = {
       url: videos7.videoAddress,
       title: videos7.videoName,
-      duration: 180,
+      duration: video7.videoDuration,
       views: videos7.NOC,
       cover: videos7.videoCover,
       author: videos7.publisher,
@@ -141,7 +141,7 @@ function MainPage() {
     video8 = {
       url: videos1.videoAddress,
       title: videos8.videoName,
-      duration: 180,
+      duration: video8.videoDuration,
       views: videos8.NOC,
       cover: videos8.videoCover,
       author: videos8.publisher,
