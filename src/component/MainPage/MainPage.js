@@ -322,6 +322,9 @@ function MainPage() {
   return (
     <div>
       <Navbar></Navbar>
+      <div class="col-12" id="mainBackImg">
+
+      </div>
       <div className="container" id="upperContent">
         <div className="row d-flex justify-content-center">
           <div
