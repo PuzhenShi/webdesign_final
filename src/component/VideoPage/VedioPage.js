@@ -148,22 +148,6 @@ function VedioPage() {
       ],
       comments: video1.comment,
     };
-
-    /*  fetch("http://localhost:3001/users/watchHistory",{
-                method: 'POST',
-                mode: 'cors',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  "userName": userFind.userName,
-                  "watchHistory": video1
-                })
-              }).then(console.log("add watchlist")) */
-
-    /* console.log(video.url);
-    if(video.url=="/video/video2.mp4")
-    url='/video/video2.mp4';
-    else if(video.url=="/video/video1.mp4")
-    url='/video/video1.mp4'; */
   } else {
     video = {
       id: 1,
@@ -198,6 +182,33 @@ function VedioPage() {
       ],
     };
   }
+
+
+  //get publisher
+  const[publisher,setPublisher] = useState();
+  if(video1){
+    fetch("http://localhost:3001/users/searchUsers", {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    userName: video1.publisher,
+                }),
+            }).then((res) => {
+              if(res.ok) 
+                return res.json();
+            }).then((res) =>{
+              setPublisher(res);
+  })
+  }
+  let publisherportrait ="head/default.jpg";
+
+ if(publisher){
+  publisherportrait = publisher.portrait;
+ }
+
+
+
 
   //wacth history
   function watchvideo() {
@@ -238,6 +249,13 @@ function VedioPage() {
         commentText: commentText,
       }),
     }).then(console.log("add comment success"));
+  }
+
+  //display the portrait
+
+  let currentportrait ="head/default.jpg";
+  if(userFind.portrait){
+    currentportrait=userFind.portrait
   }
 
   //like the video
@@ -495,7 +513,7 @@ function VedioPage() {
             <div className="send d-flex">
               <div className="avatar">
                 <a>
-                  <Avatar height="60" width="60"></Avatar>
+                  <Avatar height="60" width="60" portrait={currentportrait}></Avatar>
                 </a>
               </div>
               <form style={commentStyle}>
@@ -529,7 +547,7 @@ function VedioPage() {
           <div className="releaser d-flex">
             <div className="avatar">
               <a>
-                <Avatar height="80" width="80"></Avatar>
+                <Avatar height="80" width="80" portrait = {publisherportrait}></Avatar>
               </a>
             </div>
             <div className="info">

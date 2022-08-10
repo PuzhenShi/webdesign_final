@@ -56,6 +56,12 @@ function MainPage() {
   let video6 = {};
   let video7 = {};
   let video8 = {};
+  let video9 = {};
+  let video10 = {};
+  let video11 = {};
+  let video12 = {};
+  let video13 = {};
+  let video14 = {};
 
   if (videos) {
     let videosleg = videos.length;
@@ -67,6 +73,12 @@ function MainPage() {
     let videos6 = videos[videosleg - 6];
     let videos7 = videos[videosleg - 7];
     let videos8 = videos[videosleg - 8];
+    let videos9 = videos[videosleg - 9];
+    let videos10 = videos[videosleg - 10];
+    let videos11 = videos[videosleg - 11];
+    let videos12 = videos[videosleg - 12];
+    let videos13 = videos[videosleg - 13];
+    let videos14 = videos[videosleg - 14];
 
     video1 = {
       url: videos1.videoAddress,
@@ -146,7 +158,7 @@ function MainPage() {
       VIP:videos7.VIP,
     };
     video8 = {
-      url: videos1.videoAddress,
+      url: videos9.videoAddress,
       title: videos8.videoName,
       duration: video8.videoDuration,
       views: videos8.NOC,
@@ -155,6 +167,72 @@ function MainPage() {
       author_id: 1,
       date: videos8.uploadTime,
       VIP:videos8.VIP,
+    };
+    video9 = {
+      url: videos9.videoAddress,
+      title: videos9.videoName,
+      duration: video9.videoDuration,
+      views: videos9.NOC,
+      cover: videos9.videoCover,
+      author: videos9.publisher,
+      author_id: 1,
+      date: videos9.uploadTime,
+      VIP:videos9.VIP,
+    };
+    video10 = {
+      url: videos10.videoAddress,
+      title: videos10.videoName,
+      duration: video10.videoDuration,
+      views: videos10.NOC,
+      cover: videos10.videoCover,
+      author: videos10.publisher,
+      author_id: 1,
+      date: videos10.uploadTime,
+      VIP:videos10.VIP,
+    };
+    video11 = {
+      url: videos11.videoAddress,
+      title: videos11.videoName,
+      duration: video11.videoDuration,
+      views: videos11.NOC,
+      cover: videos11.videoCover,
+      author: videos11.publisher,
+      author_id: 1,
+      date: videos11.uploadTime,
+      VIP:videos11.VIP,
+    };
+    video12 = {
+      url: videos12.videoAddress,
+      title: videos12.videoName,
+      duration: video12.videoDuration,
+      views: videos12.NOC,
+      cover: videos12.videoCover,
+      author: videos12.publisher,
+      author_id: 1,
+      date: videos12.uploadTime,
+      VIP:videos12.VIP,
+    };
+    video13 = {
+      url: videos13.videoAddress,
+      title: videos13.videoName,
+      duration: video13.videoDuration,
+      views: videos13.NOC,
+      cover: videos13.videoCover,
+      author: videos13.publisher,
+      author_id: 1,
+      date: videos13.uploadTime,
+      VIP:videos13.VIP,
+    };
+    video14 = {
+      url: videos14.videoAddress,
+      title: videos14.videoName,
+      duration: video14.videoDuration,
+      views: videos14.NOC,
+      cover: videos14.videoCover,
+      author: videos14.publisher,
+      author_id: 1,
+      date: videos14.uploadTime,
+      VIP:videos14.VIP,
     };
 
    // console.log(video7);
@@ -312,14 +390,14 @@ function MainPage() {
               width={240}
             ></VideoCover>
             <VideoCover
-              videoInfo={video7}
+              videoInfo={video8}
               coverWidth={200}
               coverHeight={120}
               width={240}
             ></VideoCover>
             <div className="d-none d-xl-block">
               <VideoCover
-                videoInfo={video7}
+                videoInfo={video9}
                 coverWidth={200}
                 coverHeight={120}
                 width={240}
@@ -332,27 +410,13 @@ function MainPage() {
         <div className="row">
           <div className="col-md-4 col-lg-3">
             <VideoCover
-              videoInfo={video8}
+              videoInfo={video10}
               coverWidth={200}
               coverHeight={120}
               width={240}
             ></VideoCover>
             <VideoCover
-              videoInfo={video8}
-              coverWidth={200}
-              coverHeight={120}
-              width={240}
-            ></VideoCover>
-          </div>
-          <div className="col-md-4 col-lg-3">
-            <VideoCover
-              videoInfo={video8}
-              coverWidth={200}
-              coverHeight={120}
-              width={240}
-            ></VideoCover>
-            <VideoCover
-              videoInfo={video8}
+              videoInfo={video11}
               coverWidth={200}
               coverHeight={120}
               width={240}
@@ -360,7 +424,21 @@ function MainPage() {
           </div>
           <div className="col-md-4 col-lg-3">
             <VideoCover
-              videoInfo={video8}
+              videoInfo={video12}
+              coverWidth={200}
+              coverHeight={120}
+              width={240}
+            ></VideoCover>
+            <VideoCover
+              videoInfo={video13}
+              coverWidth={200}
+              coverHeight={120}
+              width={240}
+            ></VideoCover>
+          </div>
+          <div className="col-md-4 col-lg-3">
+            <VideoCover
+              videoInfo={video14}
               coverWidth={200}
               coverHeight={120}
               width={240}

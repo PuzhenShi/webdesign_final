@@ -1,15 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "../Avatar/Avatar";
 import "./Comment.css";
 
 function Comment(props) {
+  const[user,setUser] = useState();
+
+
+  //console.log(props.title); 
+
+  fetch("http://localhost:3001/users/searchUsers", {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    userName: props.title,
+                }),
+            }).then((res) => {
+              if(res.ok) 
+                return res.json();
+            }).then((res) =>{
+              setUser(res);
+  })
+
+  //console.log(user);
+
+ let portrait ="head/default.jpg";
+
+ if(user){
+  portrait = user.portrait;
+ }
+
+
+
+
   return (
     <div>
       <div className="area">
         <div className="body d-flex">
           <div className="avatar">
             <a>
-              <Avatar height="40" width="40"></Avatar>
+              <Avatar height="40" width="40" portrait = {portrait}></Avatar>
             </a>
           </div>
           <div className="content">
