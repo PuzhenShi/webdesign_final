@@ -453,20 +453,6 @@ function MainPage() {
           </div>
           <div className="col-sm-6 col-md-3 col-lg-3  col-xl-2 d-none d-lg-block">
             <VideoCover
-              videoInfo={video8}
-              coverWidth={200}
-              coverHeight={120}
-              width={240}
-            ></VideoCover>
-            <VideoCover
-              videoInfo={video8}
-              coverWidth={200}
-              coverHeight={120}
-              width={240}
-            ></VideoCover>
-          </div>
-          <div className="col-md-3 col-lg-3  col-xl-2 d-none d-xl-block">
-            <VideoCover
               videoInfo={video3}
               coverWidth={200}
               coverHeight={120}
@@ -474,6 +460,20 @@ function MainPage() {
             ></VideoCover>
             <VideoCover
               videoInfo={video6}
+              coverWidth={200}
+              coverHeight={120}
+              width={240}
+            ></VideoCover>
+          </div>
+          <div className="col-md-3 col-lg-3  col-xl-2 d-none d-xl-block">
+            <VideoCover
+              videoInfo={video7}
+              coverWidth={200}
+              coverHeight={120}
+              width={240}
+            ></VideoCover>
+            <VideoCover
+              videoInfo={video9}
               coverWidth={200}
               coverHeight={120}
               width={240}
