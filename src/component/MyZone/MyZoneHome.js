@@ -67,23 +67,49 @@ function MyZoneHome() {
   
   
     //console.log("userFind", userFind);
-
-    let videos = [];
-  let video1 = {};
+//dispaly favorite video
+    let videof = [];
+  let fvideo1 = {};
+  let fvideo2 = {};
+  let fvideo3 = {};
   if(userFind.myFavorite){
-    videos=userFind.myFavorite;
-    let videos1=videos[0];
-    video1 = {
-      url: videos1.videoAddress,
-      title: videos1.videoName,
-      duration: video1.videoDuration,
-      views: videos1.NOC,
-      cover: videos1.videoCover,
-      author: videos1.publisher,
+    videof=userFind.myFavorite;
+    let videof1=videof[videof.length-1];
+    let videof2=videof[videof.length-2];
+    let videof3=videof[videof.length-3];
+    fvideo1 = {
+      url: videof1.videoAddress,
+      title: videof1.videoName,
+      duration: videof1.videoDuration,
+      views: videof1.NOC,
+      cover: videof1.videoCover,
+      author: videof1.publisher,
       author_id: 1,
-      date: videos1.uploadTime,
-      VIP:videos1.VIP,
+      date: videof1.uploadTime,
+      VIP:videof1.VIP,
     };
+    fvideo2 = {
+        url: videof2.videoAddress,
+        title: videof2.videoName,
+        duration: videof2.videoDuration,
+        views: videof2.NOC,
+        cover: videof2.videoCover,
+        author: videof2.publisher,
+        author_id: 1,
+        date: videof2.uploadTime,
+        VIP:videof2.VIP,
+      };
+      fvideo3 = {
+        url: videof3.videoAddress,
+        title: videof3.videoName,
+        duration: videof3.videoDuration,
+        views: videof3.NOC,
+        cover: videof3.videoCover,
+        author: videof3.publisher,
+        author_id: 1,
+        date: videof3.uploadTime,
+        VIP:videof3.VIP,
+      };
     
   }
 
@@ -153,7 +179,7 @@ function MyZoneHome() {
                         <div class="col-12 row" id="myZoneFavoriteGallery">
                             <div class="col-4">
                                 <VideoCover
-                                    videoInfo={video1}
+                                    videoInfo={fvideo1}
                                     coverWidth={200}
                                     coverHeight={120}
                                     width={240}
@@ -161,7 +187,7 @@ function MyZoneHome() {
                             </div>
                             <div class="col-4">
                                 <VideoCover
-                                    videoInfo={video}
+                                    videoInfo={fvideo2}
                                     coverWidth={200}
                                     coverHeight={120}
                                     width={240}
@@ -169,7 +195,7 @@ function MyZoneHome() {
                             </div>
                             <div class="col-4">
                                 <VideoCover
-                                    videoInfo={video}
+                                    videoInfo={fvideo3}
                                     coverWidth={200}
                                     coverHeight={120}
                                     width={240}
