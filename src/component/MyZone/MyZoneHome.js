@@ -431,8 +431,7 @@ function MyZoneHome() {
           <div class="col-12 rounded" id="myZoneVedios">
             <div class="col-12 rounded" id="myZoneVideosBar">
               <span>My Vedios</span>
-              <Link to="/myzone/videos" id="myVideosLink" >                
-                  More>>>
+              <Link to="/myzone/like" id="myVideosLink" >                
               </Link>
             </div>
 
@@ -450,7 +449,6 @@ function MyZoneHome() {
             <div class="col-12 rounded" id="myZoneFavoriteBar">
               <span>My Favorite</span>
               <Link to="/myzone/favorite" id="myFavoriteLink" >                
-                  More>>>
               </Link>
             </div>
 
