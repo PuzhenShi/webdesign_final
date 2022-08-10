@@ -77,7 +77,9 @@ function Upload() {
                             />
                         </div>
 
-                        <p>cover file: {files[0].file_name}</p>
+                        {/* <p>cover file: 
+                            {files[0].file_name}
+                            </p> */}
                     </div>
                     <div class="col-5">
                         <p>choose your video:</p>
@@ -89,7 +91,9 @@ function Upload() {
                                 type="file"
                             />
                         </div>
-                        <p>video: {files[1].file_name}</p>
+                        {/* <p>video: 
+                            {files[1].file_name}
+                            </p> */}
                     </div>
                     <div class="col-5 title">
                         <span>video title:</span>

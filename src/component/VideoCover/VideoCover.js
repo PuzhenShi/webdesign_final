@@ -1,11 +1,9 @@
 import React from "react";
 import "./VideoCover.css";
 import { Link } from "react-router-dom";
-import cover1 from "../videocoverimg/cover1.jpg";
-import cover2 from "../videocoverimg/cover2.jpg";
 
 function VideoCover(props) {
-  const { title, duration, views, cover, author, url, date, author_id, video } =
+  const { title, views, cover, author, url, date, author_id, video } =
     //const video=
     props.videoInfo;
   //console.log(video);
@@ -15,15 +13,6 @@ function VideoCover(props) {
     "x" +
     props.coverHeight +
     "/#ffffff/000";  */
-
-  let imgurl;
-
-  if (cover == "cover1") {
-    imgurl = cover1;
-  } else if (cover == "cover2") {
-    imgurl = cover2;
-  }
-  //console.log(url);
 
   const wrapperStyle = {
     width: "100%",
@@ -39,7 +28,7 @@ function VideoCover(props) {
     width: "100%",
   };
   const coverStyle = {
-    height: props.coverWidth,
+    height: 0.6*props.coverWidth,
   };
 
   function handleClick(e) {
@@ -51,6 +40,7 @@ function VideoCover(props) {
         videoAddress: url,
       }),
     });
+    window.location='/video/'+url;
   }
   return (
     <div style={wrapperStyle} className="video-display">
@@ -59,7 +49,7 @@ function VideoCover(props) {
           <Link to={`/video/${url}`} onClick={handleClick}>
             {/* <Link to={`/video/${video.id}`}> */}
             <img
-              src={imgurl}
+              src={process.env.PUBLIC_URL + '/videos/'+ cover}
               alt="cover"
               className="video-cover"
               style={coverStyle}
@@ -79,7 +69,7 @@ function VideoCover(props) {
             <div className="number"> {views}</div>
             {/* <div className="number"> {video.NOC}</div> */}
           </div>
-          <div className="duration">
+          {/* <div className="duration">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -91,10 +81,10 @@ function VideoCover(props) {
               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
             </svg>
             <div className="number">{duration}</div>
-          </div>
+          </div> */}
         </div>
         <Link
-          to={`/video/${url}`}
+          to={`/video/${url}` }
           style={titleStyle}
           className="title"
           onClick={handleClick}

@@ -4,13 +4,14 @@ function MainCarousel(props) {
   const imgWidth = 384;
   const imgHeight = 300;
   const carouselStyle = {};
-  const url =
-    "https://dummyimage.com/" + imgWidth + "x" + imgHeight + "/#ffffff/000";
+ props.videos.map((video,index) =>{
+  console.log(video.cover);
+ })
   const videoList = props.videos.map((video, index) => {
     if (index === 0) {
       return (
         <div className="carousel-item active">
-          <img src={url} className="d-block w-100" alt="..."></img>
+          <img src={process.env.PUBLIC_URL + '/videos/'+ video.cover} className="d-block w-100" alt="..."></img>
           <div className="carousel-caption d-none d-md-block">
             <h5>{video.title}</h5>
           </div>
@@ -19,7 +20,7 @@ function MainCarousel(props) {
     } else {
       return (
         <div className="carousel-item">
-          <img src={url} className="d-block w-100" alt="..."></img>
+          <img src={process.env.PUBLIC_URL + '/videos/'+ video.cover} className="d-block w-100" alt="..."></img>
           <div className="carousel-caption d-none d-md-block">
             <h5>{video.title}</h5>
           </div>
