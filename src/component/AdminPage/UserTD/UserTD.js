@@ -1,9 +1,28 @@
 import React from "react";
+import axios from "axios";
+import swal from "sweetalert";
 
 function UserTD(props) {
 
-  let lockUser=(e)=>{
+  let lockUser=(e)=>{//lock the user
     e.preventDefault();
+    let users = fetch("http://localhost:3001/users/users")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      }).then(()=>{
+        const newDelete={
+          userName:props.username
+        };
+        axios.post("http://localhost:3001/users/delete", newDelete);
+        swal({
+          title: "Success",
+          text: "Lock the user",
+          icon: "lock",
+        });
+
+      })
 
   }
 
