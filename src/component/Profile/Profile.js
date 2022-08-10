@@ -7,8 +7,7 @@ import "./Profile.css"
 //the profile page
 function Profile(props) {
     // const match = props.match;
-    // console.log(match.url);
-    
+    // console.log(match.url);   
     
     return (
         <body id="profileBody">
@@ -16,6 +15,9 @@ function Profile(props) {
                 {/* <p>profile</p> */}
 
                 <div class="col-12 row" id="profilePanel">
+                    <div id="profileBarImage">
+                        
+                    </div>
                     <ProfileList />
                     {/* outlet required to load the components presented by secondary routes */}
                     <Outlet />
