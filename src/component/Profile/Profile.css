@@ -87,6 +87,11 @@
     width: 180px;
 }
 
+#profilePayModalBtn {
+    height: 34px;
+}
+
+
 @media screen and (max-width: 980px) {
     #profileLeftNav span {
         font-size: 15px;
