@@ -3,6 +3,7 @@ import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import VideoCover from "../VideoCover/VideoCover";
+import "./Zone.css"
 //the home page of my zone
 //including the link to my uploaded vedios, my favorite vedios and recent like vedios
 function MyZoneHome() {
@@ -431,7 +432,8 @@ function MyZoneHome() {
           <div class="col-12 rounded" id="myZoneVedios">
             <div class="col-12 rounded" id="myZoneVideosBar">
               <span>My Vedios</span>
-              <Link to="/myzone/like" id="myVideosLink" >                
+              <Link to="/myzone/like" id="myVideosLink" > 
+              More...              
               </Link>
             </div>
 
@@ -448,7 +450,9 @@ function MyZoneHome() {
           <div class="col-12 rounded" id="myZoneFavorite">
             <div class="col-12 rounded" id="myZoneFavoriteBar">
               <span>My Favorite</span>
-              <Link to="/myzone/favorite" id="myFavoriteLink" >                
+              <Link to="/myzone/favorite" id="myFavoriteLink" > 
+
+              More...            
               </Link>
             </div>
 

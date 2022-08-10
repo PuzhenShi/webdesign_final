@@ -3,15 +3,27 @@ import React from "react";
 function MainCarousel(props) {
   const imgWidth = 384;
   const imgHeight = 300;
-  const carouselStyle = {};
- props.videos.map((video,index) =>{
-  console.log(video.cover);
- })
+  const carouselStyle = {
+    "object-fit": "cover",
+    height: "100%",
+    "border-radius": "4px",
+  };
+  const carouselWrapperStyle = {
+    height: "300px",
+  };
+  props.videos.map((video, index) => {
+    console.log(video.cover);
+  });
   const videoList = props.videos.map((video, index) => {
     if (index === 0) {
       return (
-        <div className="carousel-item active">
-          <img src={process.env.PUBLIC_URL + '/videos/'+ video.cover} className="d-block w-100" alt="..."></img>
+        <div className="carousel-item active" style={carouselWrapperStyle}>
+          <img
+            src={process.env.PUBLIC_URL + "/videos/" + video.cover}
+            className="d-block w-100"
+            style={carouselStyle}
+            alt="..."
+          ></img>
           <div className="carousel-caption d-none d-md-block">
             <h5>{video.title}</h5>
           </div>
@@ -19,8 +31,13 @@ function MainCarousel(props) {
       );
     } else {
       return (
-        <div className="carousel-item">
-          <img src={process.env.PUBLIC_URL + '/videos/'+ video.cover} className="d-block w-100" alt="..."></img>
+        <div className="carousel-item" style={carouselWrapperStyle}>
+          <img
+            src={process.env.PUBLIC_URL + "/videos/" + video.cover}
+            style={carouselStyle}
+            className="d-block w-100"
+            alt="..."
+          ></img>
           <div className="carousel-caption d-none d-md-block">
             <h5>{video.title}</h5>
           </div>
@@ -33,7 +50,6 @@ function MainCarousel(props) {
       id="carouselExampleCaptions"
       className="carousel slide"
       data-bs-ride="false"
-      style={carouselStyle}
     >
       <div className="carousel-indicators">
         <button

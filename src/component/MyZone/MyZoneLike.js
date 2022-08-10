@@ -71,7 +71,8 @@ let myFavoritelist = [];
 if(userFind.myVideo){
   myFavoritelist=userFind.myVideo;
 }
-  
+
+console.log(myFavoritelist)  
 
 let myFavorite = (myFavoritelist) =>{
   if(myFavoritelist.length==0){

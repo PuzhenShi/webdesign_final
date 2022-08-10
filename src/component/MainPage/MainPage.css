@@ -9,4 +9,18 @@
 
 #lowerContent {
   margin-top: 30px;
-}/*# sourceMappingURL=MainPage.css.map */
+}
+
+#mainBackImg {
+  margin: 0;
+  padding: 0;
+  height: 180px;
+  background-image: url("../../../public/materials/main.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: rgb(221, 218, 218) 0 0 3px 3px;
+}
+
+
+/*# sourceMappingURL=MainPage.css.map */

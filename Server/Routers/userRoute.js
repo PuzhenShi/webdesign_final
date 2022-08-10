@@ -106,6 +106,7 @@ router.route("/myVideo").post((req,res) =>{
         if (err)
             res.send(err);
         res.status(200);
+        console.log("update success");
         res.json(samples);
     })
 });
@@ -120,6 +121,7 @@ router.route("/myFavorite").post((req,res) =>{
         if (err)
             res.send(err);
         res.status(200);
+        
         res.json(samples);
     })
 });
@@ -195,7 +197,7 @@ router.route("/users").get((req, res) => {
 });
 
 //search user by name
-router.route("/searchUsers").get((req, res) => {
+router.route("/searchUsers").post((req, res) => {
     user.findOne({userName: req.body.userName})
         .then(findTheUser => res.json(findTheUser))
 });
