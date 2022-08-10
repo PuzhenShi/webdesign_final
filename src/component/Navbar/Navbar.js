@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import "./Navbar.css";
 
@@ -8,14 +7,12 @@ function Navbar() {
   let navhref = "/login";
 
   let loginCookie = getCookieValue("loginType");
-  // console.log("loginCookie",loginCookie);
   const [loginType, setLoginType] = useState(
     loginCookie === null ? 0 : parseInt(loginCookie)
   );
   if (loginCookie === null) {
     loginCookie = setCookie("loginType", 0, "", "");
   }
-  //console.log("loginType",loginType);
   const [users, setUsers] = useState([
     {
       _id: Object,
@@ -31,20 +28,8 @@ function Navbar() {
         userName: "",
       };
     }
-    // these code will cause re-peat wrong
-    // let userSave = users.find((item) => {
-    //     if (item._id == currentUserID) {
-    //         setInfoUserName(item.userName);
-    //         setInfoUserPwd(item.password);
-    //         return item;
-    //     }
-    // });
-    // console.log('userSave',userSave);
     for (let i = 0; i < users.length; i++) {
       if (users[i]._id == currentUserID) {
-        // setInfoUserName(users[i].userName);
-        // setInfoUserPwd(users[i].password);
-
         return users[i];
       }
     }
@@ -55,10 +40,7 @@ function Navbar() {
   };
   let userFind = getCurrentUser(getCookieValue("currentUserID"));
 
-  //  console.log('userFind',userFind);
   const [currentUser, setCurrentUser] = useState(userFind);
-  //console.log('currentUser',currentUser);
-  //
 
   useEffect(() => {
     fetch("http://localhost:3001/users/users")
@@ -69,9 +51,8 @@ function Navbar() {
       })
       .then((res) => {
         setUsers(res);
-        //console.log("res",res);
       });
-    console.log(loginType);
+    // console.log(loginType);
 
     setCookie("loginType", parseInt(loginType), "", "");
     if (parseInt(loginType) == 0) {
@@ -79,10 +60,9 @@ function Navbar() {
     } else if (parseInt(loginType) == 1) {
       setCurrentUser(userFind);
     }
-    
   }, [loginType]);
 
-  console.log("userFind", userFind);
+  // console.log("userFind", userFind);
   let signOut = (e) => {
     //setCookie("loginType", 0, "", "");
     setLoginType(0);
@@ -96,47 +76,48 @@ function Navbar() {
     navhref = "/profile";
   }
 
-  const loginDropdown = (navname,loginType) => {
-    if(loginType==0){
-      return(
+  const loginDropdown = (navname, loginType) => {
+    if (loginType == 0) {
+      return (
         <a className="nav-link" href={navhref}>
-                {navname}
-              </a>
-      )
-    }else{
-    return (
-       <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown"
-          href="#"
-          role="button"
-          aria-expanded="false"
-        >
           {navname}
         </a>
-        <ul class="dropdown-menu">
-          <li>
-            <a class="dropdown-item" href="/profile">
-              Profile
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="/myzone">
-              MyZone
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider"></hr>
-          </li>
-          <li>
-            <a class="dropdown-item" href="/" onClick={signOut}>
-              Log Out
-            </a>
-          </li>
-        </ul>
-      </li> 
-    );}
+      );
+    } else {
+      return (
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-expanded="false"
+          >
+            {navname}
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/profile">
+                Profile
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/myzone">
+                MyZone
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider"></hr>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/" onClick={signOut}>
+                Log Out
+              </a>
+            </li>
+          </ul>
+        </li>
+      );
+    }
   };
 
   return (
@@ -173,10 +154,10 @@ function Navbar() {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-            {/* <a className="nav-link" href={navhref}>
+              {/* <a className="nav-link" href={navhref}>
                 {navname}
               </a> */}
-              {loginDropdown(navname,loginType)}
+              {loginDropdown(navname, loginType)}
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/admin">
@@ -185,7 +166,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/about">
-                About
+                Contact
               </a>
             </li>
           </ul>
