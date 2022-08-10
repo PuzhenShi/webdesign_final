@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
-
+import "./Zone.css"
 function MyZoneBar() {
     let loginCookie = getCookieValue("loginType");
   const [loginType, setLoginType] = useState(
