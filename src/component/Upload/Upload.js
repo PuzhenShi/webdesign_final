@@ -3,86 +3,88 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import ImageUploading from 'react-images-uploading';
 import Button from 'react-bootstrap/Button';
+import MyZoneBar from '../MyZone/MyZoneBar';
 import { setCookie, getCookieValue } from "../Cookie/Cookie";
 import swal from "sweetalert";
+import "./Upload.css"
 
 function Upload() {
 
     //get current user
-  let loginCookie = getCookieValue("loginType");
-  // console.log("loginCookie",loginCookie);
-  const [loginType, setLoginType] = useState(
-    loginCookie === null ? 0 : parseInt(loginCookie)
-  );
-  if (loginCookie === null) {
-    loginCookie = setCookie("loginType", 0, "", "");
-  }
-  //console.log("loginType",loginType);
-  const [users, setUsers] = useState([
-    {
-      _id: Object,
-      userName: "",
-    },
-  ]);
-
-  // set currentUser
-  let getCurrentUser = (currentUserID) => {
-    if (currentUserID == "") {
-      return {
-        _id: Object,
-        userName: "",
-      };
+    let loginCookie = getCookieValue("loginType");
+    // console.log("loginCookie",loginCookie);
+    const [loginType, setLoginType] = useState(
+        loginCookie === null ? 0 : parseInt(loginCookie)
+    );
+    if (loginCookie === null) {
+        loginCookie = setCookie("loginType", 0, "", "");
     }
-    // these code will cause re-peat wrong
-    // let userSave = users.find((item) => {
-    //     if (item._id == currentUserID) {
-    //         setInfoUserName(item.userName);
-    //         setInfoUserPwd(item.password);
-    //         return item;
-    //     }
-    // });
-    // console.log('userSave',userSave);
-    for (let i = 0; i < users.length; i++) {
-      if (users[i]._id == currentUserID) {
-        // setInfoUserName(users[i].userName);
-        // setInfoUserPwd(users[i].password);
+    //console.log("loginType",loginType);
+    const [users, setUsers] = useState([
+        {
+            _id: Object,
+            userName: "",
+        },
+    ]);
 
-        return users[i];
-      }
-    }
-    return {
-      _id: Object,
-      userName: "",
-    };
-  };
-  let userFind = getCurrentUser(getCookieValue("currentUserID"));
-
-  //  console.log('userFind',userFind);
-  const [currentUser, setCurrentUser] = useState(userFind);
-  //console.log('currentUser',currentUser);
-  //
-
-  useEffect(() => {
-    fetch("http://localhost:3001/users/users")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
+    // set currentUser
+    let getCurrentUser = (currentUserID) => {
+        if (currentUserID == "") {
+            return {
+                _id: Object,
+                userName: "",
+            };
         }
-      })
-      .then((res) => {
-        setUsers(res);
-        //console.log("res",res);
-      });
-    //console.log(loginType);
+        // these code will cause re-peat wrong
+        // let userSave = users.find((item) => {
+        //     if (item._id == currentUserID) {
+        //         setInfoUserName(item.userName);
+        //         setInfoUserPwd(item.password);
+        //         return item;
+        //     }
+        // });
+        // console.log('userSave',userSave);
+        for (let i = 0; i < users.length; i++) {
+            if (users[i]._id == currentUserID) {
+                // setInfoUserName(users[i].userName);
+                // setInfoUserPwd(users[i].password);
 
-    setCookie("loginType", parseInt(loginType), "", "");
-    if (parseInt(loginType) == 0) {
-      setCookie("currentUserID", "", "", "");
-    } else if (parseInt(loginType) == 1) {
-      setCurrentUser(userFind);
-    }
-    
-  }, [loginType]);
+                return users[i];
+            }
+        }
+        return {
+            _id: Object,
+            userName: "",
+        };
+    };
+    let userFind = getCurrentUser(getCookieValue("currentUserID"));
+
+    //  console.log('userFind',userFind);
+    const [currentUser, setCurrentUser] = useState(userFind);
+    //console.log('currentUser',currentUser);
+    //
+
+    useEffect(() => {
+        fetch("http://localhost:3001/users/users")
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then((res) => {
+                setUsers(res);
+                //console.log("res",res);
+            });
+        //console.log(loginType);
+
+        setCookie("loginType", parseInt(loginType), "", "");
+        if (parseInt(loginType) == 0) {
+            setCookie("currentUserID", "", "", "");
+        } else if (parseInt(loginType) == 1) {
+            setCurrentUser(userFind);
+        }
+
+    }, [loginType]);
 
 
     //***************************************
@@ -97,7 +99,7 @@ function Upload() {
     // };
     //const [file, setFile] = React.useState("");
     const [files, setFiles] = React.useState([]);
-    const [cover,setCover] = useState()
+    const [cover, setCover] = useState()
     // Handles file upload event and updates state
     function onCoverUpload(event) {
         event.preventDefault();
@@ -120,7 +122,7 @@ function Upload() {
     }
 
 
-    const [videoAddress,setvideoAddress] = useState()
+    const [videoAddress, setvideoAddress] = useState()
     // Handles file upload event and updates state
     function onvideoUpload(event) {
         event.preventDefault();
@@ -142,32 +144,32 @@ function Upload() {
         setvideoAddress(event.target.files[0].name)
     }
 
-    const[videoname,setVideoname] = useState();
+    const [videoname, setVideoname] = useState();
     let videonameinput = (e) => {
         setVideoname(e.target.value);
         console.log("UserName Input", e.target.value);
-      };
+    };
 
-    const[duration,setDuration] = useState();
-      let videodurationinput = (e) => {
+    const [duration, setDuration] = useState();
+    let videodurationinput = (e) => {
         setDuration(e.target.value);
-          console.log("UserName Input", e.target.value);
-        };
+        console.log("UserName Input", e.target.value);
+    };
 
-    const[vip,setVip] = useState(); 
+    const [vip, setVip] = useState();
     let changevip = (e) => {
         setVip(e.target.value);
-          console.log("UserName Input", e.target.value);
-        };
+        console.log("UserName Input", e.target.value);
+    };
 
 
     //***************************************
     //***************************************
     //script for file uplaod
     //the only thing we need to know is the file name
-    
+
     // handle submit button for form
-    const[newvideo,setNewvideo] =useState();
+    const [newvideo, setNewvideo] = useState();
     function handleSubmit(e) {
         e.preventDefault();
         console.log(videoAddress.split('.').slice(0, -1).join('.'));
@@ -179,7 +181,7 @@ function Upload() {
 
         fetch("http://localhost:3001/videodb/create", {
             method: "POST",
-             mode: "cors",
+            mode: "cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 videoAddress: videoAddress.split('.').slice(0, -1).join('.'),
@@ -188,30 +190,30 @@ function Upload() {
                 publisher: userFind.userName,
                 videoDuration: duration,
                 VIP: vip
-      }),
-    }).then((res) =>{
-      return res.json();
-    }).then((res) =>{
-      setNewvideo(res);
-    })
-    swal({
-        title: "Thanks!",
-        text: "Welcome to dilidili!",
-        icon: "success",
-      });
+            }),
+        }).then((res) => {
+            return res.json();
+        }).then((res) => {
+            setNewvideo(res);
+        })
+        swal({
+            title: "Thanks!",
+            text: "Welcome to dilidili!",
+            icon: "success",
+        });
 
-      fetch("http://localhost:3001/users/myVideo", {
+        fetch("http://localhost:3001/users/myVideo", {
             method: "POST",
-             mode: "cors",
+            mode: "cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 myVideo: newvideo,
                 userName: userFind.userName,
-      }),
-    })
+            }),
+        })
 
     }
-    
+
     // button state whether it's disabled or enabled
     const [enabled, setEnabled] = useState(false);
     // using useEffect we can detect if user uploaded any file,
@@ -227,71 +229,84 @@ function Upload() {
     //***************************************
 
     return (
-        <div class="container">
+        <div class="container" id="uploadBody">
+            <MyZoneBar />
+            <div class="col-12 rounded" id="uploadPanel">
+                <form onSubmit={handleSubmit} className="upload--container">
+                    <h2> Upload your video here</h2>
+                    <br />
+                    <div class="col-12 row">
+                        <div class="col-6">
+                            <h5>choose the cover of your video:</h5>
+                            <div className="upload--button">
+                                <input
+                                    onChange={onCoverUpload}
+                                    id={1}
+                                    accept=".jpeg, .jpg, .png"
+                                    type="file"
+                                />
+                            </div>
 
-            <form onSubmit={handleSubmit} className="upload--container">
-                <h4> Upload your video </h4>
-                <div class="col-10 row">
-                    <div class="col-5">
-                        <p>choose the cover of your video:</p>
-                        <div className="upload--button">
-                            <input
-                                onChange={onCoverUpload}
-                                id={1}
-                                accept=".jpeg, .jpg, .png"
-                                type="file"
-                            />
-                        </div>
-
-                        {/* <p>cover file: 
+                            {/* <p>cover file: 
                             {files[0].file_name}
                             </p> */}
-                    </div>
-                    <div class="col-5">
-                        <p>choose your video:</p>
-                        <div className="upload--button">
-                            <input
-                                onChange={onvideoUpload}
-                                id={2}
-                                accept=".mp4, .mkv"
-                                type="file"
-                            />
                         </div>
-                        {/* <p>video: 
+                        <div class="col-6">
+                            <h5>choose your video:</h5>
+                            <div className="upload--button">
+                                <input
+                                    onChange={onvideoUpload}
+                                    id={2}
+                                    accept=".mp4, .mkv, .flv"
+                                    type="file"
+                                />
+                            </div>
+                            {/* <p>video: 
                             {files[1].file_name}
                             </p> */}
-                    </div>
-                    <div class="col-5 title">
-                        <span>video title:</span>
-                        <input type="text" id="videoTitle" value={videoname}
-                          onChange={videonameinput}
-                          required/>
-                    </div>
-                    <div class="col-5 title">
-                        <span>video duration:</span>
-                        <input type="text" id="videoTitle" value={duration}
-                          onChange={videodurationinput}
-                          required/>
-                    </div>
-                    <div class="col-5 title">
-                        <span>vip?</span>
-                    <div onChange={changevip}>
-                        <input type="radio" value="true" name="yes" /> Yes
-                        <input type="radio" value="false" name="vip" /> No
-                    </div>
-                    </div>
-                    
-                </div>
-                <br />
-                {enabled ? (
-                    <button type="submit">Submit</button>
-                ) : (
-                    <button disabled type="submit">
-                        Submit
-                    </button>
-                )}
-            </form>
+                        </div>
+                        <div class="col-12 row" id="uploadInfo">
+                            <div class="col-6 title">
+                                <span>
+                                    <h5>video title:</h5>
+                                </span>
+                                <input type="text" id="videoTitle" value={videoname}
+                                    onChange={videonameinput}
+                                    required />
+                            </div>
+                            <div class="col-6 title">
+                                <span>
+                                    <h5>video duration:</h5>
+                                </span>
+                                <input type="text" id="videoDuration" value={duration}
+                                    onChange={videodurationinput}
+                                    required />
+                            </div>
+                            <div class="col-9 title">
+                                <span>
+                                    <h5>
+                                        Is this video only accessable by premium member?
+                                    </h5>
+                                </span>
+                                <div onChange={changevip} id="uploadRadio">
+                                    <input type="radio" value="true" name="yes" /> Yes
+                                    <input type="radio" value="false" name="vip" /> No
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                    <br />
+                    {enabled ? (
+                        <button type="submit" class="primary uploadBtn">upload</button>
+                    ) : (
+
+                        <button disabled type="submit" class="primary uploadBtn uploadDisable">
+                            upload
+                        </button>
+                    )}
+                </form>
+            </div>
 
         </div>
     )
