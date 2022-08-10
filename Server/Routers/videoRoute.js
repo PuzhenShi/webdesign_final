@@ -34,7 +34,12 @@ router.route("/create").post((req, res)  =>{
         comment,
         publisher
     });
-    newVideo.save();
+    newVideo.save(function(err,newVide) {
+        if(err)
+            res.send(err)
+        res.json(newVide);
+        res.status(200);
+    });
 });
 
 //delete a video

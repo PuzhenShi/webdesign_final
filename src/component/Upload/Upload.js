@@ -167,6 +167,7 @@ function Upload() {
     //the only thing we need to know is the file name
     
     // handle submit button for form
+    const[newvideo,setNewvideo] =useState();
     function handleSubmit(e) {
         e.preventDefault();
         console.log(videoAddress.split('.').slice(0, -1).join('.'));
@@ -188,6 +189,10 @@ function Upload() {
                 videoDuration: duration,
                 VIP: vip
       }),
+    }).then((res) =>{
+      return res.json();
+    }).then((res) =>{
+      setNewvideo(res);
     })
     swal({
         title: "Thanks!",
@@ -195,27 +200,15 @@ function Upload() {
         icon: "success",
       });
 
-
-
-
-
-    
-        // var fd = new FormData()
-        // fd.append('files',this.state.files[i][0],this.state.files[i][0].name)
-        // var statebody = Object.assign({},this.state,{files:null})
-        // fd.append('state',JSON.stringify(statebody))
-        // axios.post('/api/',fd)
-        //             .then((res)=>{
-        //     console.log(res)
-        // }).catch((e)=>{
-        //     console.log(e)
-        // })
-        /* const formData = new FormData()
-        formData.append('files', this.state.files)
-        axios.post("http://localhost:3001/videos/create", formData, {
-        }).then(res => {
-            console.log(res)
-        }) */
+      fetch("http://localhost:3001/users/myVideo", {
+            method: "POST",
+             mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                myVideo: newvideo,
+                userName: userFind.userName,
+      }),
+    })
 
     }
     
