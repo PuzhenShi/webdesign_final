@@ -1,14 +1,64 @@
-.login .column .pannel {
-  margin-top: 50%;
+.icon {
+  background-color: #00aeec;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  position: relative;
+}
+.icon svg {
+  height: 80px;
+  fill: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -40px;
+}
+
+.pannel {
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, 0.4);
+}
+
+.login-wrapper {
+  margin-top: -56px;
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 56px);
+}
+
+.login-pannel {
   background-color: #f9f9f9;
-  padding: 40px;
-  border-radius: 10px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 50px;
 }
-.login #login a {
+
+.align-middle {
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
+#login a {
+  text-decoration: none;
   color: #00aeec;
-  text-decoration: none;
 }
-.login #register a {
-  color: black;
+
+#register a {
   text-decoration: none;
+  color: black;
+}
+#register a:hover {
+  color: #00aeec;
+}
+
+#login-alt a {
+  text-decoration: none;
+  color: black;
+}
+#login-alt a:hover {
+  color: #00aeec;
+}
+
+#register-alt a {
+  text-decoration: none;
+  color: #00aeec;
 }/*# sourceMappingURL=LoginPage.css.map */
