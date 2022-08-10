@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import "./VideoCover.css";
 import { Link } from "react-router-dom";
+import { setCookie, getCookieValue } from "../Cookie/Cookie";
+import swal from "sweetalert";
 
 function VideoCover(props) {
-  const { title, views, cover, duration,author, url, date, author_id, video } =
+  const { title, views, cover, duration,author, url, date, author_id, VIP } =
     //const video=
     props.videoInfo;
   //console.log(video);
@@ -13,6 +15,84 @@ function VideoCover(props) {
     "x" +
     props.coverHeight +
     "/#ffffff/000";  */
+
+  //get current user
+  let loginCookie = getCookieValue("loginType");
+  // console.log("loginCookie",loginCookie);
+  const [loginType, setLoginType] = useState(
+    loginCookie === null ? 0 : parseInt(loginCookie)
+  );
+  if (loginCookie === null) {
+    loginCookie = setCookie("loginType", 0, "", "");
+  }
+  //console.log("loginType",loginType);
+  const [users, setUsers] = useState([
+    {
+      _id: Object,
+      userName: "",
+    },
+  ]);
+
+  // set currentUser
+  let getCurrentUser = (currentUserID) => {
+    if (currentUserID == "") {
+      return {
+        _id: Object,
+        userName: "",
+      };
+    }
+    // these code will cause re-peat wrong
+    // let userSave = users.find((item) => {
+    //     if (item._id == currentUserID) {
+    //         setInfoUserName(item.userName);
+    //         setInfoUserPwd(item.password);
+    //         return item;
+    //     }
+    // });
+    // console.log('userSave',userSave);
+    for (let i = 0; i < users.length; i++) {
+      if (users[i]._id == currentUserID) {
+        // setInfoUserName(users[i].userName);
+        // setInfoUserPwd(users[i].password);
+
+        return users[i];
+      }
+    }
+    return {
+      _id: Object,
+      userName: "",
+    };
+  };
+  let userFind = getCurrentUser(getCookieValue("currentUserID"));
+
+  //  console.log('userFind',userFind);
+  const [currentUser, setCurrentUser] = useState(userFind);
+  //console.log('currentUser',currentUser);
+  //
+
+  useEffect(() => {
+    fetch("http://localhost:3001/users/users")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((res) => {
+        setUsers(res);
+        //console.log("res",res);
+      });
+    console.log(loginType);
+
+    setCookie("loginType", parseInt(loginType), "", "");
+    if (parseInt(loginType) == 0) {
+      setCookie("currentUserID", "", "", "");
+    } else if (parseInt(loginType) == 1) {
+      setCurrentUser(userFind);
+    }
+    
+  }, [loginType]);
+
+  //console.log("userFind", userFind);
 
   const wrapperStyle = {
     width: "100%",
@@ -32,7 +112,12 @@ function VideoCover(props) {
   };
 
   function handleClick(e) {
-    let viewvideo = fetch("http://localhost:3001/videodb/click", {
+    e.preventDefault()
+    let videostatus = VIP;
+    let userstatus = userFind.vipStatus;
+    
+    if(videostatus==false||videostatus==true&&userstatus==true){
+      let viewvideo = fetch("http://localhost:3001/videodb/click", {
       method: "POST",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
@@ -40,8 +125,15 @@ function VideoCover(props) {
         videoAddress: url,
       }),
     });
-
     window.location='/video/'+url;
+    }else{
+      swal({
+        title: "Oh No!",
+        text: "This video is a VIP video, you can become a vip in myprofile page!",
+        icon: "error",
+      });
+    }
+    
   }
   return (
     <div style={wrapperStyle} className="video-display">
