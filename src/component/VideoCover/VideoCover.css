@@ -11,6 +11,7 @@
 }
 .video-display .cover .image a img {
   width: 100%;
+  border-radius: 8px;
 }
 .video-display .cover .views {
   position: absolute;
