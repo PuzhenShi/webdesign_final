@@ -97,9 +97,8 @@ function ProfilePay() {
     if (currentstatus) {
         Premium = "Welcome,premium!"
     } else {
-        Premium = "Sorry,you are not out premium."
+        Premium = "sorry, you're not a premium member"
     }
-
     let checkout = (currentstatus) => {
         if (currentstatus) {
             return (

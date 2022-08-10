@@ -98,26 +98,26 @@ function Navbar() {
           <ul class="dropdown-menu">
             <li>
               <a class="dropdown-item" href="/profile">
-              <i class="bi bi-clipboard-minus"></i>
-              <span class="navLabel">Profile</span>
+                <i class="bi bi-clipboard-minus"></i>
+                <span class="navLabel">Profile</span>
               </a>
             </li>
             <li>
               <a class="dropdown-item" href="/myzone">
-              <i class="bi bi-house"></i>
+                <i class="bi bi-house"></i>
                 <span class="navLabel">MyZone</span>
               </a>
             </li>
             <li>
               <a class="dropdown-item" href="/history">
-              <i class="bi bi-clock"></i>
-              <span class="navLabel">History</span>
+                <i class="bi bi-clock"></i>
+                <span class="navLabel">History</span>
               </a>
             </li>
             <li>
               <a class="dropdown-item" href="/upload">
-              <i class="bi bi-upload"></i>
-              <span class="navLabel">Upload</span>
+                <i class="bi bi-upload"></i>
+                <span class="navLabel">Upload</span>
               </a>
             </li>
             <li>
@@ -125,15 +125,12 @@ function Navbar() {
             </li>
             <li>
               <a class="dropdown-item" href="/" onClick={signOut}>
-              <i class="bi bi-indent"></i>
-              <span class="navLabel">Log Out</span>
+                <i class="bi bi-indent"></i>
+                <span class="navLabel">Log Out</span>
               </a>
             </li>
-          </ul>         
-
-
+          </ul>
         </li>
-        
       );
     }
   };
@@ -189,7 +186,7 @@ function Navbar() {
             </li> */}
             <li className="nav-item">
               <a className="nav-link" href="/about">
-                Contact
+                contact
               </a>
             </li>
           </ul>
