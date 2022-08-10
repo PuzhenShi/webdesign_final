@@ -1,4 +1,4 @@
-#zoneBody {
+/* #zoneBody {
     height: 1000px;
     background-image: url("../../../public/materials/zone1.png");
     background-size: 100% 100%;
@@ -6,4 +6,12 @@
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+} */
+
+#zoneBar {
+    height: 180px;
+    background-image: url("../../../public/materials/zonebar.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
