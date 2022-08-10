@@ -87,7 +87,7 @@ function ProfileInfo()
                     });
                     return false;
                 }
-                if (!input.password.match(valPwd)) {
+                if (!input.userPassword.match(valPwd)) {
                     swal({
                         title: "Oh No!",
                         text: "Invalid Password!\n" +
@@ -108,15 +108,16 @@ function ProfileInfo()
                         DOM:startDate.toLocaleDateString()
                         
                     };
+                    console.log(newPro);
                     axios.post('http://localhost:3001/users/update',newPro);
                     swal({
                         title: "Thanks!",
                         text: "Update successfully",
                         icon: "success",
                       });
-                      return (
-                        navigate('/')
-                      )
+                      //return (
+                        //navigate('/')
+                      //)
                   
                 };
             });
